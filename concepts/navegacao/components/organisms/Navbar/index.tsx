@@ -2,7 +2,7 @@ import CartButton from "../../atoms/CartButton";
 import LoginButton from "../../atoms/LoginButton";
 import NavbarIcon from "../../atoms/NavbarIcon";
 import SearchInput from "../../atoms/SearchInput";
-import LiteraryGenres from "../../Molecules/LiteraryGenres";
+import LiteraryGenres from "../../molecules/LiteraryGenres";
 
 const Navbar: React.FC = () => {
   return (
