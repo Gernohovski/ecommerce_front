@@ -6,7 +6,7 @@ const PasswordInput: React.FC = () => {
     <div>
       <Label className="text-sm">Senha *</Label>
       <Input
-        className="min-w-[350px] max-w-[350px]"
+        className="min-w-[256.5px] max-w-[256.5px]"
         placeholder="Insira a senha"
       ></Input>
     </div>

@@ -6,7 +6,7 @@ const TelephoneInput: React.FC = () => {
     <div>
       <Label className="text-sm">Telefone *</Label>
       <Input
-        className="min-w-[350px] max-w-[350px]"
+        className="min-w-[256.5px] max-w-[256.5px]"
         placeholder="Insira o telefone"
       ></Input>
     </div>
