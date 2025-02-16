@@ -1,5 +1,6 @@
 import FormPageTemplate from "@/components/ui/form-page-template";
 import DadosBasicosSection from "@/concepts/cadastro/DadosBasicos/components/organisms/DadosBasicosSection";
+import EnderecoCobrancaSection from "@/concepts/cadastro/EnderecoCobranca/components/organisms/EnderecoCobrancaSection";
 import EnderecoResidencialSection from "@/concepts/cadastro/EnderecoResidencial/components/organisms/EnderecoResidencialSection";
 import Navbar from "@/concepts/navegacao/components/organisms/Navbar";
 
@@ -8,8 +9,9 @@ export default function Cadastro() {
     <div>
       <Navbar />
       <FormPageTemplate subtitle="Cadastrar usuário">
-        <DadosBasicosSection></DadosBasicosSection>
-        <EnderecoResidencialSection></EnderecoResidencialSection>
+        <DadosBasicosSection />
+        <EnderecoResidencialSection />
+        <EnderecoCobrancaSection />
       </FormPageTemplate>
     </div>
   );
