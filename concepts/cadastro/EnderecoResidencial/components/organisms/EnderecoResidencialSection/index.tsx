@@ -7,9 +7,7 @@ import ThirdLine from "../../molecules/ThirdLine";
 const EnderecoResidencialSection: React.FC = () => {
   return (
     <Section
-      icon={
-        <Image src="/icons/map-pin.svg" alt="Bookly" width={30} height={30} />
-      }
+      icon={<Image src="/icons/home.svg" alt="Bookly" width={30} height={30} />}
       title="Endereço residencial"
       subtitle="Preencha os dados do seu endereço residencial"
     >

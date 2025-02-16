@@ -4,14 +4,12 @@ import SecondLine from "@/concepts/cadastro/EnderecoResidencial/components/molec
 import ThirdLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/ThirdLine";
 import Image from "next/image";
 
-const EnderecoCobrancaSection: React.FC = () => {
+const EnderecoEntregaSection: React.FC = () => {
   return (
     <Section
-      icon={
-        <Image src="/icons/dollar.svg" alt="Bookly" width={30} height={30} />
-      }
-      title="Endereço de cobrança"
-      subtitle="Preencha os dados do seu endereço de cobrança"
+      icon={<Image src="/icons/box.svg" alt="Bookly" width={30} height={30} />}
+      title="Endereço de entrega"
+      subtitle="Preencha os dados do seu endereço de entrega"
     >
       <FirstLine></FirstLine>
       <SecondLine></SecondLine>
@@ -20,4 +18,4 @@ const EnderecoCobrancaSection: React.FC = () => {
   );
 };
 
-export default EnderecoCobrancaSection;
+export default EnderecoEntregaSection;
