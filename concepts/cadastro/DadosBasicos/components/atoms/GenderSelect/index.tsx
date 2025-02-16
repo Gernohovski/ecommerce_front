@@ -7,12 +7,19 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { generos } from "@/utils/constants/genero";
+import { useDadosBasicosContext } from "../../../contexts/DadosBasicosContext";
 
 const GenderSelect: React.FC = () => {
+  const { setGender } = useDadosBasicosContext();
+
+  const handleChange = (value: string) => {
+    setGender(value);
+  };
+
   return (
     <div>
       <Label className="text-sm">Gênero *</Label>
-      <Select>
+      <Select onValueChange={handleChange}>
         <SelectTrigger className="min-w-[256.5px] max-w-[256.5px] data-[placeholder]:text-[#71717A] ">
           <SelectValue placeholder="Selecione..." />
         </SelectTrigger>

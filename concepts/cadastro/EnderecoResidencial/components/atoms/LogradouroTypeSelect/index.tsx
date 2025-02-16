@@ -7,12 +7,21 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { generos } from "@/utils/constants/genero";
+import { Dispatch, SetStateAction } from "react";
 
-const LogradouroTypeSelect: React.FC = () => {
+type Props = {
+  logradouroType: string;
+  setLogradouroType: Dispatch<SetStateAction<string>>;
+};
+
+const LogradouroTypeSelect: React.FC<Props> = ({ setLogradouroType }) => {
+  const handleChange = (value: string) => {
+    setLogradouroType(value);
+  };
   return (
     <div>
       <Label className="text-sm">Tipo do logradouro *</Label>
-      <Select>
+      <Select onValueChange={handleChange}>
         <SelectTrigger className="min-w-[256.5px] max-w-[256.5px] data-[placeholder]:text-[#71717A] ">
           <SelectValue placeholder="Selecione..." />
         </SelectTrigger>
