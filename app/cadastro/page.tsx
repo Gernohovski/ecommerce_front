@@ -1,4 +1,5 @@
 import FormPageTemplate from "@/components/ui/form-page-template";
+import CreditCardSection from "@/concepts/cadastro/CartaoCredito/components/organisms/CartaoDeCreditoSection";
 import DadosBasicosSection from "@/concepts/cadastro/DadosBasicos/components/organisms/DadosBasicosSection";
 import EnderecoCobrancaSection from "@/concepts/cadastro/EnderecoCobranca/components/organisms/EnderecoCobrancaSection";
 import EnderecoEntregaSection from "@/concepts/cadastro/EnderecoEntrega/components/organisms/EnderecoEntregaSection";
@@ -14,6 +15,7 @@ export default function Cadastro() {
         <EnderecoResidencialSection />
         <EnderecoCobrancaSection />
         <EnderecoEntregaSection />
+        <CreditCardSection />
       </FormPageTemplate>
     </div>
   );
