@@ -1,6 +1,10 @@
 import Section from "@/components/ui/section";
+import { useBuscarCep } from "@/lib/useBuscarCep";
 import Image from "next/image";
+import { useEffect } from "react";
 import { useEnderecoResidencialContext } from "../../../contexts/EnderecoResidencialContext";
+import CheckboxCobranca from "../../atoms/CheckboxCobranca";
+import CheckboxEntrega from "../../atoms/CheckboxEntrega";
 import FirstLine from "../../molecules/FirstLine";
 import SecondLine from "../../molecules/SecondLine";
 import ThirdLine from "../../molecules/ThirdLine";
@@ -28,6 +32,19 @@ const EnderecoResidencialSection: React.FC = () => {
     state,
     setState,
   } = useEnderecoResidencialContext();
+
+  const { data } = useBuscarCep(cep);
+
+  useEffect(() => {
+    if (data && !data.erro) {
+      setCity(data.localidade || "");
+      setState(data.estado || "");
+      setNeighborhood(data.bairro || "");
+      setLogradouro(data.logradouro || "");
+      setCounty("Brasil");
+    }
+  }, [data, setCity, setState, setNeighborhood, setLogradouro, setCounty]);
+
   return (
     <Section
       icon={<Image src="/icons/home.svg" alt="Bookly" width={30} height={30} />}
@@ -60,6 +77,9 @@ const EnderecoResidencialSection: React.FC = () => {
         observations={observations}
         setObservations={setObservations}
       />
+      <hr></hr>
+      <CheckboxCobranca />
+      <CheckboxEntrega />
     </Section>
   );
 };

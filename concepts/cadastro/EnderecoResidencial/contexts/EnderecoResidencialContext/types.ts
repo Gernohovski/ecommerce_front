@@ -21,4 +21,8 @@ export type EnderecoResidencialContextType = {
   setResidenceType: Dispatch<SetStateAction<string>>;
   state: string;
   setState: Dispatch<SetStateAction<string>>;
+  useEnderecoCobranca: boolean;
+  setUseEnderecoCobranca: Dispatch<SetStateAction<boolean>>;
+  useEnderecoEntrega: boolean;
+  setUseEnderecoEntrega: Dispatch<SetStateAction<boolean>>;
 };

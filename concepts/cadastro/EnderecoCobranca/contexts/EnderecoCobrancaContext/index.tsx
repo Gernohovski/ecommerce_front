@@ -1,5 +1,13 @@
 "use client";
-import { createContext, ReactNode, useContext, useMemo, useState } from "react";
+import { useEnderecoResidencialContext } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { EnderecoCobrancaContextType } from "./types";
 
 const EnderecoCobrancaContext = createContext(
@@ -22,6 +30,46 @@ const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
   const [observations, setObservations] = useState<string>("");
   const [residenceType, setResidenceType] = useState<string>("");
   const [state, setState] = useState<string>("");
+  const {
+    useEnderecoCobranca,
+    cep: cepResidencial,
+    city: cityResidencial,
+    country: countryResidencial,
+    logradouro: logradouroResidencial,
+    tipoLogradouro: tipoLogradouroResidencial,
+    neighborhood: neighborhoodResidencial,
+    number: numberResidencial,
+    observations: observationsResidencial,
+    residenceType: residenceTypeResidencial,
+    state: stateResidencial,
+  } = useEnderecoResidencialContext();
+
+  useEffect(() => {
+    if (useEnderecoCobranca) {
+      setCep(cepResidencial);
+      setCity(cityResidencial);
+      setCounty(countryResidencial);
+      setLogradouro(logradouroResidencial);
+      setTipoLogradouro(tipoLogradouroResidencial);
+      setNeighborhood(neighborhoodResidencial);
+      setNumber(numberResidencial);
+      setObservations(observationsResidencial);
+      setResidenceType(residenceTypeResidencial);
+      setState(stateResidencial);
+    }
+  }, [
+    useEnderecoCobranca,
+    cepResidencial,
+    cityResidencial,
+    countryResidencial,
+    logradouroResidencial,
+    tipoLogradouroResidencial,
+    neighborhoodResidencial,
+    numberResidencial,
+    observationsResidencial,
+    residenceTypeResidencial,
+    stateResidencial,
+  ]);
 
   const values = useMemo(
     () => ({

@@ -1,6 +1,9 @@
 import { Input } from "@/components/ui/input";
+import { useEnderecoCobrancaContext } from "@/concepts/cadastro/EnderecoCobranca/contexts/EnderecoCobrancaContext";
+import { useEnderecoEntregaContext } from "@/concepts/cadastro/EnderecoEntrega/contexts/EnderecoEntregaContext";
 import { Label } from "@radix-ui/react-label";
 import { Dispatch, SetStateAction } from "react";
+import { useEnderecoResidencialContext } from "../../../contexts/EnderecoResidencialContext";
 
 type Props = {
   logradouro: string;
@@ -8,6 +11,20 @@ type Props = {
 };
 
 const LogradouroInput: React.FC<Props> = ({ logradouro, setLogradouro }) => {
+  const { useEnderecoCobranca, useEnderecoEntrega } =
+    useEnderecoResidencialContext();
+  const { setLogradouro: setLogradouroCobranca } = useEnderecoCobrancaContext();
+  const { setLogradouro: setLogradouroEntrega } = useEnderecoEntregaContext();
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const novoLogradouro = e.target.value;
+    setLogradouro(novoLogradouro);
+    if (useEnderecoCobranca) {
+      setLogradouroCobranca(novoLogradouro);
+    }
+    if (useEnderecoEntrega) {
+      setLogradouroEntrega(novoLogradouro);
+    }
+  };
   return (
     <div>
       <Label className="text-sm">Logradouro *</Label>
@@ -15,7 +32,7 @@ const LogradouroInput: React.FC<Props> = ({ logradouro, setLogradouro }) => {
         className="min-w-[256.5px] max-w-[256.5px]"
         placeholder="Insira o logradouro"
         value={logradouro}
-        onChange={(e) => setLogradouro(e.target.value)}
+        onChange={handleChange}
       ></Input>
     </div>
   );

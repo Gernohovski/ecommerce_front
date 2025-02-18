@@ -22,6 +22,9 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
   const [observations, setObservations] = useState<string>("");
   const [residenceType, setResidenceType] = useState<string>("");
   const [state, setState] = useState<string>("");
+  const [useEnderecoCobranca, setUseEnderecoCobranca] =
+    useState<boolean>(false);
+  const [useEnderecoEntrega, setUseEnderecoEntrega] = useState<boolean>(false);
 
   const values = useMemo(
     () => ({
@@ -45,6 +48,10 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
       setResidenceType,
       state,
       setState,
+      useEnderecoCobranca,
+      setUseEnderecoCobranca,
+      useEnderecoEntrega,
+      setUseEnderecoEntrega,
     }),
     [
       cep,
@@ -57,6 +64,8 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
       observations,
       residenceType,
       state,
+      useEnderecoCobranca,
+      useEnderecoEntrega,
     ]
   );
   return (

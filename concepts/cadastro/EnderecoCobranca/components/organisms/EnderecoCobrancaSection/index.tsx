@@ -2,10 +2,14 @@ import Section from "@/components/ui/section";
 import FirstLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/FirstLine";
 import SecondLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/SecondLine";
 import ThirdLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/ThirdLine";
+import { useEnderecoResidencialContext } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext";
+import { useBuscarCep } from "@/lib/useBuscarCep";
 import Image from "next/image";
+import { useEffect } from "react";
 import { useEnderecoCobrancaContext } from "../../../contexts/EnderecoCobrancaContext";
 
 const EnderecoCobrancaSection: React.FC = () => {
+  const { useEnderecoCobranca } = useEnderecoResidencialContext();
   const {
     cep,
     setCep,
@@ -28,6 +32,19 @@ const EnderecoCobrancaSection: React.FC = () => {
     state,
     setState,
   } = useEnderecoCobrancaContext();
+
+  const { data } = useBuscarCep(cep);
+
+  useEffect(() => {
+    if (data && !data.erro) {
+      setCity(data.localidade || "");
+      setState(data.estado || "");
+      setNeighborhood(data.bairro || "");
+      setLogradouro(data.logradouro || "");
+      setCounty("Brasil");
+    }
+  }, [data, setCity, setState, setNeighborhood, setLogradouro, setCounty]);
+
   return (
     <Section
       icon={
@@ -35,6 +52,7 @@ const EnderecoCobrancaSection: React.FC = () => {
       }
       title="Endereço de cobrança"
       subtitle="Preencha os dados do seu endereço de cobrança"
+      disabled={useEnderecoCobranca}
     >
       <FirstLine
         cep={cep}

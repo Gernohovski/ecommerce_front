@@ -7,6 +7,7 @@ import DadosBasicosContextProvider from "@/concepts/cadastro/DadosBasicos/contex
 import EnderecoCobrancaSection from "@/concepts/cadastro/EnderecoCobranca/components/organisms/EnderecoCobrancaSection";
 import EnderecoCobrancaContextProvider from "@/concepts/cadastro/EnderecoCobranca/contexts/EnderecoCobrancaContext";
 import EnderecoEntregaSection from "@/concepts/cadastro/EnderecoEntrega/components/organisms/EnderecoEntregaSection";
+import EnderecoEntregaContextProvider from "@/concepts/cadastro/EnderecoEntrega/contexts/EnderecoEntregaContext";
 import EnderecoResidencialSection from "@/concepts/cadastro/EnderecoResidencial/components/organisms/EnderecoResidencialSection";
 import EnderecoResidencialContextProvider from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext";
 import Navbar from "@/concepts/navegacao/components/organisms/Navbar";
@@ -15,8 +16,8 @@ export default function Cadastro() {
   return (
     <DadosBasicosContextProvider>
       <EnderecoResidencialContextProvider>
-        <EnderecoCobrancaContextProvider>
-          <EnderecoResidencialContextProvider>
+        <EnderecoEntregaContextProvider>
+          <EnderecoCobrancaContextProvider>
             <CartaoCreditoContextProvider>
               <Navbar />
               <FormPageTemplate subtitle="Cadastrar usuário">
@@ -27,8 +28,8 @@ export default function Cadastro() {
                 <CreditCardSection />
               </FormPageTemplate>
             </CartaoCreditoContextProvider>
-          </EnderecoResidencialContextProvider>
-        </EnderecoCobrancaContextProvider>
+          </EnderecoCobrancaContextProvider>
+        </EnderecoEntregaContextProvider>
       </EnderecoResidencialContextProvider>
     </DadosBasicosContextProvider>
   );
