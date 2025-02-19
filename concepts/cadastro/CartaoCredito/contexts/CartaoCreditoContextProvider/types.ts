@@ -9,4 +9,15 @@ export type CartaoCreditoContextType = {
   setCardSecurityCode: Dispatch<SetStateAction<string>>;
   cardPrintedName: string;
   setCardPrintedName: Dispatch<SetStateAction<string>>;
+  cartoesCredito: CartaoCreditoType[];
+  setCartoesCredito: Dispatch<SetStateAction<CartaoCreditoType[]>>;
+  clearForm: () => void;
+};
+
+export type CartaoCreditoType = {
+  idTemporario?: string;
+  flag: string;
+  printedName: string;
+  cardNumber: string;
+  securityCode: string;
 };

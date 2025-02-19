@@ -1,6 +1,13 @@
 "use client";
-import { createContext, ReactNode, useContext, useMemo, useState } from "react";
-import { CartaoCreditoContextType } from "./types";
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
+import { CartaoCreditoContextType, CartaoCreditoType } from "./types";
 
 const CartaoCreditoContext = createContext({} as CartaoCreditoContextType);
 
@@ -13,6 +20,14 @@ const CartaoCreditoContextProvider: React.FC<{ children: ReactNode }> = ({
   const [cardNumber, setCardNumber] = useState<string>("");
   const [cardSecurityCode, setCardSecurityCode] = useState<string>("");
   const [cardPrintedName, setCardPrintedName] = useState<string>("");
+  const [cartoesCredito, setCartoesCredito] = useState<CartaoCreditoType[]>([]);
+
+  const clearForm = useCallback(() => {
+    setCardFlag("");
+    setCardNumber("");
+    setCardSecurityCode("");
+    setCardPrintedName("");
+  }, []);
 
   const values = useMemo(
     () => ({
@@ -24,8 +39,18 @@ const CartaoCreditoContextProvider: React.FC<{ children: ReactNode }> = ({
       setCardSecurityCode,
       cardPrintedName,
       setCardPrintedName,
+      cartoesCredito,
+      setCartoesCredito,
+      clearForm,
     }),
-    [cardFlag, cardNumber, cardSecurityCode, cardPrintedName]
+    [
+      cardFlag,
+      cardNumber,
+      cardSecurityCode,
+      cardPrintedName,
+      cartoesCredito,
+      clearForm,
+    ]
   );
   return (
     <CartaoCreditoContext.Provider value={values}>

@@ -8,8 +8,8 @@ const CardSecurityCode: React.FC = () => {
     <div>
       <Label className="text-sm">Código de segurança *</Label>
       <Input
-        className="min-w-[256.5px] max-w-[256.5px]"
-        placeholder="Insira o código de segurança"
+        className="min-w-[180.5px] max-w-[180.5px]"
+        placeholder="Insira o código"
         value={cardSecurityCode}
         onChange={(e) => setCardSecurityCode(e.target.value)}
       ></Input>
