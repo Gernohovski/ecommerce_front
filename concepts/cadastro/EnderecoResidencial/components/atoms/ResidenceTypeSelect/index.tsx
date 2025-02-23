@@ -9,9 +9,9 @@ import {
 } from "@/components/ui/select";
 import { useEnderecoCobrancaContext } from "@/concepts/cadastro/EnderecoCobranca/contexts/EnderecoCobrancaContext";
 import { useEnderecoEntregaContext } from "@/concepts/cadastro/EnderecoEntrega/contexts/EnderecoEntregaContext";
-import { generos } from "@/utils/constants/genero";
 import { Dispatch, SetStateAction } from "react";
 import { useEnderecoResidencialContext } from "../../../contexts/EnderecoResidencialContext";
+import { useFetchListarTiposResidencia } from "../../../hooks/useFetchListarTiposResidencia";
 
 type Props = {
   residenceType: string;
@@ -22,6 +22,7 @@ const ResidenceTypeSelect: React.FC<Props> = ({
   setResidenceType,
   residenceType,
 }) => {
+  const { data } = useFetchListarTiposResidencia();
   const isDisabled = useDisabled();
   const { useEnderecoCobranca, useEnderecoEntrega } =
     useEnderecoResidencialContext();
@@ -50,9 +51,9 @@ const ResidenceTypeSelect: React.FC<Props> = ({
           <SelectValue placeholder="Selecione..." />
         </SelectTrigger>
         <SelectContent>
-          {generos.map((genero) => (
-            <SelectItem key={genero.value} value={genero.value}>
-              {genero.label}
+          {data?.map((tipo) => (
+            <SelectItem key={String(tipo.id)} value={String(tipo.id)}>
+              {tipo.nome}
             </SelectItem>
           ))}
         </SelectContent>

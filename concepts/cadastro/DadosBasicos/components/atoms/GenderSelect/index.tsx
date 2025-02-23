@@ -6,12 +6,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { generos } from "@/utils/constants/genero";
 import { useDadosBasicosContext } from "../../../contexts/DadosBasicosContext";
+import { useFetchListarGeneros } from "../../../hooks/useFetchListarGeneros";
 
 const GenderSelect: React.FC = () => {
-  const { setGender } = useDadosBasicosContext();
-
+  const { data } = useFetchListarGeneros();
+  const { setGender, gender } = useDadosBasicosContext();
   const handleChange = (value: string) => {
     setGender(value);
   };
@@ -19,14 +19,14 @@ const GenderSelect: React.FC = () => {
   return (
     <div>
       <Label className="text-sm">Gênero *</Label>
-      <Select onValueChange={handleChange}>
+      <Select onValueChange={handleChange} value={gender}>
         <SelectTrigger className="min-w-[256.5px] max-w-[256.5px] data-[placeholder]:text-[#71717A] ">
           <SelectValue placeholder="Selecione..." />
         </SelectTrigger>
         <SelectContent>
-          {generos.map((genero) => (
-            <SelectItem key={genero.value} value={genero.value}>
-              {genero.label}
+          {data?.map((genero) => (
+            <SelectItem key={String(genero.id)} value={String(genero.id)}>
+              {genero.nome}
             </SelectItem>
           ))}
         </SelectContent>

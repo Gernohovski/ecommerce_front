@@ -6,10 +6,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { generos } from "@/utils/constants/genero";
 import { useCartaoCreditoContext } from "../../../contexts/CartaoCreditoContextProvider";
+import { useFetchListarBandeirasCartao } from "../../../hooks/useFetchListarBandeirasCartao";
 
 const CardFlagSelect: React.FC = () => {
+  const { data } = useFetchListarBandeirasCartao();
   const { setCardFlag, cardFlag } = useCartaoCreditoContext();
   const handleChange = (value: string) => {
     setCardFlag(value);
@@ -22,9 +23,9 @@ const CardFlagSelect: React.FC = () => {
           <SelectValue placeholder="Selecione..." />
         </SelectTrigger>
         <SelectContent>
-          {generos.map((genero) => (
-            <SelectItem key={genero.value} value={genero.value}>
-              {genero.label}
+          {data?.map((bandeira) => (
+            <SelectItem key={String(bandeira.id)} value={String(bandeira.id)}>
+              {bandeira.nome}
             </SelectItem>
           ))}
         </SelectContent>

@@ -1,6 +1,5 @@
 "use client";
 
-import AddCartaoCreditoButton from "../../atoms/AddCartaoCreditoButton";
 import CardFlagSelect from "../../atoms/CardFlagSelect";
 import CardNumberInput from "../../atoms/CardNumberInput";
 import CardSecurityCode from "../../atoms/CardSecurityCode";
@@ -13,9 +12,6 @@ const FirstLine: React.FC = () => {
       <PrintedNameInput />
       <CardFlagSelect />
       <CardSecurityCode />
-      <div className="flex items-end">
-        <AddCartaoCreditoButton />
-      </div>
     </div>
   );
 };

@@ -1,26 +1,29 @@
 {
   "name": "ecommerce_front",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "json-server": "json-server --watch db.json --port 4000"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.1.4",
+    "@radix-ui/react-dropdown-menu": "^2.1.6",
     "@radix-ui/react-label": "^2.1.2",
     "@radix-ui/react-popover": "^1.1.6",
     "@radix-ui/react-select": "^2.1.6",
     "@radix-ui/react-slot": "^1.1.2",
     "@tanstack/react-query": "^5.66.2",
     "@tanstack/react-table": "^8.21.2",
+    "@types/express": "^5.0.0",
     "axios": "^1.7.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
-    "json-server": "^1.0.0-beta.3",
     "lucide-react": "^0.475.0",
     "next": "15.1.0",
     "react": "^19.0.0",
@@ -28,8 +31,10 @@
     "react-dom": "^19.0.0",
     "react-icons": "^5.4.0",
     "react-id-generator": "^3.0.2",
+    "react-toastify": "^11.0.3",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7",
+    "ts-node": "^10.9.2",
     "yup": "^1.6.1"
   },
   "devDependencies": {
@@ -41,6 +46,6 @@
     "eslint-config-next": "15.1.0",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5.7.3"
   }
 }
