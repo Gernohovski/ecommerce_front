@@ -15,7 +15,7 @@ export type CartaoCreditoContextType = {
 };
 
 export type CartaoCreditoType = {
-  idTemporario?: string;
+  id?: string;
   flag: string;
   printedName: string;
   cardNumber: string;

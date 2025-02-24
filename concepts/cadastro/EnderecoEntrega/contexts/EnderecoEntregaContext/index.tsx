@@ -1,5 +1,6 @@
 "use client";
 import { useEnderecoResidencialContext } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext";
+import { EnderecoType } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext/types";
 import {
   createContext,
   ReactNode,
@@ -28,6 +29,8 @@ const EnderecoEntregaContextProvider: React.FC<{ children: ReactNode }> = ({
   const [observations, setObservations] = useState<string>("");
   const [residenceType, setResidenceType] = useState<string>("");
   const [state, setState] = useState<string>("");
+  const [shortPhrase, setShortPhrase] = useState<string>("");
+  const [enderecos, setEnderecos] = useState<EnderecoType[]>([]);
   const {
     useEnderecoEntrega,
     cep: cepResidencial,
@@ -91,6 +94,10 @@ const EnderecoEntregaContextProvider: React.FC<{ children: ReactNode }> = ({
       setResidenceType,
       state,
       setState,
+      shortPhrase,
+      setShortPhrase,
+      enderecos,
+      setEnderecos,
     }),
     [
       cep,
@@ -103,6 +110,8 @@ const EnderecoEntregaContextProvider: React.FC<{ children: ReactNode }> = ({
       observations,
       residenceType,
       state,
+      shortPhrase,
+      enderecos,
     ]
   );
   return (

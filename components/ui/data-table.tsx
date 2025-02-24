@@ -32,7 +32,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="rounded-md border">
+    <div className="rounded-md border shadow-sm">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -41,7 +41,7 @@ export function DataTable<TData, TValue>({
                 return (
                   <TableHead
                     key={header.id}
-                    className={`text-[#382057] font-semibold text-center
+                    className={`text-[#561F9C] font-semibold text-center
                       ${
                         index !== headerGroup.headers.length - 1
                           ? "border-r"

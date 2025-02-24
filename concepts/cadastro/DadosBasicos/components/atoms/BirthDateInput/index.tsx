@@ -11,7 +11,11 @@ const BirthDateInput: React.FC<Props> = ({ date, setDate }) => {
   return (
     <div>
       <Label className="text-sm pb-0.5">Data de nascimento *</Label>
-      <DatePicker date={date} setDate={setDate} />
+      <DatePicker
+        date={date}
+        setDate={setDate}
+        className="min-w-[250px] max-w-[250px]"
+      />
     </div>
   );
 };

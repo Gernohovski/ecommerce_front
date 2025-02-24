@@ -1,6 +1,6 @@
 "use client";
 import { createContext, ReactNode, useContext, useMemo, useState } from "react";
-import { EnderecoResidencialContextType } from "./types";
+import { EnderecoResidencialContextType, EnderecoType } from "./types";
 
 const EnderecoResidencialContext = createContext(
   {} as EnderecoResidencialContextType
@@ -22,6 +22,8 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
   const [observations, setObservations] = useState<string>("");
   const [residenceType, setResidenceType] = useState<string>("");
   const [state, setState] = useState<string>("");
+  const [shortPhrase, setShortPhrase] = useState<string>("");
+  const [enderecos, setEnderecos] = useState<EnderecoType[]>([]);
   const [useEnderecoCobranca, setUseEnderecoCobranca] =
     useState<boolean>(false);
   const [useEnderecoEntrega, setUseEnderecoEntrega] = useState<boolean>(false);
@@ -52,6 +54,10 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
       setUseEnderecoCobranca,
       useEnderecoEntrega,
       setUseEnderecoEntrega,
+      shortPhrase,
+      setShortPhrase,
+      enderecos,
+      setEnderecos,
     }),
     [
       cep,
@@ -66,6 +72,8 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
       state,
       useEnderecoCobranca,
       useEnderecoEntrega,
+      shortPhrase,
+      enderecos,
     ]
   );
   return (

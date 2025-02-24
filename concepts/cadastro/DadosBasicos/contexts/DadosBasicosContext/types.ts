@@ -17,4 +17,6 @@ export type DadosBasicosContextType = {
   setPassword: Dispatch<SetStateAction<string>>;
   telephone: string;
   setTelephone: Dispatch<SetStateAction<string>>;
+  telephoneType: string;
+  setTelephoneType: Dispatch<SetStateAction<string>>;
 };

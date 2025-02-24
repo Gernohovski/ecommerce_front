@@ -1,5 +1,5 @@
 import { useSessionContext } from "@/concepts/login/contexts/SessionContext";
-import MinhaContaDropDown from "@/concepts/minha-conta/components/organisms/MinhaContaDropdown";
+import MinhaContaDropDown from "@/concepts/minha-conta/Dropdown/components/organisms/MinhaContaDropdown";
 import CartButton from "../../atoms/CartButton";
 import LoginButton from "../../atoms/LoginButton";
 import NavbarIcon from "../../atoms/NavbarIcon";

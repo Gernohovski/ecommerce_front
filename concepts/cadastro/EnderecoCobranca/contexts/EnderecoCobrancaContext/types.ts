@@ -1,3 +1,4 @@
+import { EnderecoType } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext/types";
 import { Dispatch, SetStateAction } from "react";
 
 export type EnderecoCobrancaContextType = {
@@ -21,4 +22,8 @@ export type EnderecoCobrancaContextType = {
   setResidenceType: Dispatch<SetStateAction<string>>;
   state: string;
   setState: Dispatch<SetStateAction<string>>;
+  shortPhrase: string;
+  setShortPhrase: Dispatch<SetStateAction<string>>;
+  enderecos: EnderecoType[];
+  setEnderecos: Dispatch<SetStateAction<EnderecoType[]>>;
 };

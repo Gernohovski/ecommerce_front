@@ -25,4 +25,23 @@ export type EnderecoResidencialContextType = {
   setUseEnderecoCobranca: Dispatch<SetStateAction<boolean>>;
   useEnderecoEntrega: boolean;
   setUseEnderecoEntrega: Dispatch<SetStateAction<boolean>>;
+  shortPhrase: string;
+  setShortPhrase: Dispatch<SetStateAction<string>>;
+  enderecos: EnderecoType[];
+  setEnderecos: Dispatch<SetStateAction<EnderecoType[]>>;
+};
+
+export type EnderecoType = {
+  id: string;
+  cep: string;
+  city: string;
+  country: string;
+  logradouro: string;
+  tipoLogradouro: string;
+  neighborhood: string;
+  number: string;
+  observations: string;
+  residenceType: string;
+  state: string;
+  shortPhrase: string;
 };

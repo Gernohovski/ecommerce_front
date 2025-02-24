@@ -17,6 +17,7 @@ const DadosBasicosContextProvider: React.FC<{ children: ReactNode }> = ({
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [telephone, setTelephone] = useState<string>("");
+  const [telephoneType, setTelephoneType] = useState<string>("");
 
   const values = useMemo(
     () => ({
@@ -36,8 +37,20 @@ const DadosBasicosContextProvider: React.FC<{ children: ReactNode }> = ({
       setPassword,
       telephone,
       setTelephone,
+      telephoneType,
+      setTelephoneType,
     }),
-    [birthDate, confirmPassword, cpf, email, gender, name, password, telephone]
+    [
+      birthDate,
+      confirmPassword,
+      cpf,
+      email,
+      gender,
+      name,
+      password,
+      telephone,
+      telephoneType,
+    ]
   );
   return (
     <DadosBasicosContext.Provider value={values}>
