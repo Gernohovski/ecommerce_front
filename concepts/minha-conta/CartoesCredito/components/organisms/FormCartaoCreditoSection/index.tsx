@@ -4,7 +4,7 @@ import SalvarEdicaoCartaoCreditoButton from "../../atoms/SalvarEdicaoCartaoCredi
 import FirstLine from "../../molecules/FirstLine";
 import CreditoDataTable from "../CartaoCreditoDataTable";
 
-const ViewCartaoCreditoSection: React.FC = () => {
+const FormCartaoCreditoSection: React.FC = () => {
   return (
     <div>
       <ViewSection
@@ -17,7 +17,7 @@ const ViewCartaoCreditoSection: React.FC = () => {
           />
         }
         title="Cartão de crédito"
-        subtitle="Cadastre, visualize e edite os dados do seu cartão de crédito"
+        subtitle="Edite os dados do seu cartão de crédito"
       >
         <FirstLine />
         <div className="flex justify-end">
@@ -29,4 +29,4 @@ const ViewCartaoCreditoSection: React.FC = () => {
   );
 };
 
-export default ViewCartaoCreditoSection;
+export default FormCartaoCreditoSection;

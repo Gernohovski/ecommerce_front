@@ -47,7 +47,7 @@ const ResidenceTypeSelect: React.FC<Props> = ({
         value={residenceType}
         disabled={isDisabled}
       >
-        <SelectTrigger className="min-w-[537px] max-w-[537px] data-[placeholder]:text-[#71717A] ">
+        <SelectTrigger className="min-w-[200px] max-w-[200px] data-[placeholder]:text-[#71717A] ">
           <SelectValue placeholder="Selecione..." />
         </SelectTrigger>
         <SelectContent>

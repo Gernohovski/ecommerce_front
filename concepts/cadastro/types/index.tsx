@@ -36,13 +36,14 @@ export interface ClienteResponse {
 }
 
 export interface Telefone {
-  id: number;
+  id?: number;
   ddd: string;
   telefone: string;
   tipoTelefone: Propriedade;
 }
 
 export interface Endereco {
+  id?: number;
   tipoLogradouro: Propriedade;
   tipoResidencia: Propriedade;
   logradouro: string;
@@ -65,6 +66,7 @@ export interface Endereco {
 }
 
 export interface CartaoCredito {
+  id?: number;
   numero: string;
   nomeImpresso: string;
   bandeira: Propriedade;

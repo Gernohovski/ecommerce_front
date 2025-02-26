@@ -19,7 +19,7 @@ const CardFlagSelect: React.FC = () => {
     <div>
       <Label className="text-sm">Bandeira do cartão *</Label>
       <Select onValueChange={handleChange} value={cardFlag}>
-        <SelectTrigger className="min-w-[256.5px] max-w-[256.5px] data-[placeholder]:text-[#71717A] ">
+        <SelectTrigger className="min-w-[228.5px] max-w-[228.5px] data-[placeholder]:text-[#71717A] ">
           <SelectValue placeholder="Selecione..." />
         </SelectTrigger>
         <SelectContent>

@@ -3,6 +3,7 @@ import { useEnderecoCobrancaContext } from "@/concepts/cadastro/EnderecoCobranca
 import { useEnderecoEntregaContext } from "@/concepts/cadastro/EnderecoEntrega/contexts/EnderecoEntregaContext";
 import { Label } from "@radix-ui/react-label";
 import { Dispatch, SetStateAction } from "react";
+import { withMask } from "use-mask-input";
 import { useEnderecoResidencialContext } from "../../../contexts/EnderecoResidencialContext";
 
 type Props = {
@@ -31,10 +32,11 @@ const CEPInput: React.FC<Props> = ({ cep, setCep }) => {
     <div>
       <Label className="text-sm">CEP *</Label>
       <Input
-        className="min-w-[256.5px] max-w-[256.5px]"
+        className="min-w-[200px] max-w-[200px]"
         placeholder="Insira o CEP"
         value={cep}
         onChange={handleChange}
+        ref={withMask("99999-999")}
       ></Input>
     </div>
   );

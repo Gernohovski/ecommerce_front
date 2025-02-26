@@ -38,10 +38,12 @@ export type EnderecoType = {
   country: string;
   logradouro: string;
   tipoLogradouro: string;
+  tipoLogradouroId: string;
   neighborhood: string;
   number: string;
   observations: string;
   residenceType: string;
+  residenceTypeId: string;
   state: string;
   shortPhrase: string;
 };

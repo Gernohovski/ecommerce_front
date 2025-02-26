@@ -1,4 +1,4 @@
-import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { useEnderecoCobrancaContext } from "@/concepts/cadastro/EnderecoCobranca/contexts/EnderecoCobrancaContext";
 import { useEnderecoEntregaContext } from "@/concepts/cadastro/EnderecoEntrega/contexts/EnderecoEntregaContext";
 import { Label } from "@radix-ui/react-label";
@@ -20,7 +20,7 @@ const ObservationsInput: React.FC<Props> = ({
     useEnderecoCobrancaContext();
   const { setObservations: setObservationsEntrega } =
     useEnderecoEntregaContext();
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const novaObservacao = e.target.value;
     setObservations(novaObservacao);
     if (useEnderecoCobranca) {
@@ -33,12 +33,12 @@ const ObservationsInput: React.FC<Props> = ({
   return (
     <div>
       <Label className="text-sm">Observações</Label>
-      <Input
-        className="min-w-[537px] max-w-[537px]"
+      <Textarea
+        className="min-w-[1104px] max-w-[1104px]"
         placeholder="Insira as observações"
         value={observations}
         onChange={handleChange}
-      ></Input>
+      ></Textarea>
     </div>
   );
 };

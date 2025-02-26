@@ -8,7 +8,7 @@ const PrintedNameInput: React.FC = () => {
     <div>
       <Label className="text-sm">Nome impresso no cartão *</Label>
       <Input
-        className="min-w-[256.5px] max-w-[256.5px]"
+        className="min-w-[315.75px] max-w-[315.75px]"
         placeholder="Insira o nome impresso"
         value={cardPrintedName}
         onChange={(e) => setCardPrintedName(e.target.value)}

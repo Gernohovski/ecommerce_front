@@ -8,7 +8,7 @@ const EmailInput: React.FC = () => {
     <div>
       <Label className="text-sm">E-mail *</Label>
       <Input
-        className="min-w-[256.5px] max-w-[256.5px]"
+        className="min-w-[537px] max-w-[537px]"
         placeholder="Insira o e-mail"
         value={email}
         onChange={(e) => setEmail(e.target.value)}

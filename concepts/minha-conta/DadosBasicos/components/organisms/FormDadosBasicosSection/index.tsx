@@ -4,7 +4,7 @@ import EditarDadosBasicosButton from "../../atoms/EditarDadosBasicosButton";
 import FirstLine from "../../molecules/FirstLine";
 import SecondLine from "../../molecules/SecondLine";
 
-const ViewDadosBasicosSection: React.FC = () => {
+const FormDadosBasicosSection: React.FC = () => {
   return (
     <ViewSection
       icon={
@@ -20,4 +20,4 @@ const ViewDadosBasicosSection: React.FC = () => {
   );
 };
 
-export default ViewDadosBasicosSection;
+export default FormDadosBasicosSection;

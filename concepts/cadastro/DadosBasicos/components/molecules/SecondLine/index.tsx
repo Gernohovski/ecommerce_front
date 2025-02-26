@@ -1,16 +1,16 @@
 "use client";
-import ConfirmPasswordInput from "../../atoms/ConfirmPasswordInput";
+import DDDInput from "../../atoms/DDDInput";
 import EmailInput from "../../atoms/EmailInput";
-import PasswordInput from "../../atoms/PasswordInput";
 import TelephoneInput from "../../atoms/TelephoneInput";
+import TelephoneTypeSelect from "../../atoms/TelephoneTypeSelect";
 
 const SecondLine: React.FC = () => {
   return (
     <div className="flex gap-6">
+      <DDDInput />
       <TelephoneInput />
+      <TelephoneTypeSelect />
       <EmailInput />
-      <PasswordInput />
-      <ConfirmPasswordInput />
     </div>
   );
 };

@@ -11,6 +11,7 @@ import EnderecoEntregaSection from "@/concepts/cadastro/EnderecoEntrega/componen
 import EnderecoEntregaContextProvider from "@/concepts/cadastro/EnderecoEntrega/contexts/EnderecoEntregaContext";
 import EnderecoResidencialSection from "@/concepts/cadastro/EnderecoResidencial/components/organisms/EnderecoResidencialSection";
 import EnderecoResidencialContextProvider from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext";
+import SegurancaSection from "@/concepts/cadastro/Seguranca/components/organisms/SegurancaSection";
 import SessionContextProvider from "@/concepts/login/contexts/SessionContext";
 import Navbar from "@/concepts/navegacao/components/organisms/Navbar";
 
@@ -28,6 +29,7 @@ export default function Cadastro() {
                   footer={<FormPersisteClienteButton />}
                 >
                   <DadosBasicosSection />
+                  <SegurancaSection />
                   <EnderecoResidencialSection />
                   <EnderecoCobrancaSection />
                   <EnderecoEntregaSection />

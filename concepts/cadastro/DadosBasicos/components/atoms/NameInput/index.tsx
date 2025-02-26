@@ -8,7 +8,7 @@ const NameInput: React.FC = () => {
     <div>
       <Label className="text-sm">Nome *</Label>
       <Input
-        className="min-w-[256.5px] max-w-[256.5px]"
+        className="min-w-[313px] max-w-[313px]"
         placeholder="Insira o nome"
         value={name}
         onChange={(e) => setName(e.target.value)}

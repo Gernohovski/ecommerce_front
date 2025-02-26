@@ -10,7 +10,7 @@ import SecondLine from "../../molecules/SecondLine";
 import ThirdLine from "../../molecules/ThirdLine";
 import ViewEnderecosDataTable from "../ViewEnderecosDataTable";
 
-const ViewEnderecoResidencialSection: React.FC = () => {
+const FormEnderecoResidencialSection: React.FC = () => {
   const {
     cep,
     setCep,
@@ -95,4 +95,4 @@ const ViewEnderecoResidencialSection: React.FC = () => {
   );
 };
 
-export default ViewEnderecoResidencialSection;
+export default FormEnderecoResidencialSection;

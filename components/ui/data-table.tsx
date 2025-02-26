@@ -37,16 +37,11 @@ export function DataTable<TData, TValue>({
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header, index) => {
+              {headerGroup.headers.map((header) => {
                 return (
                   <TableHead
                     key={header.id}
                     className={`text-[#561F9C] font-semibold text-center
-                      ${
-                        index !== headerGroup.headers.length - 1
-                          ? "border-r"
-                          : ""
-                      }
                     `}
                     style={{ width: header.getSize() }}
                   >
@@ -69,14 +64,9 @@ export function DataTable<TData, TValue>({
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
               >
-                {row.getVisibleCells().map((cell, index) => (
+                {row.getVisibleCells().map((cell) => (
                   <TableCell
                     key={cell.id}
-                    className={
-                      index !== row.getVisibleCells().length - 1
-                        ? "border-r"
-                        : ""
-                    }
                     style={{ width: cell.column.getSize(), height: 10 }}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

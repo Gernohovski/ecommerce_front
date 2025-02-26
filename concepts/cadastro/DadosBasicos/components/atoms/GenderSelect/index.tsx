@@ -20,7 +20,7 @@ const GenderSelect: React.FC = () => {
     <div>
       <Label className="text-sm">Gênero *</Label>
       <Select onValueChange={handleChange} value={gender}>
-        <SelectTrigger className="min-w-[256.5px] max-w-[256.5px] data-[placeholder]:text-[#71717A] ">
+        <SelectTrigger className="min-w-[200px] max-w-[200px] data-[placeholder]:text-[#71717A] ">
           <SelectValue placeholder="Selecione..." />
         </SelectTrigger>
         <SelectContent>

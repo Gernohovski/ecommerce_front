@@ -29,7 +29,7 @@ const StateInput: React.FC<Props> = ({ state, setState }) => {
     <div>
       <Label className="text-sm">Estado *</Label>
       <Input
-        className="min-w-[256.5px] max-w-[256.5px]"
+        className="min-w-[200px] max-w-[200px]"
         placeholder="Insira o estado"
         value={state}
         onChange={handleChange}

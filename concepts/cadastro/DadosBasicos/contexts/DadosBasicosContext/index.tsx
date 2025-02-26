@@ -16,6 +16,7 @@ const DadosBasicosContextProvider: React.FC<{ children: ReactNode }> = ({
   const [gender, setGender] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [ddd, setDdd] = useState<string>("");
   const [telephone, setTelephone] = useState<string>("");
   const [telephoneType, setTelephoneType] = useState<string>("");
 
@@ -39,6 +40,8 @@ const DadosBasicosContextProvider: React.FC<{ children: ReactNode }> = ({
       setTelephone,
       telephoneType,
       setTelephoneType,
+      ddd,
+      setDdd,
     }),
     [
       birthDate,
@@ -50,6 +53,7 @@ const DadosBasicosContextProvider: React.FC<{ children: ReactNode }> = ({
       password,
       telephone,
       telephoneType,
+      ddd,
     ]
   );
   return (

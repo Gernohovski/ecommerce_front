@@ -1,5 +1,6 @@
 import Section from "@/components/ui/section";
 import FirstLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/FirstLine";
+import FourthLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/FourthLine";
 import SecondLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/SecondLine";
 import ThirdLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/ThirdLine";
 import { useEnderecoResidencialContext } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext";
@@ -31,6 +32,8 @@ const EnderecoCobrancaSection: React.FC = () => {
     setResidenceType,
     state,
     setState,
+    shortPhrase,
+    setShortPhrase,
   } = useEnderecoCobrancaContext();
 
   const { data } = useBuscarCep(cep);
@@ -77,6 +80,10 @@ const EnderecoCobrancaSection: React.FC = () => {
       <ThirdLine
         residenceType={residenceType}
         setResidenceType={setResidenceType}
+        shortPhrase={shortPhrase}
+        setShortPhrase={setShortPhrase}
+      />
+      <FourthLine
         observations={observations}
         setObservations={setObservations}
       />

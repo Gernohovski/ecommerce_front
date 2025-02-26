@@ -1,21 +1,21 @@
 "use client";
 
 import { Dispatch, SetStateAction } from "react";
-import ObservationsInput from "../../atoms/ObservationsInput";
 import ResidenceTypeSelect from "../../atoms/ResidenceTypeSelect";
+import ShortPhraseInput from "../../atoms/ShortPhraseInput";
 
 type ThirdLineProps = {
   residenceType: string;
   setResidenceType: Dispatch<SetStateAction<string>>;
-  observations: string;
-  setObservations: Dispatch<SetStateAction<string>>;
+  shortPhrase: string;
+  setShortPhrase: Dispatch<SetStateAction<string>>;
 };
 
 const ThirdLine: React.FC<ThirdLineProps> = ({
   residenceType,
   setResidenceType,
-  observations,
-  setObservations,
+  shortPhrase,
+  setShortPhrase,
 }) => {
   return (
     <div className="flex gap-6">
@@ -23,9 +23,9 @@ const ThirdLine: React.FC<ThirdLineProps> = ({
         residenceType={residenceType}
         setResidenceType={setResidenceType}
       />
-      <ObservationsInput
-        observations={observations}
-        setObservations={setObservations}
+      <ShortPhraseInput
+        shortPhrase={shortPhrase}
+        setShortPhrase={setShortPhrase}
       />
     </div>
   );

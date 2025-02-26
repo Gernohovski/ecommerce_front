@@ -6,6 +6,7 @@ import { useEnderecoResidencialContext } from "../../../contexts/EnderecoResiden
 import CheckboxCobranca from "../../atoms/CheckboxCobranca";
 import CheckboxEntrega from "../../atoms/CheckboxEntrega";
 import FirstLine from "../../molecules/FirstLine";
+import FourthLine from "../../molecules/FourthLine";
 import SecondLine from "../../molecules/SecondLine";
 import ThirdLine from "../../molecules/ThirdLine";
 
@@ -31,6 +32,8 @@ const EnderecoResidencialSection: React.FC = () => {
     setResidenceType,
     state,
     setState,
+    shortPhrase,
+    setShortPhrase,
   } = useEnderecoResidencialContext();
 
   const { data } = useBuscarCep(cep);
@@ -74,6 +77,10 @@ const EnderecoResidencialSection: React.FC = () => {
       <ThirdLine
         residenceType={residenceType}
         setResidenceType={setResidenceType}
+        shortPhrase={shortPhrase}
+        setShortPhrase={setShortPhrase}
+      />
+      <FourthLine
         observations={observations}
         setObservations={setObservations}
       />

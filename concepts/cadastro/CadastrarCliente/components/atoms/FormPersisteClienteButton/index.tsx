@@ -9,8 +9,17 @@ import { toast } from "react-toastify";
 import useCadastrarCliente from "../../../hooks/useCadastrarCliente";
 
 const FormPersisteClienteButton: React.FC = () => {
-  const { birthDate, cpf, email, gender, name, password, telephone } =
-    useDadosBasicosContext();
+  const {
+    birthDate,
+    cpf,
+    email,
+    gender,
+    name,
+    password,
+    telephone,
+    ddd,
+    telephoneType,
+  } = useDadosBasicosContext();
   const { cardFlag, cardNumber, cardSecurityCode, cardPrintedName } =
     useCartaoCreditoContext();
   const router = useRouter();
@@ -26,6 +35,7 @@ const FormPersisteClienteButton: React.FC = () => {
     observations: observationsResidencial,
     residenceType: residenceTypeResidencial,
     state: stateResidencial,
+    shortPhrase: shortPhraseResidencial,
   } = useEnderecoResidencialContext();
   const {
     cep: cepCobranca,
@@ -38,6 +48,7 @@ const FormPersisteClienteButton: React.FC = () => {
     observations: observationsCobranca,
     residenceType: residenceTypeCobranca,
     state: stateCobranca,
+    shortPhrase: shortPhraseCobranca,
   } = useEnderecoCobrancaContext();
   const {
     cep: cepEntrega,
@@ -50,6 +61,7 @@ const FormPersisteClienteButton: React.FC = () => {
     observations: observationsEntrega,
     residenceType: residenceTypeEntrega,
     state: stateEntrega,
+    shortPhrase: shortPhraseEntrega,
   } = useEnderecoResidencialContext();
 
   const objectToSave = useMemo(() => {
@@ -61,8 +73,8 @@ const FormPersisteClienteButton: React.FC = () => {
       email,
       senha: password,
       telefone: telephone,
-      tipoTelefoneId: 1,
-      ddd: telephone.substring(0, 2),
+      tipoTelefoneId: Number(telephoneType),
+      ddd: ddd,
       enderecoResidencial: [
         {
           tipoLogradouro: {
@@ -87,7 +99,7 @@ const FormPersisteClienteButton: React.FC = () => {
           },
           cep: cepResidencial,
           observacoes: observationsResidencial,
-          fraseIdentificacao: observationsResidencial,
+          fraseIdentificacao: shortPhraseResidencial,
         },
       ],
       enderecoCobranca: [
@@ -114,7 +126,7 @@ const FormPersisteClienteButton: React.FC = () => {
           },
           cep: cepCobranca,
           observacoes: observationsCobranca,
-          fraseIdentificacao: observationsCobranca,
+          fraseIdentificacao: shortPhraseCobranca,
         },
       ],
       enderecoEntrega: [
@@ -141,7 +153,7 @@ const FormPersisteClienteButton: React.FC = () => {
           },
           cep: cepEntrega,
           observacoes: observationsEntrega,
-          fraseIdentificacao: observationsEntrega,
+          fraseIdentificacao: shortPhraseEntrega,
         },
       ],
       cartaoCredito: [
@@ -197,6 +209,11 @@ const FormPersisteClienteButton: React.FC = () => {
     observationsEntrega,
     residenceTypeEntrega,
     stateEntrega,
+    shortPhraseEntrega,
+    shortPhraseResidencial,
+    shortPhraseCobranca,
+    telephoneType,
+    ddd,
   ]);
 
   const handleCancel = () => {

@@ -47,7 +47,7 @@ const LogradouroTypeSelect: React.FC<Props> = ({
         value={logradouroType}
         disabled={isDisabled}
       >
-        <SelectTrigger className="min-w-[256.5px] max-w-[256.5px] data-[placeholder]:text-[#71717A] ">
+        <SelectTrigger className="min-w-[200px] max-w-[200px] data-[placeholder]:text-[#71717A] ">
           <SelectValue placeholder="Selecione..." />
         </SelectTrigger>
         <SelectContent>

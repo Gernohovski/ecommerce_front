@@ -25,7 +25,7 @@ const MinhaContaDropDown: React.FC = () => {
   const doLogoff = (e: React.FormEvent) => {
     e.preventDefault();
     localStorage.removeItem("cliente");
-    window.location.reload();
+    router.push("/");
   };
 
   return (

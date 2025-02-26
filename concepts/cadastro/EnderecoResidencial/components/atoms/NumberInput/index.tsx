@@ -29,7 +29,7 @@ const NumberInput: React.FC<Props> = ({ number, setNumber }) => {
     <div>
       <Label className="text-sm">Nº *</Label>
       <Input
-        className="min-w-[256.5px] max-w-[256.5px]"
+        className="min-w-[119px] max-w-[119px]"
         placeholder="Nº"
         value={number}
         onChange={handleChange}

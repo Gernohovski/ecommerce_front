@@ -29,7 +29,7 @@ const LogradouroInput: React.FC<Props> = ({ logradouro, setLogradouro }) => {
     <div>
       <Label className="text-sm">Logradouro *</Label>
       <Input
-        className="min-w-[256.5px] max-w-[256.5px]"
+        className="min-w-[514px] max-w-[514px]"
         placeholder="Insira o logradouro"
         value={logradouro}
         onChange={handleChange}

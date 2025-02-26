@@ -1,5 +1,5 @@
 import ViewSection from "@/components/ui/view-section";
-import { useEnderecoEntregaContext } from "@/concepts/cadastro/EnderecoEntrega/contexts/EnderecoEntregaContext";
+import { useEnderecoCobrancaContext } from "@/concepts/cadastro/EnderecoCobranca/contexts/EnderecoCobrancaContext";
 import FirstLine from "@/concepts/minha-conta/EnderecoResidencial/components/molecules/FirstLine";
 import FourthLine from "@/concepts/minha-conta/EnderecoResidencial/components/molecules/FourthLine";
 import SecondLine from "@/concepts/minha-conta/EnderecoResidencial/components/molecules/SecondLine";
@@ -7,10 +7,10 @@ import ThirdLine from "@/concepts/minha-conta/EnderecoResidencial/components/mol
 import { useBuscarCep } from "@/lib/useBuscarCep";
 import Image from "next/image";
 import { useEffect } from "react";
-import SalvarEdicaoEnderecoEntregaButton from "../../atoms/SalvarEdicaoEnderecoEntregaButton";
+import SalvarEdicaoEnderecoCobrancaButton from "../../atoms/SalvarEdicaoEnderecoCobrancaButton";
 import ViewEnderecosDataTable from "../ViewEnderecosDataTable";
 
-const ViewEnderecoEntregaSection: React.FC = () => {
+const FormEnderecoCobrancaSection: React.FC = () => {
   const {
     cep,
     setCep,
@@ -34,7 +34,7 @@ const ViewEnderecoEntregaSection: React.FC = () => {
     setState,
     shortPhrase,
     setShortPhrase,
-  } = useEnderecoEntregaContext();
+  } = useEnderecoCobrancaContext();
 
   const { data } = useBuscarCep(cep);
 
@@ -51,10 +51,10 @@ const ViewEnderecoEntregaSection: React.FC = () => {
     <div>
       <ViewSection
         icon={
-          <Image src="/icons/box.svg" alt="Bookly" width={30} height={30} />
+          <Image src="/icons/dollar.svg" alt="Bookly" width={30} height={30} />
         }
-        title="Endereço de entrega"
-        subtitle="Cadastre, visualize e edite os dados do seu endereço de entrega"
+        title="Endereço de cobrança"
+        subtitle="Cadastre, visualize e edite os dados do seu endereço de cobrança"
       >
         <FirstLine
           cep={cep}
@@ -87,7 +87,7 @@ const ViewEnderecoEntregaSection: React.FC = () => {
           setObservations={setObservations}
         />
         <div className="flex justify-end">
-          <SalvarEdicaoEnderecoEntregaButton />
+          <SalvarEdicaoEnderecoCobrancaButton />
         </div>
         <ViewEnderecosDataTable />
       </ViewSection>
@@ -95,4 +95,4 @@ const ViewEnderecoEntregaSection: React.FC = () => {
   );
 };
 
-export default ViewEnderecoEntregaSection;
+export default FormEnderecoCobrancaSection;

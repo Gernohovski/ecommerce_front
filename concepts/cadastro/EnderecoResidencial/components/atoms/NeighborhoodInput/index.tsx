@@ -34,7 +34,7 @@ const NeighborhoodInput: React.FC<Props> = ({
     <div>
       <Label className="text-sm">Bairro *</Label>
       <Input
-        className="min-w-[256.5px] max-w-[256.5px]"
+        className="min-w-[316.5px] max-w-[316.5px]"
         placeholder="Insira o bairro"
         value={neighborhood}
         onChange={handleChange}

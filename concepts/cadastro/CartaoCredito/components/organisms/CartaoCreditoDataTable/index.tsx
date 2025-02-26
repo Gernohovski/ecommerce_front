@@ -35,7 +35,7 @@ const CreditoDataTable: React.FC = () => {
         const cartaoCredito = row.original;
         return (
           <div className="flex items-center justify-center">
-            <ActionButtons cartaoCredito={cartaoCredito.idTemporario ?? ""} />
+            <ActionButtons cartaoCredito={cartaoCredito.id ?? ""} />
           </div>
         );
       },

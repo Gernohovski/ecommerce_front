@@ -8,7 +8,7 @@ const CardNumberInput: React.FC = () => {
     <div>
       <Label className="text-sm">Número do cartão *</Label>
       <Input
-        className="min-w-[256.5px] max-w-[256.5px]"
+        className="min-w-[315.75px] max-w-[315.75px]"
         placeholder="Insira o número do cartão"
         value={cardNumber}
         onChange={(e) => setCardNumber(e.target.value)}

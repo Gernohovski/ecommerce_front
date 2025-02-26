@@ -14,7 +14,7 @@ const BirthDateInput: React.FC<Props> = ({ date, setDate }) => {
       <DatePicker
         date={date}
         setDate={setDate}
-        className="min-w-[250px] max-w-[250px]"
+        className="min-w-[200px] max-w-[200px]"
       />
     </div>
   );

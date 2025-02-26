@@ -30,7 +30,7 @@ const CityInput: React.FC<Props> = ({ city, setCity }) => {
     <div>
       <Label className="text-sm">Cidade *</Label>
       <Input
-        className="min-w-[256.5px] max-w-[256.5px]"
+        className="min-w-[316.5px] max-w-[316.5px]"
         placeholder="Insira a cidade"
         value={city}
         onChange={handleChange}

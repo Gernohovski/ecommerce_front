@@ -33,7 +33,7 @@ const CountryInput: React.FC<Props> = ({ country, setCountry }) => {
     <div>
       <Label className="text-sm">País *</Label>
       <Input
-        className="min-w-[256.5px] max-w-[256.5px]"
+        className="min-w-[200px] max-w-[200px]"
         placeholder="Insira o país"
         value={country}
         onChange={handleChange}

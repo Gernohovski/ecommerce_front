@@ -3,7 +3,7 @@ import Image from "next/image";
 import EditarSegurancaButton from "../../atoms/EditarSegurancaButton";
 import FirstLine from "../../molecules/FirstLine";
 
-const ViewSegurancaSection: React.FC = () => {
+const FormEditSegurancaSection: React.FC = () => {
   return (
     <ViewSection
       icon={<Image src="/icons/lock.svg" alt="Bookly" width={30} height={30} />}
@@ -16,4 +16,4 @@ const ViewSegurancaSection: React.FC = () => {
   );
 };
 
-export default ViewSegurancaSection;
+export default FormEditSegurancaSection;
