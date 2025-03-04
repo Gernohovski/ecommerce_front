@@ -1,10 +1,10 @@
-import CancelarEdicaoDadosBasicosButton from "@/concepts/minha-conta/DadosBasicos/components/atoms/CancelarEdicaoDadosBasicosButton";
+import CancelarEdicaoEnderecoResidencialButton from "../../atoms/CancelarEdicaoEnderecoResidencialButton";
 import SalvarEnderecoResidencialButton from "../../atoms/SalvarEnderecoResidencialButton";
 
 const FormFooter: React.FC = () => {
   return (
     <div className="flex gap-6">
-      <CancelarEdicaoDadosBasicosButton />
+      <CancelarEdicaoEnderecoResidencialButton />
       <SalvarEnderecoResidencialButton />
     </div>
   );

@@ -3,7 +3,7 @@ import { useEnderecoResidencialContext } from "@/concepts/cadastro/EnderecoResid
 import { Pencil } from "lucide-react";
 import { useCallback } from "react";
 
-const EditEnderecoButton: React.FC = () => {
+const CancelarEdicaoEnderecoResidencialButton: React.FC = () => {
   const { setIsCadastrando, setIsEditando } = useEnderecoResidencialContext();
 
   const handleButtonClick = useCallback(() => {
@@ -28,4 +28,4 @@ const EditEnderecoButton: React.FC = () => {
   );
 };
 
-export default EditEnderecoButton;
+export default CancelarEdicaoEnderecoResidencialButton;

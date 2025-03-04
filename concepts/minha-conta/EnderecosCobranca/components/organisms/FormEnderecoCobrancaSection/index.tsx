@@ -1,9 +1,9 @@
 import ViewSection from "@/components/ui/view-section";
 import { useEnderecoCobrancaContext } from "@/concepts/cadastro/EnderecoCobranca/contexts/EnderecoCobrancaContext";
-import FirstLine from "@/concepts/minha-conta/EnderecoResidencial/components/molecules/FirstLine";
-import FourthLine from "@/concepts/minha-conta/EnderecoResidencial/components/molecules/FourthLine";
-import SecondLine from "@/concepts/minha-conta/EnderecoResidencial/components/molecules/SecondLine";
-import ThirdLine from "@/concepts/minha-conta/EnderecoResidencial/components/molecules/ThirdLine";
+import FirstLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/FirstLine";
+import FourthLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/FourthLine";
+import SecondLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/SecondLine";
+import ThirdLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/ThirdLine";
 import { useBuscarCep } from "@/lib/useBuscarCep";
 import Image from "next/image";
 import { useEffect } from "react";
