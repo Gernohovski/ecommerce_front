@@ -4,7 +4,7 @@ import { Trash } from "lucide-react";
 const DeleteCartaoCreditoButton: React.FC = () => {
   return (
     <div>
-      <Button className="w-auto" variant={"ghost"} asChild>
+      <Button className="min-w-[98px] max-w-[98px]" variant={"ghost"} asChild>
         <Trash color="red" />
       </Button>
     </div>

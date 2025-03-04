@@ -1,16 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { useDadosBasicosContext } from "@/concepts/cadastro/DadosBasicos/contexts/DadosBasicosContext";
 
-const EditarDadosBasicosButton: React.FC = () => {
+const SalvarEdicaoDadosBasicosButton: React.FC = () => {
   const { setIsEditando } = useDadosBasicosContext();
   return (
     <Button
       className="min-w-[100px] max-w-[100px]"
-      onClick={() => setIsEditando(true)}
+      onClick={() => setIsEditando(false)}
     >
       Editar
     </Button>
   );
 };
 
-export default EditarDadosBasicosButton;
+export default SalvarEdicaoDadosBasicosButton;

@@ -5,8 +5,8 @@ import PasswordInput from "../../atoms/PasswordInput";
 const FirstLine: React.FC = () => {
   return (
     <div className="flex gap-6">
-      <PasswordInput />
-      <ConfirmPasswordInput />
+      <PasswordInput width="537" />
+      <ConfirmPasswordInput width="537" />
     </div>
   );
 };

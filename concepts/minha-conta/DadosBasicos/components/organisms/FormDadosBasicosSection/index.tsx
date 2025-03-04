@@ -1,8 +1,8 @@
 import ViewSection from "@/components/ui/view-section";
+import FirstLine from "@/concepts/cadastro/DadosBasicos/components/molecules/FirstLine";
+import SecondLine from "@/concepts/cadastro/DadosBasicos/components/molecules/SecondLine";
 import Image from "next/image";
-import EditarDadosBasicosButton from "../../atoms/EditarDadosBasicosButton";
-import FirstLine from "../../molecules/FirstLine";
-import SecondLine from "../../molecules/SecondLine";
+import FormDadosBasicosFooter from "../../molecules/FormDadosBasicosFooter";
 
 const FormDadosBasicosSection: React.FC = () => {
   return (
@@ -11,8 +11,8 @@ const FormDadosBasicosSection: React.FC = () => {
         <Image src="/icons/document.svg" alt="Bookly" width={30} height={30} />
       }
       title="Dados básicos"
-      subtitle="Visualize e edite seus dados básicos"
-      footer={<EditarDadosBasicosButton />}
+      subtitle="Edite seus dados básicos"
+      footer={<FormDadosBasicosFooter />}
     >
       <FirstLine></FirstLine>
       <SecondLine></SecondLine>

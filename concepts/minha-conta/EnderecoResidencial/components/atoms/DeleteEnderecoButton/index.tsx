@@ -4,8 +4,11 @@ import { Trash } from "lucide-react";
 const DeleteEnderecoButton: React.FC = () => {
   return (
     <div>
-      <Button className="w-auto" variant={"ghost"} asChild>
-        <Trash color="red" />
+      <Button className="min-w-[98px] max-w-[98px]" variant={"delete"} asChild>
+        <div>
+          <Trash />
+          <span>Excluir</span>
+        </div>
       </Button>
     </div>
   );

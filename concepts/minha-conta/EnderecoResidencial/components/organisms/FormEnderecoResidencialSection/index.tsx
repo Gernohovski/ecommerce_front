@@ -3,12 +3,11 @@ import { useEnderecoResidencialContext } from "@/concepts/cadastro/EnderecoResid
 import { useBuscarCep } from "@/lib/useBuscarCep";
 import Image from "next/image";
 import { useEffect } from "react";
-import SalvarEdicaoEnderecoResidencialButton from "../../atoms/SalvarEdicaoEnderecoResidencialButton";
 import FirstLine from "../../molecules/FirstLine";
+import FormFooter from "../../molecules/FormFooter";
 import FourthLine from "../../molecules/FourthLine";
 import SecondLine from "../../molecules/SecondLine";
 import ThirdLine from "../../molecules/ThirdLine";
-import ViewEnderecosDataTable from "../ViewEnderecosDataTable";
 
 const FormEnderecoResidencialSection: React.FC = () => {
   const {
@@ -47,6 +46,7 @@ const FormEnderecoResidencialSection: React.FC = () => {
       setCounty("Brasil");
     }
   }, [data, setCity, setState, setNeighborhood, setLogradouro, setCounty]);
+
   return (
     <div>
       <ViewSection
@@ -55,6 +55,7 @@ const FormEnderecoResidencialSection: React.FC = () => {
         }
         title="Endereço residencial"
         subtitle="Cadastre, visualize e edite os dados do seu endereço residencial"
+        footer={<FormFooter />}
       >
         <FirstLine
           cep={cep}
@@ -86,10 +87,7 @@ const FormEnderecoResidencialSection: React.FC = () => {
           observations={observations}
           setObservations={setObservations}
         />
-        <div className="flex justify-end">
-          <SalvarEdicaoEnderecoResidencialButton />
-        </div>
-        <ViewEnderecosDataTable />
+        <div className="flex justify-end"></div>
       </ViewSection>
     </div>
   );

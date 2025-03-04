@@ -11,7 +11,9 @@ const buttonVariants = cva(
       variant: {
         input: "bg-white border border-input",
         default:
-          "bg-[#7738C8] text-primary-foreground shadow hover:bg-primary/90",
+          "bg-[#7738C8] text-primary-foreground shadow hover:bg-[#7738C8]/70",
+        delete:
+          "bg-[#C8383A] text-primary-foreground shadow hover:bg-[#C8383A]/70",
         sidebar: "bg-white hover:bg-[#382057] hover:text-[#382057]",
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",

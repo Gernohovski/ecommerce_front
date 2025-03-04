@@ -1,5 +1,12 @@
 "use client";
-import { createContext, ReactNode, useContext, useMemo, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 import { EnderecoResidencialContextType, EnderecoType } from "./types";
 
 const EnderecoResidencialContext = createContext(
@@ -27,6 +34,39 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
   const [useEnderecoCobranca, setUseEnderecoCobranca] =
     useState<boolean>(false);
   const [useEnderecoEntrega, setUseEnderecoEntrega] = useState<boolean>(false);
+  const [isCadastrando, setIsCadastrando] = useState<boolean>(false);
+  const [isEditando, setIsEditando] = useState<boolean>(false);
+
+  const fillForm = useCallback(
+    (data: EnderecoType) => {
+      setCep(data.cep);
+      setCity(data.city);
+      setCounty(data.country);
+      setLogradouro(data.logradouro);
+      setTipoLogradouro(data.tipoLogradouroId);
+      setNeighborhood(data.neighborhood);
+      setNumber(data.number);
+      setObservations(data.observations);
+      setResidenceType(data.residenceTypeId);
+      setState(data.state);
+      setShortPhrase(data.shortPhrase);
+      setIsEditando(true);
+    },
+    [
+      setCep,
+      setCity,
+      setCounty,
+      setLogradouro,
+      setTipoLogradouro,
+      setNeighborhood,
+      setNumber,
+      setObservations,
+      setResidenceType,
+      setState,
+      setShortPhrase,
+      setIsEditando,
+    ]
+  );
 
   const values = useMemo(
     () => ({
@@ -58,6 +98,11 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
       setShortPhrase,
       enderecos,
       setEnderecos,
+      isCadastrando,
+      setIsCadastrando,
+      isEditando,
+      setIsEditando,
+      fillForm,
     }),
     [
       cep,
@@ -74,6 +119,9 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
       useEnderecoEntrega,
       shortPhrase,
       enderecos,
+      isCadastrando,
+      isEditando,
+      fillForm,
     ]
   );
   return (

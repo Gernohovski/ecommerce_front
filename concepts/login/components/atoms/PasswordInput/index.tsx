@@ -9,6 +9,7 @@ const PasswordInput: React.FC = () => {
       <Label>Senha: *</Label>
       <Input
         value={password}
+        type="password"
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Insira sua senha"
       ></Input>

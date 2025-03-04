@@ -5,8 +5,10 @@ import { useEnderecoEntregaContext } from "@/concepts/cadastro/EnderecoEntrega/c
 import { useEnderecoResidencialContext } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext";
 import FormCartaoCreditoSection from "@/concepts/minha-conta/CartoesCredito/components/organisms/FormCartaoCreditoSection";
 import FormDadosBasicosSection from "@/concepts/minha-conta/DadosBasicos/components/organisms/FormDadosBasicosSection";
+import ViewDadosBasicosSection from "@/concepts/minha-conta/DadosBasicos/components/organisms/ViewDadosBasicosSection";
 import FormEnderecoEntregaSection from "@/concepts/minha-conta/EnderecoEntrega/components/organisms/FormEnderecoEntregaSection";
 import FormEnderecoResidencialSection from "@/concepts/minha-conta/EnderecoResidencial/components/organisms/FormEnderecoResidencialSection";
+import ViewEnderecosAccordion from "@/concepts/minha-conta/EnderecoResidencial/components/organisms/ViewEnderecosDataTable";
 import FormEnderecoCobrancaSection from "@/concepts/minha-conta/EnderecosCobranca/components/organisms/FormEnderecoCobrancaSection";
 import FormEditSegurancaSection from "@/concepts/minha-conta/Seguranca/components/organisms/FormEditSegurancaSection";
 import MinhaContaSidebar from "@/concepts/minha-conta/Sidebar/components/organisms/MinhaContaSidebar";
@@ -30,9 +32,10 @@ const ViewInformacoesPage: React.FC = () => {
     setName,
     setTelephone,
     setTelephoneType,
+    isEditando: isEditandoDadosBasicos,
   } = useDadosBasicosContext();
 
-  const { setEnderecos: setEnderecosResidenciais } =
+  const { setEnderecos: setEnderecosResidenciais, isEditando } =
     useEnderecoResidencialContext();
   const { setEnderecos: setEnderecosCobranca } = useEnderecoCobrancaContext();
   const { setEnderecos: setEnderecosEntrega } = useEnderecoEntregaContext();
@@ -76,13 +79,17 @@ const ViewInformacoesPage: React.FC = () => {
   } = useSidebarNavegacaoContext();
 
   const section = useMemo(() => {
-    if (dadosBasicos) return <FormDadosBasicosSection />;
+    if (isEditandoDadosBasicos) return <FormDadosBasicosSection />;
+    if (dadosBasicos) return <ViewDadosBasicosSection />;
     if (seguranca) return <FormEditSegurancaSection />;
-    if (enderecosResidenciais) return <FormEnderecoResidencialSection />;
+    if (isEditando) return <FormEnderecoResidencialSection />;
+    if (enderecosResidenciais) return <ViewEnderecosAccordion />;
     if (enderecosCobranca) return <FormEnderecoCobrancaSection />;
     if (enderecosEntrega) return <FormEnderecoEntregaSection />;
     if (cartoesCredito) return <FormCartaoCreditoSection />;
   }, [
+    isEditando,
+    isEditandoDadosBasicos,
     dadosBasicos,
     seguranca,
     enderecosResidenciais,

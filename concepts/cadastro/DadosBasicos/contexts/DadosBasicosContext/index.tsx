@@ -15,10 +15,12 @@ const DadosBasicosContextProvider: React.FC<{ children: ReactNode }> = ({
   const [email, setEmail] = useState<string>("");
   const [gender, setGender] = useState<string>("");
   const [name, setName] = useState<string>("");
+  const [currentPassword, setCurrentPassword] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [ddd, setDdd] = useState<string>("");
   const [telephone, setTelephone] = useState<string>("");
   const [telephoneType, setTelephoneType] = useState<string>("");
+  const [isEditando, setIsEditando] = useState<boolean>(false);
 
   const values = useMemo(
     () => ({
@@ -42,6 +44,10 @@ const DadosBasicosContextProvider: React.FC<{ children: ReactNode }> = ({
       setTelephoneType,
       ddd,
       setDdd,
+      isEditando,
+      setIsEditando,
+      currentPassword,
+      setCurrentPassword,
     }),
     [
       birthDate,
@@ -54,6 +60,8 @@ const DadosBasicosContextProvider: React.FC<{ children: ReactNode }> = ({
       telephone,
       telephoneType,
       ddd,
+      isEditando,
+      currentPassword,
     ]
   );
   return (

@@ -13,6 +13,8 @@ export type DadosBasicosContextType = {
   setGender: Dispatch<SetStateAction<string>>;
   name: string;
   setName: Dispatch<SetStateAction<string>>;
+  currentPassword: string;
+  setCurrentPassword: Dispatch<SetStateAction<string>>;
   password: string;
   setPassword: Dispatch<SetStateAction<string>>;
   ddd: string;
@@ -21,4 +23,6 @@ export type DadosBasicosContextType = {
   setTelephone: Dispatch<SetStateAction<string>>;
   telephoneType: string;
   setTelephoneType: Dispatch<SetStateAction<string>>;
+  isEditando: boolean;
+  setIsEditando: Dispatch<SetStateAction<boolean>>;
 };

@@ -3,7 +3,7 @@ import EditCartaoCreditoButton from "../../atoms/EditCartaoCreditoButton";
 
 const ActionButtons: React.FC<{ cartaoCredito: string }> = () => {
   return (
-    <div className="flex">
+    <div className="flex gap-6">
       <EditCartaoCreditoButton />
       <DeleteCartaoCreditoButton />
     </div>
