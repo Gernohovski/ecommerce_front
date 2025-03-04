@@ -4,11 +4,10 @@ import FirstLine from "@/concepts/cadastro/EnderecoResidencial/components/molecu
 import FourthLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/FourthLine";
 import SecondLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/SecondLine";
 import ThirdLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/ThirdLine";
+import FormFooter from "@/concepts/minha-conta/EnderecoResidencial/components/molecules/FormFooter";
 import { useBuscarCep } from "@/lib/useBuscarCep";
 import Image from "next/image";
 import { useEffect } from "react";
-import SalvarEdicaoEnderecoEntregaButton from "../../atoms/SalvarEdicaoEnderecoEntregaButton";
-import ViewEnderecosDataTable from "../ViewEnderecosDataTable";
 
 const FormEnderecoEntregaSection: React.FC = () => {
   const {
@@ -34,6 +33,11 @@ const FormEnderecoEntregaSection: React.FC = () => {
     setState,
     shortPhrase,
     setShortPhrase,
+    isEditando,
+    setIsEditando,
+    isCadastrando,
+    setIsCadastrando,
+    clearForm,
   } = useEnderecoEntregaContext();
 
   const { data } = useBuscarCep(cep);
@@ -55,6 +59,15 @@ const FormEnderecoEntregaSection: React.FC = () => {
         }
         title="Endereço de entrega"
         subtitle="Cadastre, visualize e edite os dados do seu endereço de entrega"
+        footer={
+          <FormFooter
+            isEditando={isEditando}
+            setIsEditando={setIsEditando}
+            isCadastrando={isCadastrando}
+            setIsCadastrando={setIsCadastrando}
+            clearForm={clearForm}
+          />
+        }
       >
         <FirstLine
           cep={cep}
@@ -86,10 +99,6 @@ const FormEnderecoEntregaSection: React.FC = () => {
           observations={observations}
           setObservations={setObservations}
         />
-        <div className="flex justify-end">
-          <SalvarEdicaoEnderecoEntregaButton />
-        </div>
-        <ViewEnderecosDataTable />
       </ViewSection>
     </div>
   );

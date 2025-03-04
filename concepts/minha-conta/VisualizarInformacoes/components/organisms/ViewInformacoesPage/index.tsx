@@ -51,7 +51,14 @@ const ViewInformacoesPage: React.FC = () => {
     enderecos: enderecosCobrancaCliente,
     fillForm: fillEnderecoCobranca,
   } = useEnderecoCobrancaContext();
-  const { setEnderecos: setEnderecosEntrega } = useEnderecoEntregaContext();
+  const {
+    setEnderecos: setEnderecosEntrega,
+    isEditando: isEditandoEnderecoEntrega,
+    setIsCadastrando: setIsCadastrandoEnderecoEntrega,
+    isCadastrando: isCadastrandoEnderecoEntrega,
+    enderecos: enderecosEntregaCliente,
+    fillForm: fillEnderecoEntrega,
+  } = useEnderecoEntregaContext();
   const { setCartoesCredito: setCartoesCredito } = useCartaoCreditoContext();
 
   useEffect(() => {
@@ -121,7 +128,19 @@ const ViewInformacoesPage: React.FC = () => {
           fillForm={fillEnderecoCobranca}
         />
       );
-    if (enderecosEntrega) return <FormEnderecoEntregaSection />;
+    if (isEditandoEnderecoEntrega || isCadastrandoEnderecoEntrega)
+      return <FormEnderecoEntregaSection />;
+    if (enderecosEntrega)
+      return (
+        <ViewEnderecosAccordion
+          enderecos={enderecosEntregaCliente}
+          icon="/icons/box.svg"
+          title="Endereço de entrega"
+          subtitle="Cadastre, visualize e edite os dados do seu endereço de entrega"
+          setIsCadastrando={setIsCadastrandoEnderecoEntrega}
+          fillForm={fillEnderecoEntrega}
+        />
+      );
     if (cartoesCredito) return <FormCartaoCreditoSection />;
   }, [
     isEditandoDadosBasicos,
@@ -139,7 +158,12 @@ const ViewInformacoesPage: React.FC = () => {
     enderecosCobrancaCliente,
     enderecosCobranca,
     fillEnderecoCobranca,
+    isCadastrandoEnderecoEntrega,
+    setIsCadastrandoEnderecoEntrega,
+    isEditandoEnderecoEntrega,
+    enderecosEntregaCliente,
     enderecosEntrega,
+    fillEnderecoEntrega,
     cartoesCredito,
   ]);
 
