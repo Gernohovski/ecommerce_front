@@ -4,6 +4,7 @@ import { useEnderecoCobrancaContext } from "@/concepts/cadastro/EnderecoCobranca
 import { useEnderecoEntregaContext } from "@/concepts/cadastro/EnderecoEntrega/contexts/EnderecoEntregaContext";
 import { useEnderecoResidencialContext } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext";
 import FormCartaoCreditoSection from "@/concepts/minha-conta/CartoesCredito/components/organisms/FormCartaoCreditoSection";
+import ViewCartoesAccordion from "@/concepts/minha-conta/CartoesCredito/components/organisms/ViewCartoesAccordion";
 import FormDadosBasicosSection from "@/concepts/minha-conta/DadosBasicos/components/organisms/FormDadosBasicosSection";
 import ViewDadosBasicosSection from "@/concepts/minha-conta/DadosBasicos/components/organisms/ViewDadosBasicosSection";
 import FormEnderecoEntregaSection from "@/concepts/minha-conta/EnderecoEntrega/components/organisms/FormEnderecoEntregaSection";
@@ -59,7 +60,11 @@ const ViewInformacoesPage: React.FC = () => {
     enderecos: enderecosEntregaCliente,
     fillForm: fillEnderecoEntrega,
   } = useEnderecoEntregaContext();
-  const { setCartoesCredito: setCartoesCredito } = useCartaoCreditoContext();
+  const {
+    setCartoesCredito: setCartoesCredito,
+    isCadastrando: isCadastrandoCartao,
+    isEditando: isEditandoCartao,
+  } = useCartaoCreditoContext();
 
   useEffect(() => {
     if (!data) return;
@@ -141,7 +146,9 @@ const ViewInformacoesPage: React.FC = () => {
           fillForm={fillEnderecoEntrega}
         />
       );
-    if (cartoesCredito) return <FormCartaoCreditoSection />;
+    if (isEditandoCartao || isCadastrandoCartao)
+      return <FormCartaoCreditoSection />;
+    if (cartoesCredito) return <ViewCartoesAccordion />;
   }, [
     isEditandoDadosBasicos,
     dadosBasicos,
@@ -164,6 +171,8 @@ const ViewInformacoesPage: React.FC = () => {
     enderecosEntregaCliente,
     enderecosEntrega,
     fillEnderecoEntrega,
+    isEditandoCartao,
+    isCadastrandoCartao,
     cartoesCredito,
   ]);
 

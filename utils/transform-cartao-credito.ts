@@ -7,6 +7,7 @@ export const transformCartaoCredito = (
   return cartoes.map((cartao) => ({
     id: String(cartao.id),
     flag: cartao.bandeira.nome ?? "",
+    flagId: String(cartao.bandeira.id ?? ""),
     printedName: cartao.nomeImpresso,
     cardNumber: cartao.numero,
     securityCode: cartao.codigoSeguranca,

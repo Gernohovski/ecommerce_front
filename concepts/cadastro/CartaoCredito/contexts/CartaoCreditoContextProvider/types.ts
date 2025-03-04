@@ -12,11 +12,17 @@ export type CartaoCreditoContextType = {
   cartoesCredito: CartaoCreditoType[];
   setCartoesCredito: Dispatch<SetStateAction<CartaoCreditoType[]>>;
   clearForm: () => void;
+  fillForm: (data: CartaoCreditoType) => void;
+  isCadastrando: boolean;
+  setIsCadastrando: Dispatch<SetStateAction<boolean>>;
+  isEditando: boolean;
+  setIsEditando: Dispatch<SetStateAction<boolean>>;
 };
 
 export type CartaoCreditoType = {
   id?: string;
   flag: string;
+  flagId?: string;
   printedName: string;
   cardNumber: string;
   securityCode: string;

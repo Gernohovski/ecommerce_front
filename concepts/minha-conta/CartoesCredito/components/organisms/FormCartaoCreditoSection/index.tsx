@@ -1,8 +1,7 @@
 import ViewSection from "@/components/ui/view-section";
+import FirstLine from "@/concepts/cadastro/CartaoCredito/components/molecules/FirstLine";
 import Image from "next/image";
-import SalvarEdicaoCartaoCreditoButton from "../../atoms/SalvarEdicaoCartaoCreditoButton";
-import FirstLine from "../../molecules/FirstLine";
-import CreditoDataTable from "../CartaoCreditoDataTable";
+import FormFooter from "../../molecules/FormFooter";
 
 const FormCartaoCreditoSection: React.FC = () => {
   return (
@@ -18,12 +17,9 @@ const FormCartaoCreditoSection: React.FC = () => {
         }
         title="Cartão de crédito"
         subtitle="Edite os dados do seu cartão de crédito"
+        footer={<FormFooter />}
       >
         <FirstLine />
-        <div className="flex justify-end">
-          <SalvarEdicaoCartaoCreditoButton />
-        </div>
-        <CreditoDataTable />
       </ViewSection>
     </div>
   );
