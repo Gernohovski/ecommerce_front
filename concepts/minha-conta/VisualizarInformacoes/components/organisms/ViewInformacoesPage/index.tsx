@@ -39,9 +39,18 @@ const ViewInformacoesPage: React.FC = () => {
     setEnderecos: setEnderecosResidenciais,
     isEditando: isEditandoEnderecoResidencial,
     isCadastrando: isCadastrandoEnderecoResidencial,
+    setIsCadastrando: setIsCadastrandoEnderecoResidencial,
     enderecos: enderecosResidenciaisCliente,
+    fillForm: fillEnderecoResidencial,
   } = useEnderecoResidencialContext();
-  const { setEnderecos: setEnderecosCobranca } = useEnderecoCobrancaContext();
+  const {
+    setEnderecos: setEnderecosCobranca,
+    isEditando: isEditandoEnderecoCobranca,
+    setIsCadastrando: setIsCadastrandoEnderecoCobranca,
+    isCadastrando: isCadastrandoEnderecoCobranca,
+    enderecos: enderecosCobrancaCliente,
+    fillForm: fillEnderecoCobranca,
+  } = useEnderecoCobrancaContext();
   const { setEnderecos: setEnderecosEntrega } = useEnderecoEntregaContext();
   const { setCartoesCredito: setCartoesCredito } = useCartaoCreditoContext();
 
@@ -90,20 +99,46 @@ const ViewInformacoesPage: React.FC = () => {
       return <FormEnderecoResidencialSection />;
     if (enderecosResidenciais)
       return (
-        <ViewEnderecosAccordion enderecos={enderecosResidenciaisCliente} />
+        <ViewEnderecosAccordion
+          enderecos={enderecosResidenciaisCliente}
+          icon="/icons/home.svg"
+          title="Endereço residencial"
+          subtitle="Cadastre, visualize e edite os dados do seu endereço residencial"
+          setIsCadastrando={setIsCadastrandoEnderecoResidencial}
+          fillForm={fillEnderecoResidencial}
+        />
       );
-    if (enderecosCobranca) return <FormEnderecoCobrancaSection />;
+    if (isEditandoEnderecoCobranca || isCadastrandoEnderecoCobranca)
+      return <FormEnderecoCobrancaSection />;
+    if (enderecosCobranca)
+      return (
+        <ViewEnderecosAccordion
+          enderecos={enderecosCobrancaCliente}
+          icon="/icons/dollar.svg"
+          title="Endereço de cobrança"
+          subtitle="Cadastre, visualize e edite os dados do seu endereço de cobrança"
+          setIsCadastrando={setIsCadastrandoEnderecoCobranca}
+          fillForm={fillEnderecoCobranca}
+        />
+      );
     if (enderecosEntrega) return <FormEnderecoEntregaSection />;
     if (cartoesCredito) return <FormCartaoCreditoSection />;
   }, [
-    isEditandoEnderecoResidencial,
-    isCadastrandoEnderecoResidencial,
     isEditandoDadosBasicos,
-    enderecosResidenciaisCliente,
     dadosBasicos,
     seguranca,
+    enderecosResidenciaisCliente,
+    isEditandoEnderecoResidencial,
+    isCadastrandoEnderecoResidencial,
+    setIsCadastrandoEnderecoResidencial,
     enderecosResidenciais,
+    fillEnderecoResidencial,
+    isCadastrandoEnderecoCobranca,
+    setIsCadastrandoEnderecoCobranca,
+    isEditandoEnderecoCobranca,
+    enderecosCobrancaCliente,
     enderecosCobranca,
+    fillEnderecoCobranca,
     enderecosEntrega,
     cartoesCredito,
   ]);

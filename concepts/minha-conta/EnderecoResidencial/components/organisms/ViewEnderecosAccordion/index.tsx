@@ -8,18 +8,37 @@ import InfoList, { InfoItem } from "@/components/ui/info-list";
 import ViewSection from "@/components/ui/view-section";
 import { EnderecoType } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext/types";
 import Image from "next/image";
+import { Dispatch, SetStateAction } from "react";
 import CadastrarEnderecoResidencialButton from "../../atoms/CadastrarEnderecoResidencialButton";
 import ActionButtons from "../../molecules/ActionButtons";
 
-const ViewEnderecosAccordion: React.FC<{ enderecos: EnderecoType[] }> = ({
+type Props = {
+  enderecos: EnderecoType[];
+  icon: string;
+  title: string;
+  subtitle: string;
+  setIsCadastrando: Dispatch<SetStateAction<boolean>>;
+  fillForm: (data: EnderecoType) => void;
+};
+
+const ViewEnderecosAccordion: React.FC<Props> = ({
   enderecos,
+  icon,
+  title,
+  subtitle,
+  setIsCadastrando,
+  fillForm,
 }) => {
   return (
     <ViewSection
-      icon={<Image src="/icons/home.svg" alt="Bookly" width={30} height={30} />}
-      title="Endereço residencial"
-      subtitle="Cadastre, visualize e edite os dados do seu endereço residencial"
-      footer={<CadastrarEnderecoResidencialButton />}
+      icon={<Image src={icon} alt="Bookly" width={30} height={30} />}
+      title={title}
+      subtitle={subtitle}
+      footer={
+        <CadastrarEnderecoResidencialButton
+          setIsCadastrando={setIsCadastrando}
+        />
+      }
     >
       <div className="flex flex-col gap-6">
         {enderecos.map((endereco, index) => {
@@ -61,7 +80,7 @@ const ViewEnderecosAccordion: React.FC<{ enderecos: EnderecoType[] }> = ({
                   <div className="flex flex-col gap-6">
                     <InfoList data={enderecoData} columns={3} />
                     <div className="flex justify-end">
-                      <ActionButtons endereco={endereco} />
+                      <ActionButtons endereco={endereco} fillForm={fillForm} />
                     </div>
                   </div>
                 </AccordionContent>

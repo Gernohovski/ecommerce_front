@@ -4,6 +4,7 @@ import { EnderecoType } from "@/concepts/cadastro/EnderecoResidencial/contexts/E
 import {
   createContext,
   ReactNode,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -33,6 +34,8 @@ const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
   const [state, setState] = useState<string>("");
   const [shortPhrase, setShortPhrase] = useState<string>("");
   const [enderecos, setEnderecos] = useState<EnderecoType[]>([]);
+  const [isCadastrando, setIsCadastrando] = useState<boolean>(false);
+  const [isEditando, setIsEditando] = useState<boolean>(false);
   const {
     useEnderecoCobranca,
     cep: cepResidencial,
@@ -46,6 +49,63 @@ const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
     residenceType: residenceTypeResidencial,
     state: stateResidencial,
   } = useEnderecoResidencialContext();
+
+  const fillForm = useCallback(
+    (data: EnderecoType) => {
+      setCep(data.cep);
+      setCity(data.city);
+      setCounty(data.country);
+      setLogradouro(data.logradouro);
+      setTipoLogradouro(data.tipoLogradouroId);
+      setNeighborhood(data.neighborhood);
+      setNumber(data.number);
+      setObservations(data.observations);
+      setResidenceType(data.residenceTypeId);
+      setState(data.state);
+      setShortPhrase(data.shortPhrase);
+      setIsEditando(true);
+    },
+    [
+      setCep,
+      setCity,
+      setCounty,
+      setLogradouro,
+      setTipoLogradouro,
+      setNeighborhood,
+      setNumber,
+      setObservations,
+      setResidenceType,
+      setState,
+      setShortPhrase,
+      setIsEditando,
+    ]
+  );
+
+  const clearForm = useCallback(() => {
+    setCep("");
+    setCity("");
+    setCounty("");
+    setLogradouro("");
+    setTipoLogradouro("");
+    setNeighborhood("");
+    setNumber("");
+    setObservations("");
+    setResidenceType("");
+    setState("");
+    setShortPhrase("");
+  }, [
+    setCep,
+    setCity,
+    setCounty,
+    setLogradouro,
+    setTipoLogradouro,
+    setNeighborhood,
+    setNumber,
+    setObservations,
+    setResidenceType,
+    setState,
+    setShortPhrase,
+  ]);
 
   useEffect(() => {
     if (useEnderecoCobranca) {
@@ -100,6 +160,12 @@ const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
       setShortPhrase,
       enderecos,
       setEnderecos,
+      isCadastrando,
+      setIsCadastrando,
+      isEditando,
+      setIsEditando,
+      fillForm,
+      clearForm,
     }),
     [
       cep,
@@ -114,6 +180,10 @@ const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
       state,
       shortPhrase,
       enderecos,
+      isCadastrando,
+      isEditando,
+      fillForm,
+      clearForm,
     ]
   );
   return (

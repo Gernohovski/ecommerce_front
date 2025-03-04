@@ -3,14 +3,19 @@ import { useCallback } from "react";
 import EditEnderecoButton from "../../atoms/EditEnderecoButton";
 import ConfirmDeleteModal from "../ConfirmDeleteModal";
 
-const ActionButtons: React.FC<{ endereco: EnderecoType }> = ({ endereco }) => {
+type Props = {
+  endereco: EnderecoType;
+  fillForm: (data: EnderecoType) => void;
+};
+
+const ActionButtons: React.FC<Props> = ({ endereco, fillForm }) => {
   const handleButtonClick = useCallback(() => {
     console.log("teste");
   }, []);
 
   return (
     <div className="flex gap-6">
-      <EditEnderecoButton endereco={endereco} />
+      <EditEnderecoButton endereco={endereco} fillForm={fillForm} />
       <ConfirmDeleteModal
         title="Tem certeza que deseja excluir esse endereço?"
         description="A ação não poderá ser desfeita e o endereço será permanentemente deletado."

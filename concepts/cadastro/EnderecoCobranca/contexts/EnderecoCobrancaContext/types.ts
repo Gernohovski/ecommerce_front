@@ -26,4 +26,10 @@ export type EnderecoCobrancaContextType = {
   setShortPhrase: Dispatch<SetStateAction<string>>;
   enderecos: EnderecoType[];
   setEnderecos: Dispatch<SetStateAction<EnderecoType[]>>;
+  isCadastrando: boolean;
+  setIsCadastrando: Dispatch<SetStateAction<boolean>>;
+  isEditando: boolean;
+  setIsEditando: Dispatch<SetStateAction<boolean>>;
+  fillForm: (data: EnderecoType) => void;
+  clearForm: () => void;
 };

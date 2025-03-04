@@ -33,6 +33,11 @@ const FormEnderecoResidencialSection: React.FC = () => {
     setState,
     shortPhrase,
     setShortPhrase,
+    isEditando,
+    setIsEditando,
+    isCadastrando,
+    setIsCadastrando,
+    clearForm,
   } = useEnderecoResidencialContext();
 
   const { data } = useBuscarCep(cep);
@@ -55,7 +60,15 @@ const FormEnderecoResidencialSection: React.FC = () => {
         }
         title="Endereço residencial"
         subtitle="Cadastre, visualize e edite os dados do seu endereço residencial"
-        footer={<FormFooter />}
+        footer={
+          <FormFooter
+            isEditando={isEditando}
+            setIsEditando={setIsEditando}
+            isCadastrando={isCadastrando}
+            setIsCadastrando={setIsCadastrando}
+            clearForm={clearForm}
+          />
+        }
       >
         <FirstLine
           cep={cep}
@@ -87,7 +100,6 @@ const FormEnderecoResidencialSection: React.FC = () => {
           observations={observations}
           setObservations={setObservations}
         />
-        <div className="flex justify-end"></div>
       </ViewSection>
     </div>
   );

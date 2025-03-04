@@ -1,10 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { useEnderecoResidencialContext } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext";
 import { useMemo } from "react";
 
-const SalvarEnderecoResidencialButton: React.FC = () => {
-  const { isCadastrando, isEditando } = useEnderecoResidencialContext();
+type Props = {
+  isCadastrando: boolean;
+  isEditando: boolean;
+};
 
+const SalvarEnderecoResidencialButton: React.FC<Props> = ({
+  isCadastrando,
+  isEditando,
+}) => {
   const buttonTitle = useMemo(() => {
     if (isCadastrando) return "Cadastrar";
     if (isEditando) return "Salvar";

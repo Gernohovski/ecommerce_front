@@ -1,10 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { useEnderecoResidencialContext } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext";
-import { useCallback } from "react";
+import { Dispatch, SetStateAction, useCallback } from "react";
 
-const CadastrarEnderecoResidencialButton: React.FC = () => {
-  const { setIsCadastrando } = useEnderecoResidencialContext();
+type Props = {
+  setIsCadastrando: Dispatch<SetStateAction<boolean>>;
+};
 
+const CadastrarEnderecoResidencialButton: React.FC<Props> = ({
+  setIsCadastrando,
+}) => {
   const handleButtonClick = useCallback(() => {
     setIsCadastrando(true);
   }, [setIsCadastrando]);
