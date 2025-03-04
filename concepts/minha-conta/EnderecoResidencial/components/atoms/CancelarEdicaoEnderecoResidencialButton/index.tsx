@@ -1,15 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { useEnderecoResidencialContext } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext";
-import { Pencil } from "lucide-react";
 import { useCallback } from "react";
 
 const CancelarEdicaoEnderecoResidencialButton: React.FC = () => {
-  const { setIsCadastrando, setIsEditando } = useEnderecoResidencialContext();
+  const { setIsCadastrando, setIsEditando, clearForm } =
+    useEnderecoResidencialContext();
 
   const handleButtonClick = useCallback(() => {
     setIsCadastrando(false);
     setIsEditando(false);
-  }, [setIsCadastrando, setIsEditando]);
+    clearForm();
+  }, [setIsCadastrando, setIsEditando, clearForm]);
 
   return (
     <div>
@@ -20,7 +21,6 @@ const CancelarEdicaoEnderecoResidencialButton: React.FC = () => {
         onClick={handleButtonClick}
       >
         <div>
-          <Pencil size={8} />
           <span>Cancelar</span>
         </div>
       </Button>

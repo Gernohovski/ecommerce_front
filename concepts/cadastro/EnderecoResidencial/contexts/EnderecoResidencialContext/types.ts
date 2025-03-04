@@ -34,6 +34,7 @@ export type EnderecoResidencialContextType = {
   isEditando: boolean;
   setIsEditando: Dispatch<SetStateAction<boolean>>;
   fillForm: (data: EnderecoType) => void;
+  clearForm: () => void;
 };
 
 export type EnderecoType = {

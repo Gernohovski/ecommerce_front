@@ -68,6 +68,32 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
     ]
   );
 
+  const clearForm = useCallback(() => {
+    setCep("");
+    setCity("");
+    setCounty("");
+    setLogradouro("");
+    setTipoLogradouro("");
+    setNeighborhood("");
+    setNumber("");
+    setObservations("");
+    setResidenceType("");
+    setState("");
+    setShortPhrase("");
+  }, [
+    setCep,
+    setCity,
+    setCounty,
+    setLogradouro,
+    setTipoLogradouro,
+    setNeighborhood,
+    setNumber,
+    setObservations,
+    setResidenceType,
+    setState,
+    setShortPhrase,
+  ]);
+
   const values = useMemo(
     () => ({
       cep,
@@ -103,6 +129,7 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
       isEditando,
       setIsEditando,
       fillForm,
+      clearForm,
     }),
     [
       cep,
@@ -122,6 +149,7 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
       isCadastrando,
       isEditando,
       fillForm,
+      clearForm,
     ]
   );
   return (

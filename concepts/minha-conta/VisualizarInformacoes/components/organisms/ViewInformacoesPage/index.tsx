@@ -35,8 +35,11 @@ const ViewInformacoesPage: React.FC = () => {
     isEditando: isEditandoDadosBasicos,
   } = useDadosBasicosContext();
 
-  const { setEnderecos: setEnderecosResidenciais, isEditando } =
-    useEnderecoResidencialContext();
+  const {
+    setEnderecos: setEnderecosResidenciais,
+    isEditando: isEditandoEnderecoResidencial,
+    isCadastrando: isCadastrandoEnderecoResidencial,
+  } = useEnderecoResidencialContext();
   const { setEnderecos: setEnderecosCobranca } = useEnderecoCobrancaContext();
   const { setEnderecos: setEnderecosEntrega } = useEnderecoEntregaContext();
   const { setCartoesCredito: setCartoesCredito } = useCartaoCreditoContext();
@@ -82,13 +85,15 @@ const ViewInformacoesPage: React.FC = () => {
     if (isEditandoDadosBasicos) return <FormDadosBasicosSection />;
     if (dadosBasicos) return <ViewDadosBasicosSection />;
     if (seguranca) return <FormEditSegurancaSection />;
-    if (isEditando) return <FormEnderecoResidencialSection />;
+    if (isEditandoEnderecoResidencial || isCadastrandoEnderecoResidencial)
+      return <FormEnderecoResidencialSection />;
     if (enderecosResidenciais) return <ViewEnderecosAccordion />;
     if (enderecosCobranca) return <FormEnderecoCobrancaSection />;
     if (enderecosEntrega) return <FormEnderecoEntregaSection />;
     if (cartoesCredito) return <FormCartaoCreditoSection />;
   }, [
-    isEditando,
+    isEditandoEnderecoResidencial,
+    isCadastrandoEnderecoResidencial,
     isEditandoDadosBasicos,
     dadosBasicos,
     seguranca,
