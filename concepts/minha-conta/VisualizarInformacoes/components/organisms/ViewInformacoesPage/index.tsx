@@ -8,7 +8,7 @@ import FormDadosBasicosSection from "@/concepts/minha-conta/DadosBasicos/compone
 import ViewDadosBasicosSection from "@/concepts/minha-conta/DadosBasicos/components/organisms/ViewDadosBasicosSection";
 import FormEnderecoEntregaSection from "@/concepts/minha-conta/EnderecoEntrega/components/organisms/FormEnderecoEntregaSection";
 import FormEnderecoResidencialSection from "@/concepts/minha-conta/EnderecoResidencial/components/organisms/FormEnderecoResidencialSection";
-import ViewEnderecosAccordion from "@/concepts/minha-conta/EnderecoResidencial/components/organisms/ViewEnderecosDataTable";
+import ViewEnderecosAccordion from "@/concepts/minha-conta/EnderecoResidencial/components/organisms/ViewEnderecosAccordion";
 import FormEnderecoCobrancaSection from "@/concepts/minha-conta/EnderecosCobranca/components/organisms/FormEnderecoCobrancaSection";
 import FormEditSegurancaSection from "@/concepts/minha-conta/Seguranca/components/organisms/FormEditSegurancaSection";
 import MinhaContaSidebar from "@/concepts/minha-conta/Sidebar/components/organisms/MinhaContaSidebar";
@@ -39,6 +39,7 @@ const ViewInformacoesPage: React.FC = () => {
     setEnderecos: setEnderecosResidenciais,
     isEditando: isEditandoEnderecoResidencial,
     isCadastrando: isCadastrandoEnderecoResidencial,
+    enderecos: enderecosResidenciaisCliente,
   } = useEnderecoResidencialContext();
   const { setEnderecos: setEnderecosCobranca } = useEnderecoCobrancaContext();
   const { setEnderecos: setEnderecosEntrega } = useEnderecoEntregaContext();
@@ -87,7 +88,10 @@ const ViewInformacoesPage: React.FC = () => {
     if (seguranca) return <FormEditSegurancaSection />;
     if (isEditandoEnderecoResidencial || isCadastrandoEnderecoResidencial)
       return <FormEnderecoResidencialSection />;
-    if (enderecosResidenciais) return <ViewEnderecosAccordion />;
+    if (enderecosResidenciais)
+      return (
+        <ViewEnderecosAccordion enderecos={enderecosResidenciaisCliente} />
+      );
     if (enderecosCobranca) return <FormEnderecoCobrancaSection />;
     if (enderecosEntrega) return <FormEnderecoEntregaSection />;
     if (cartoesCredito) return <FormCartaoCreditoSection />;
@@ -95,6 +99,7 @@ const ViewInformacoesPage: React.FC = () => {
     isEditandoEnderecoResidencial,
     isCadastrandoEnderecoResidencial,
     isEditandoDadosBasicos,
+    enderecosResidenciaisCliente,
     dadosBasicos,
     seguranca,
     enderecosResidenciais,

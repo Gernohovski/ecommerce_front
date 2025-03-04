@@ -2,14 +2,20 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
 import { useDadosBasicosContext } from "../../../../DadosBasicos/contexts/DadosBasicosContext";
 
-const PasswordInput: React.FC<{ width: string }> = ({ width }) => {
+type Props = {
+  width: string;
+  label: string;
+  placeholder: string;
+};
+
+const PasswordInput: React.FC<Props> = ({ width, label, placeholder }) => {
   const { password, setPassword } = useDadosBasicosContext();
   return (
     <div>
-      <Label className="text-sm">Senha *</Label>
+      <Label className="text-sm">{label}</Label>
       <Input
-        className={`min-w-[${width}px] max-w-[${width}px]`}
-        placeholder="Insira a senha"
+        style={{ minWidth: `${width}px`, maxWidth: `${width}px` }}
+        placeholder={placeholder}
         value={password}
         type="password"
         onChange={(e) => setPassword(e.target.value)}

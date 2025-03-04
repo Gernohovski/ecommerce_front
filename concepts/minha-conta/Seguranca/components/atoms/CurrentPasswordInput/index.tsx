@@ -8,7 +8,7 @@ const CurrentPasswordInput: React.FC<{ width: string }> = ({ width }) => {
     <div>
       <Label className="text-sm">Senha atual*</Label>
       <Input
-        className={`min-w-[${width}px] max-w-[${width}px]`}
+        style={{ minWidth: `${width}px`, maxWidth: `${width}px` }}
         placeholder="Insira a senha atual"
         type="password"
         value={currentPassword}

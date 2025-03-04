@@ -6,8 +6,16 @@ const FirstLine: React.FC = () => {
   return (
     <div className="flex gap-6">
       <CurrentPasswordInput width="353" />
-      <PasswordInput width="353" />
-      <ConfirmPasswordInput width="353" />
+      <PasswordInput
+        width="353"
+        label="Nova senha *"
+        placeholder="Insira a nova senha"
+      />
+      <ConfirmPasswordInput
+        width="353"
+        label="Confirmação de senha *"
+        placeholder="Insira novamente a nova senha"
+      />
     </div>
   );
 };

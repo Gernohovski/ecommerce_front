@@ -6,13 +6,14 @@ import {
 } from "@/components/ui/accordion";
 import InfoList, { InfoItem } from "@/components/ui/info-list";
 import ViewSection from "@/components/ui/view-section";
-import { useEnderecoResidencialContext } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext";
+import { EnderecoType } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext/types";
 import Image from "next/image";
 import CadastrarEnderecoResidencialButton from "../../atoms/CadastrarEnderecoResidencialButton";
 import ActionButtons from "../../molecules/ActionButtons";
 
-const ViewEnderecosAccordion: React.FC = () => {
-  const { enderecos } = useEnderecoResidencialContext();
+const ViewEnderecosAccordion: React.FC<{ enderecos: EnderecoType[] }> = ({
+  enderecos,
+}) => {
   return (
     <ViewSection
       icon={<Image src="/icons/home.svg" alt="Bookly" width={30} height={30} />}
