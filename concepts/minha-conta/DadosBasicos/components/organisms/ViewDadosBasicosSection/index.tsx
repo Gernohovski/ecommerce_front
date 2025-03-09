@@ -8,7 +8,7 @@ import Image from "next/image";
 import EditarDadosBasicosButton from "../../atoms/EditarDadosBasicosButton";
 
 const ViewDadosBasicosSection: React.FC = () => {
-  const { name, gender, birthDate, ddd, telephone, telephoneType } =
+  const { name, gender, birthDate, ddd, telephone, telephoneType, cpf, email } =
     useDadosBasicosContext();
   const { data: generos } = useFetchListarGeneros();
   const { data: tiposTelefone } = useFetchListarTiposTelefone();
@@ -28,6 +28,14 @@ const ViewDadosBasicosSection: React.FC = () => {
         tiposTelefone?.find(
           (tipoTelefone) => tipoTelefone.id === Number(telephoneType)
         )?.nome || "",
+    },
+    {
+      label: "CPF",
+      value: cpf,
+    },
+    {
+      label: "E-mail",
+      value: email,
     },
   ];
   return (
