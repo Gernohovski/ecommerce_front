@@ -26,6 +26,8 @@ const ViewInformacoesPage: React.FC = () => {
 
   const { data } = useFetchBuscarCliente(id);
   const {
+    setId,
+    setDdd,
     setBirthDate,
     setCpf,
     setEmail,
@@ -68,6 +70,8 @@ const ViewInformacoesPage: React.FC = () => {
 
   useEffect(() => {
     if (!data) return;
+    setId(data.id);
+    setDdd(data.ddd);
     setBirthDate(data.dataNascimento);
     setCpf(data.cpf ?? "");
     setEmail(data.email ?? "");
@@ -92,6 +96,8 @@ const ViewInformacoesPage: React.FC = () => {
     setEnderecosCobranca,
     setEnderecosEntrega,
     setCartoesCredito,
+    setId,
+    setDdd,
   ]);
 
   const {
@@ -118,6 +124,7 @@ const ViewInformacoesPage: React.FC = () => {
           subtitle="Cadastre, visualize e edite os dados do seu endereço residencial"
           setIsCadastrando={setIsCadastrandoEnderecoResidencial}
           fillForm={fillEnderecoResidencial}
+          tipoEndereco="RESIDENCIAL"
         />
       );
     if (isEditandoEnderecoCobranca || isCadastrandoEnderecoCobranca)
@@ -131,6 +138,7 @@ const ViewInformacoesPage: React.FC = () => {
           subtitle="Cadastre, visualize e edite os dados do seu endereço de cobrança"
           setIsCadastrando={setIsCadastrandoEnderecoCobranca}
           fillForm={fillEnderecoCobranca}
+          tipoEndereco="COBRANCA"
         />
       );
     if (isEditandoEnderecoEntrega || isCadastrandoEnderecoEntrega)
@@ -144,6 +152,7 @@ const ViewInformacoesPage: React.FC = () => {
           subtitle="Cadastre, visualize e edite os dados do seu endereço de entrega"
           setIsCadastrando={setIsCadastrandoEnderecoEntrega}
           fillForm={fillEnderecoEntrega}
+          tipoEndereco="ENTREGA"
         />
       );
     if (isEditandoCartao || isCadastrandoCartao)

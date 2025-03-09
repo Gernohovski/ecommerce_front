@@ -1,4 +1,5 @@
 import ViewSection from "@/components/ui/view-section";
+import { useDadosBasicosContext } from "@/concepts/cadastro/DadosBasicos/contexts/DadosBasicosContext";
 import FirstLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/FirstLine";
 import FourthLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/FourthLine";
 import SecondLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/SecondLine";
@@ -6,11 +7,13 @@ import ThirdLine from "@/concepts/cadastro/EnderecoResidencial/components/molecu
 import { useEnderecoResidencialContext } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext";
 import { useBuscarCep } from "@/lib/useBuscarCep";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import FormFooter from "../../molecules/FormFooter";
 
 const FormEnderecoResidencialSection: React.FC = () => {
+  const { id: clienteId } = useDadosBasicosContext();
   const {
+    id,
     cep,
     setCep,
     city,
@@ -52,6 +55,39 @@ const FormEnderecoResidencialSection: React.FC = () => {
     }
   }, [data, setCity, setState, setNeighborhood, setLogradouro, setCounty]);
 
+  const endereco = useMemo(() => {
+    return {
+      id: id,
+      tipoResidenciaId: Number(residenceType),
+      tipoLogradouroId: Number(tipoLogradouro),
+      logradouro: logradouro,
+      numero: number,
+      bairro: neighborhood,
+      cidade: city,
+      estado: state,
+      pais: country,
+      cep: cep,
+      observacoes: observations,
+      fraseIdentificacao: shortPhrase,
+      clienteId: String(clienteId) ?? "",
+      tipoEndereco: "RESIDENCIAL",
+    };
+  }, [
+    id,
+    cep,
+    city,
+    country,
+    logradouro,
+    tipoLogradouro,
+    neighborhood,
+    number,
+    observations,
+    residenceType,
+    state,
+    shortPhrase,
+    clienteId,
+  ]);
+
   return (
     <div>
       <ViewSection
@@ -67,6 +103,7 @@ const FormEnderecoResidencialSection: React.FC = () => {
             isCadastrando={isCadastrando}
             setIsCadastrando={setIsCadastrando}
             clearForm={clearForm}
+            endereco={endereco}
           />
         }
       >

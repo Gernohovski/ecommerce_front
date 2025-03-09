@@ -9,6 +9,7 @@ export const useDadosBasicosContext = () => useContext(DadosBasicosContext);
 const DadosBasicosContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
+  const [id, setId] = useState<number>();
   const [birthDate, setBirthDate] = useState<Date>();
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [cpf, setCpf] = useState<string>("");
@@ -48,6 +49,8 @@ const DadosBasicosContextProvider: React.FC<{ children: ReactNode }> = ({
       setIsEditando,
       currentPassword,
       setCurrentPassword,
+      id,
+      setId,
     }),
     [
       birthDate,
@@ -62,6 +65,7 @@ const DadosBasicosContextProvider: React.FC<{ children: ReactNode }> = ({
       ddd,
       isEditando,
       currentPassword,
+      id,
     ]
   );
   return (

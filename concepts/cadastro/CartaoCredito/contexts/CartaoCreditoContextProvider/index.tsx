@@ -16,6 +16,7 @@ export const useCartaoCreditoContext = () => useContext(CartaoCreditoContext);
 const CartaoCreditoContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
+  const [id, setId] = useState<string>("");
   const [cardFlag, setCardFlag] = useState<string>("");
   const [cardNumber, setCardNumber] = useState<string>("");
   const [cardSecurityCode, setCardSecurityCode] = useState<string>("");
@@ -25,6 +26,7 @@ const CartaoCreditoContextProvider: React.FC<{ children: ReactNode }> = ({
   const [isEditando, setIsEditando] = useState<boolean>(false);
 
   const clearForm = useCallback(() => {
+    setId("");
     setCardFlag("");
     setCardNumber("");
     setCardSecurityCode("");
@@ -33,6 +35,7 @@ const CartaoCreditoContextProvider: React.FC<{ children: ReactNode }> = ({
 
   const fillForm = useCallback(
     (data: CartaoCreditoType) => {
+      setId(data?.id ?? "");
       setCardFlag(data.flagId ?? "");
       setCardNumber(data.cardNumber);
       setCardSecurityCode(data.securityCode);
@@ -40,6 +43,7 @@ const CartaoCreditoContextProvider: React.FC<{ children: ReactNode }> = ({
       setIsEditando(true);
     },
     [
+      setId,
       setCardFlag,
       setCardNumber,
       setCardSecurityCode,
@@ -66,6 +70,8 @@ const CartaoCreditoContextProvider: React.FC<{ children: ReactNode }> = ({
       isEditando,
       setIsEditando,
       fillForm,
+      id,
+      setId,
     }),
     [
       cardFlag,
@@ -77,6 +83,7 @@ const CartaoCreditoContextProvider: React.FC<{ children: ReactNode }> = ({
       fillForm,
       isCadastrando,
       isEditando,
+      id,
     ]
   );
   return (

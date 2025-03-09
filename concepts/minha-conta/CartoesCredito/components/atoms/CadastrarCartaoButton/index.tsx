@@ -11,7 +11,7 @@ const CadastrarCartaoButton: React.FC = () => {
 
   return (
     <Button className="min-w-[220px] max-w-[220px]" onClick={handleButtonClick}>
-      Cadastrar novo endereço
+      Cadastrar novo cartão
     </Button>
   );
 };

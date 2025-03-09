@@ -17,10 +17,12 @@ export type CartaoCreditoContextType = {
   setIsCadastrando: Dispatch<SetStateAction<boolean>>;
   isEditando: boolean;
   setIsEditando: Dispatch<SetStateAction<boolean>>;
+  id: string;
+  setId: Dispatch<SetStateAction<string>>;
 };
 
 export type CartaoCreditoType = {
-  id?: string;
+  id: string;
   flag: string;
   flagId?: string;
   printedName: string;

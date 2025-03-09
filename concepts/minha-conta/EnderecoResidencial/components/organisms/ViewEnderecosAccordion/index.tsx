@@ -19,6 +19,7 @@ type Props = {
   subtitle: string;
   setIsCadastrando: Dispatch<SetStateAction<boolean>>;
   fillForm: (data: EnderecoType) => void;
+  tipoEndereco: string;
 };
 
 const ViewEnderecosAccordion: React.FC<Props> = ({
@@ -28,6 +29,7 @@ const ViewEnderecosAccordion: React.FC<Props> = ({
   subtitle,
   setIsCadastrando,
   fillForm,
+  tipoEndereco,
 }) => {
   return (
     <ViewSection
@@ -80,7 +82,11 @@ const ViewEnderecosAccordion: React.FC<Props> = ({
                   <div className="flex flex-col gap-6">
                     <InfoList data={enderecoData} columns={3} />
                     <div className="flex justify-end">
-                      <ActionButtons endereco={endereco} fillForm={fillForm} />
+                      <ActionButtons
+                        endereco={endereco}
+                        fillForm={fillForm}
+                        tipoEndereco={tipoEndereco}
+                      />
                     </div>
                   </div>
                 </AccordionContent>

@@ -9,31 +9,29 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { EnderecoType } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext/types";
-import useDeleteEnderecoCliente from "@/concepts/minha-conta/VisualizarInformacoes/hooks/useDeleteEnderecoCliente";
+import { CartaoCreditoType } from "@/concepts/cadastro/CartaoCredito/contexts/CartaoCreditoContextProvider/types";
+import useDeleteCartaoCliente from "@/concepts/minha-conta/VisualizarInformacoes/hooks/useDeleteCartaoCliente";
 import { Trash } from "lucide-react";
 import { useCallback } from "react";
 import { toast } from "react-toastify";
-import DeleteEnderecoButton from "../../atoms/DeleteEnderecoButton";
+import DeleteCartaoButton from "../../atoms/DeleteCartaoButton";
 
 type Props = {
   title: string;
   description: string;
-  endereco: EnderecoType;
-  tipoEndereco: string;
+  cartao: CartaoCreditoType;
 };
 
 const ConfirmDeleteModal: React.FC<Props> = ({
   title,
   description,
-  endereco,
-  tipoEndereco,
+  cartao,
 }) => {
-  const { mutate } = useDeleteEnderecoCliente();
+  const { mutate } = useDeleteCartaoCliente();
 
   const handleButtonClick = useCallback(() => {
     mutate(
-      { id: endereco.id, tipoEndereco: tipoEndereco },
+      { id: cartao.id },
       {
         onSuccess: () => {
           toast.success("Cliente criado com sucesso!");
@@ -43,12 +41,12 @@ const ConfirmDeleteModal: React.FC<Props> = ({
         },
       }
     );
-  }, [mutate, endereco, tipoEndereco]);
+  }, [mutate, cartao]);
 
   return (
     <Dialog>
       <DialogTrigger>
-        <DeleteEnderecoButton />
+        <DeleteCartaoButton />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

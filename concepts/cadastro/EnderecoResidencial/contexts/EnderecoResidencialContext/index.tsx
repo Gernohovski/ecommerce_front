@@ -19,6 +19,7 @@ export const useEnderecoResidencialContext = () =>
 const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
+  const [id, setId] = useState<string>("");
   const [cep, setCep] = useState<string>("");
   const [city, setCity] = useState<string>("");
   const [country, setCounty] = useState<string>("");
@@ -39,6 +40,7 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
 
   const fillForm = useCallback(
     (data: EnderecoType) => {
+      setId(data.id);
       setCep(data.cep);
       setCity(data.city);
       setCounty(data.country);
@@ -53,6 +55,7 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
       setIsEditando(true);
     },
     [
+      setId,
       setCep,
       setCity,
       setCounty,
@@ -69,6 +72,7 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
   );
 
   const clearForm = useCallback(() => {
+    setId("");
     setCep("");
     setCity("");
     setCounty("");
@@ -130,6 +134,8 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
       setIsEditando,
       fillForm,
       clearForm,
+      id,
+      setId,
     }),
     [
       cep,
@@ -150,6 +156,7 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
       isEditando,
       fillForm,
       clearForm,
+      id,
     ]
   );
   return (

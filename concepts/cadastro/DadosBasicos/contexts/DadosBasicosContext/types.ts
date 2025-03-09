@@ -25,4 +25,6 @@ export type DadosBasicosContextType = {
   setTelephoneType: Dispatch<SetStateAction<string>>;
   isEditando: boolean;
   setIsEditando: Dispatch<SetStateAction<boolean>>;
+  id: number | undefined;
+  setId: Dispatch<SetStateAction<number | undefined>>;
 };

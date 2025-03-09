@@ -1,4 +1,5 @@
 import ViewSection from "@/components/ui/view-section";
+import { useDadosBasicosContext } from "@/concepts/cadastro/DadosBasicos/contexts/DadosBasicosContext";
 import { useEnderecoEntregaContext } from "@/concepts/cadastro/EnderecoEntrega/contexts/EnderecoEntregaContext";
 import FirstLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/FirstLine";
 import FourthLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/FourthLine";
@@ -7,9 +8,10 @@ import ThirdLine from "@/concepts/cadastro/EnderecoResidencial/components/molecu
 import FormFooter from "@/concepts/minha-conta/EnderecoResidencial/components/molecules/FormFooter";
 import { useBuscarCep } from "@/lib/useBuscarCep";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 const FormEnderecoEntregaSection: React.FC = () => {
+  const { id } = useDadosBasicosContext();
   const {
     cep,
     setCep,
@@ -51,6 +53,38 @@ const FormEnderecoEntregaSection: React.FC = () => {
       setCounty("Brasil");
     }
   }, [data, setCity, setState, setNeighborhood, setLogradouro, setCounty]);
+
+  const endereco = useMemo(() => {
+    return {
+      tipoResidenciaId: Number(residenceType),
+      tipoLogradouroId: Number(tipoLogradouro),
+      logradouro: logradouro,
+      numero: number,
+      bairro: neighborhood,
+      cidade: city,
+      estado: state,
+      pais: country,
+      cep: cep,
+      observacoes: observations,
+      fraseIdentificacao: shortPhrase,
+      clienteId: String(id) ?? "",
+      tipoEndereco: "ENTREGA",
+    };
+  }, [
+    cep,
+    city,
+    country,
+    logradouro,
+    tipoLogradouro,
+    neighborhood,
+    number,
+    observations,
+    residenceType,
+    state,
+    shortPhrase,
+    id,
+  ]);
+
   return (
     <div>
       <ViewSection
@@ -66,6 +100,7 @@ const FormEnderecoEntregaSection: React.FC = () => {
             isCadastrando={isCadastrando}
             setIsCadastrando={setIsCadastrando}
             clearForm={clearForm}
+            endereco={endereco}
           />
         }
       >

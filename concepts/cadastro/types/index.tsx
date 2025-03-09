@@ -44,6 +44,7 @@ export interface Telefone {
 
 export interface Endereco {
   id?: number;
+  cliente?: ClienteResponse;
   tipoLogradouro: Propriedade;
   tipoResidencia: Propriedade;
   logradouro: string;
