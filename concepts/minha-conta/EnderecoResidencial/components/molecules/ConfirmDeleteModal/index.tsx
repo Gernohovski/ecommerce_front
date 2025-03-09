@@ -11,8 +11,9 @@ import {
 } from "@/components/ui/dialog";
 import { EnderecoType } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext/types";
 import useDeleteEnderecoCliente from "@/concepts/minha-conta/VisualizarInformacoes/hooks/useDeleteEnderecoCliente";
+import { useQueryClient } from "@tanstack/react-query";
 import { Trash } from "lucide-react";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { toast } from "react-toastify";
 import DeleteEnderecoButton from "../../atoms/DeleteEnderecoButton";
 
@@ -29,24 +30,28 @@ const ConfirmDeleteModal: React.FC<Props> = ({
   endereco,
   tipoEndereco,
 }) => {
+  const [open, setOpen] = useState<boolean>(false);
   const { mutate } = useDeleteEnderecoCliente();
+  const queryClient = useQueryClient();
 
   const handleButtonClick = useCallback(() => {
     mutate(
       { id: endereco.id, tipoEndereco: tipoEndereco },
       {
         onSuccess: () => {
-          toast.success("Cliente criado com sucesso!");
+          toast.success("Endereço excluído com sucesso!");
+          queryClient.invalidateQueries({ queryKey: ["getCliente"] });
+          setOpen(false);
         },
         onError: () => {
           toast.error("Erro ao salvar cliente");
         },
       }
     );
-  }, [mutate, endereco, tipoEndereco]);
+  }, [mutate, endereco, tipoEndereco, queryClient]);
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>
         <DeleteEnderecoButton />
       </DialogTrigger>

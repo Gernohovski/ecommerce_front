@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useCartaoCreditoContext } from "@/concepts/cadastro/CartaoCredito/contexts/CartaoCreditoContextProvider";
 import { useDadosBasicosContext } from "@/concepts/cadastro/DadosBasicos/contexts/DadosBasicosContext";
 import useCadastrarCartaoCliente from "@/concepts/minha-conta/VisualizarInformacoes/hooks/useCadastrarCartaoCliente";
+import { useQueryClient } from "@tanstack/react-query";
 import { useCallback, useMemo } from "react";
 import { toast } from "react-toastify";
 
@@ -18,6 +19,7 @@ const SalvarEdicaoCartaoCreditoButton: React.FC = () => {
   } = useCartaoCreditoContext();
 
   const { mutate } = useCadastrarCartaoCliente();
+  const queryClient = useQueryClient();
 
   const objectToSave = useMemo(() => {
     return {
@@ -35,14 +37,19 @@ const SalvarEdicaoCartaoCreditoButton: React.FC = () => {
       e.preventDefault();
       mutate(objectToSave, {
         onSuccess: () => {
-          toast.success("Cliente criado com sucesso!");
+          toast.success(
+            id
+              ? "Cartão atualizado com sucesso!"
+              : "Cartão cadastrado com sucesso!"
+          );
+          queryClient.invalidateQueries({ queryKey: ["getCliente"] });
         },
         onError: () => {
           toast.error("Erro ao salvar cliente");
         },
       });
     },
-    [mutate, objectToSave]
+    [mutate, objectToSave, queryClient, id]
   );
 
   const buttonTitle = useMemo(() => {

@@ -28,3 +28,13 @@ export interface SenhaPayload {
   senhaAtual: string;
   senha: string;
 }
+
+export interface DadosBasicosPayload {
+  generoId: number;
+  nome: string;
+  dataNascimento: Date | undefined;
+  cpf: string;
+  telefone: string;
+  tipoTelefoneId: number;
+  ddd: string;
+}

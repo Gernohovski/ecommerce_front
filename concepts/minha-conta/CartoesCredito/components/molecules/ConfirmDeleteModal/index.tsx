@@ -11,8 +11,9 @@ import {
 } from "@/components/ui/dialog";
 import { CartaoCreditoType } from "@/concepts/cadastro/CartaoCredito/contexts/CartaoCreditoContextProvider/types";
 import useDeleteCartaoCliente from "@/concepts/minha-conta/VisualizarInformacoes/hooks/useDeleteCartaoCliente";
+import { useQueryClient } from "@tanstack/react-query";
 import { Trash } from "lucide-react";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { toast } from "react-toastify";
 import DeleteCartaoButton from "../../atoms/DeleteCartaoButton";
 
@@ -27,24 +28,28 @@ const ConfirmDeleteModal: React.FC<Props> = ({
   description,
   cartao,
 }) => {
+  const [open, setOpen] = useState<boolean>(false);
   const { mutate } = useDeleteCartaoCliente();
+  const queryClient = useQueryClient();
 
   const handleButtonClick = useCallback(() => {
     mutate(
       { id: cartao.id },
       {
         onSuccess: () => {
-          toast.success("Cliente criado com sucesso!");
+          toast.success("Cartão excluído com sucesso!");
+          queryClient.invalidateQueries({ queryKey: ["getCliente"] });
+          setOpen(false);
         },
         onError: () => {
           toast.error("Erro ao salvar cliente");
         },
       }
     );
-  }, [mutate, cartao]);
+  }, [mutate, cartao, queryClient]);
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>
         <DeleteCartaoButton />
       </DialogTrigger>

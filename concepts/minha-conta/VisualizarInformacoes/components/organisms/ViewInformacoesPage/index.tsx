@@ -71,13 +71,13 @@ const ViewInformacoesPage: React.FC = () => {
   useEffect(() => {
     if (!data) return;
     setId(data.id);
-    setDdd(data.ddd);
+    setDdd(data.telefone.ddd);
     setBirthDate(data.dataNascimento);
     setCpf(data.cpf ?? "");
     setEmail(data.email ?? "");
     setGender(String(data.genero.id));
     setName(data.nome ?? "");
-    setTelephone(`${data.telefone.ddd ?? ""}${data.telefone.telefone ?? ""}`);
+    setTelephone(data.telefone.telefone);
     setTelephoneType(String(data.telefone.tipoTelefone.id));
     setEnderecosResidenciais(transformEndereco(data.enderecoResidencial));
     setEnderecosCobranca(transformEndereco(data.enderecoCobranca));

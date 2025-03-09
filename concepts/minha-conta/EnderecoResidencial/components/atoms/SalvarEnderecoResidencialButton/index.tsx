@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { EnderecoPayload } from "@/concepts/minha-conta/types";
 import useCadastrarEnderecoCliente from "@/concepts/minha-conta/VisualizarInformacoes/hooks/useCadastrarEnderecoCliente";
+import { useQueryClient } from "@tanstack/react-query";
 import { useCallback, useMemo } from "react";
 import { toast } from "react-toastify";
 
@@ -16,6 +17,7 @@ const SalvarEnderecoResidencialButton: React.FC<Props> = ({
   objectToSave,
 }) => {
   const { mutate } = useCadastrarEnderecoCliente();
+  const queryClient = useQueryClient();
 
   const buttonTitle = useMemo(() => {
     if (isCadastrando) return "Cadastrar";
@@ -27,14 +29,19 @@ const SalvarEnderecoResidencialButton: React.FC<Props> = ({
       e.preventDefault();
       mutate(objectToSave, {
         onSuccess: () => {
-          toast.success("Cliente criado com sucesso!");
+          toast.success(
+            objectToSave.id
+              ? "Endereço atualizado com sucesso!"
+              : "Endereço atualizado com sucesso!"
+          );
+          queryClient.invalidateQueries({ queryKey: ["getCliente"] });
         },
         onError: () => {
           toast.error("Erro ao salvar cliente");
         },
       });
     },
-    [mutate, objectToSave]
+    [mutate, objectToSave, queryClient]
   );
 
   return (
