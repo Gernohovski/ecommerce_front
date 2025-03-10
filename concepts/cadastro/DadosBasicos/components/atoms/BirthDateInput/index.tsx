@@ -15,6 +15,7 @@ const BirthDateInput: React.FC<Props> = ({ date, setDate }) => {
         date={date}
         setDate={setDate}
         className="min-w-[200px] max-w-[200px]"
+        maxDate={new Date()}
       />
     </div>
   );

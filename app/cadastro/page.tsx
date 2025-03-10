@@ -25,7 +25,7 @@ export default function Cadastro() {
               <CartaoCreditoContextProvider>
                 <Navbar />
                 <FormPageTemplate
-                  subtitle="Cadastrar usuário"
+                  subtitle="Efetuar cadastro"
                   footer={<FormPersisteClienteButton />}
                 >
                   <DadosBasicosSection />

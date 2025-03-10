@@ -1,6 +1,7 @@
 import Sidebar from "@/components/ui/sidebar";
 import CartoesCreditoButton from "../../atoms/CartoesCreditoButton";
 import DadosBasicosButton from "../../atoms/DadosBasicosButton";
+import DeletarClienteButton from "../../atoms/DeletarClienteButton";
 import EnderecoCobrancaButton from "../../atoms/EnderecoCobrancaButton";
 import EnderecoEntregaButton from "../../atoms/EnderecoEntregaButton";
 import EnderecosResidenciasButton from "../../atoms/EnderecosResidenciasButton";
@@ -15,6 +16,7 @@ const MinhaContaSidebar: React.FC = () => {
       <EnderecoCobrancaButton />
       <EnderecoEntregaButton />
       <CartoesCreditoButton />
+      <DeletarClienteButton />
     </Sidebar>
   );
 };

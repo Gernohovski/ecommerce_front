@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 type Props = {
   subtitle: string;
   children: ReactNode;
-  footer: ReactNode;
+  footer?: ReactNode;
 };
 
 const FormPageTemplate: React.FC<Props> = ({ subtitle, children, footer }) => {

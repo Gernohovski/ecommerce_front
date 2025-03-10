@@ -79,10 +79,42 @@ const ViewInformacoesPage: React.FC = () => {
     setName(data.nome ?? "");
     setTelephone(data.telefone.telefone);
     setTelephoneType(String(data.telefone.tipoTelefone.id));
-    setEnderecosResidenciais(transformEndereco(data.enderecoResidencial));
-    setEnderecosCobranca(transformEndereco(data.enderecoCobranca));
-    setEnderecosEntrega(transformEndereco(data.enderecoEntrega));
-    setCartoesCredito(transformCartaoCredito(data.cartaoCredito));
+    setEnderecosResidenciais(
+      transformEndereco(
+        data.enderecoResidencial.sort((a, b) => {
+          if (a.id == null) return 1;
+          if (b.id == null) return -1;
+          return a.id - b.id;
+        })
+      )
+    );
+    setEnderecosCobranca(
+      transformEndereco(
+        data.enderecoCobranca.sort((a, b) => {
+          if (a.id == null) return 1;
+          if (b.id == null) return -1;
+          return a.id - b.id;
+        })
+      )
+    );
+    setEnderecosEntrega(
+      transformEndereco(
+        data.enderecoEntrega.sort((a, b) => {
+          if (a.id == null) return 1;
+          if (b.id == null) return -1;
+          return a.id - b.id;
+        })
+      )
+    );
+    setCartoesCredito(
+      transformCartaoCredito(
+        data.cartaoCredito.sort((a, b) => {
+          if (a.id == null) return 1;
+          if (b.id == null) return -1;
+          return a.id - b.id;
+        })
+      )
+    );
   }, [
     data,
     setBirthDate,

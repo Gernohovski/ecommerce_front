@@ -1,9 +1,9 @@
 import { Input } from "@/components/ui/input";
 import { useEnderecoCobrancaContext } from "@/concepts/cadastro/EnderecoCobranca/contexts/EnderecoCobrancaContext";
 import { useEnderecoEntregaContext } from "@/concepts/cadastro/EnderecoEntrega/contexts/EnderecoEntregaContext";
+import { maskCEP } from "@/utils/format-cep";
 import { Label } from "@radix-ui/react-label";
 import { Dispatch, SetStateAction } from "react";
-import { withMask } from "use-mask-input";
 import { useEnderecoResidencialContext } from "../../../contexts/EnderecoResidencialContext";
 
 type Props = {
@@ -19,12 +19,12 @@ const CEPInput: React.FC<Props> = ({ cep, setCep }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const novoCep = e.target.value;
-    setCep(novoCep);
+    setCep(maskCEP(novoCep));
     if (useEnderecoCobranca) {
-      setCepCobranca(novoCep);
+      setCepCobranca(maskCEP(novoCep));
     }
     if (useEnderecoEntrega) {
-      setCepEntrega(novoCep);
+      setCepEntrega(maskCEP(novoCep));
     }
   };
 
@@ -36,7 +36,6 @@ const CEPInput: React.FC<Props> = ({ cep, setCep }) => {
         placeholder="Insira o CEP"
         value={cep}
         onChange={handleChange}
-        ref={withMask("99999-999")}
       ></Input>
     </div>
   );

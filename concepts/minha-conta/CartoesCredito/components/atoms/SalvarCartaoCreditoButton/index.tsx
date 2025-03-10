@@ -16,6 +16,8 @@ const SalvarEdicaoCartaoCreditoButton: React.FC = () => {
     cardNumber,
     cardPrintedName,
     cardSecurityCode,
+    setIsCadastrando,
+    setIsEditando,
   } = useCartaoCreditoContext();
 
   const { mutate } = useCadastrarCartaoCliente();
@@ -42,14 +44,18 @@ const SalvarEdicaoCartaoCreditoButton: React.FC = () => {
               ? "Cartão atualizado com sucesso!"
               : "Cartão cadastrado com sucesso!"
           );
+          setIsCadastrando(false);
+          setIsEditando(false);
           queryClient.invalidateQueries({ queryKey: ["getCliente"] });
         },
         onError: () => {
-          toast.error("Erro ao salvar cliente");
+          toast.error(
+            id ? "Erro ao atualizar o cartão." : "Erro ao atualizar o cartão."
+          );
         },
       });
     },
-    [mutate, objectToSave, queryClient, id]
+    [mutate, objectToSave, queryClient, id, setIsCadastrando, setIsEditando]
   );
 
   const buttonTitle = useMemo(() => {

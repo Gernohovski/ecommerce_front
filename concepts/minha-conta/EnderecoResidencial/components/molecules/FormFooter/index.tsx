@@ -28,8 +28,10 @@ const FormFooter: React.FC<Props> = ({
         clearForm={clearForm}
       />
       <SalvarEnderecoResidencialButton
+        setIsCadastrando={setIsCadastrando}
         isCadastrando={isCadastrando}
         isEditando={isEditando}
+        setIsEditando={setIsEditando}
         objectToSave={endereco}
       />
     </div>

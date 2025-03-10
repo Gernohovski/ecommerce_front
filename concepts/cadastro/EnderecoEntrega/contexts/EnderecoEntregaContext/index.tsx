@@ -46,6 +46,7 @@ const EnderecoEntregaContextProvider: React.FC<{ children: ReactNode }> = ({
     observations: observationsResidencial,
     residenceType: residenceTypeResidencial,
     state: stateResidencial,
+    shortPhrase: shortPhraseResidencial,
   } = useEnderecoResidencialContext();
 
   const fillForm = useCallback(
@@ -117,6 +118,7 @@ const EnderecoEntregaContextProvider: React.FC<{ children: ReactNode }> = ({
       setObservations(observationsResidencial);
       setResidenceType(residenceTypeResidencial);
       setState(stateResidencial);
+      setShortPhrase(shortPhraseResidencial);
     }
   }, [
     useEnderecoEntrega,
@@ -130,6 +132,7 @@ const EnderecoEntregaContextProvider: React.FC<{ children: ReactNode }> = ({
     observationsResidencial,
     residenceTypeResidencial,
     stateResidencial,
+    shortPhraseResidencial,
   ]);
 
   const values = useMemo(

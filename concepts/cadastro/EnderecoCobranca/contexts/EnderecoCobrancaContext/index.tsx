@@ -48,6 +48,7 @@ const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
     observations: observationsResidencial,
     residenceType: residenceTypeResidencial,
     state: stateResidencial,
+    shortPhrase: shortPhraseResidencial,
   } = useEnderecoResidencialContext();
 
   const fillForm = useCallback(
@@ -119,6 +120,7 @@ const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
       setObservations(observationsResidencial);
       setResidenceType(residenceTypeResidencial);
       setState(stateResidencial);
+      setShortPhrase(shortPhraseResidencial);
     }
   }, [
     useEnderecoCobranca,
@@ -132,6 +134,7 @@ const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
     observationsResidencial,
     residenceTypeResidencial,
     stateResidencial,
+    shortPhraseResidencial,
   ]);
 
   const values = useMemo(

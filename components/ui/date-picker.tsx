@@ -11,12 +11,14 @@ export type DatePickerProps = {
   date: Date | undefined;
   setDate: Dispatch<SetStateAction<Date | undefined>>;
   className?: string;
+  maxDate?: Date;
 };
 
 const DatePicker: React.FC<DatePickerProps> = ({
   date,
   setDate,
   className,
+  maxDate,
 }) => {
   return (
     <Popover>
@@ -40,6 +42,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
         <Calendar
           mode="single"
           selected={date}
+          disabled={maxDate ? (date) => date > maxDate : false}
           onSelect={setDate}
           locale={ptBR}
           initialFocus

@@ -4,6 +4,11 @@ import { useDadosBasicosContext } from "../../../contexts/DadosBasicosContext";
 
 const DDDInput: React.FC = () => {
   const { ddd, setDdd } = useDadosBasicosContext();
+
+  const handleDDDChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDdd(e.target.value.replace(/\D/g, "").slice(0, 2));
+  };
+
   return (
     <div>
       <Label className="text-sm">DDD *</Label>
@@ -11,7 +16,7 @@ const DDDInput: React.FC = () => {
         className="min-w-[56px] max-w-[56px]"
         placeholder="DDD"
         value={ddd}
-        onChange={(e) => setDdd(e.target.value)}
+        onChange={handleDDDChange}
       ></Input>
     </div>
   );

@@ -2,18 +2,22 @@ import { Button } from "@/components/ui/button";
 import { EnderecoPayload } from "@/concepts/minha-conta/types";
 import useCadastrarEnderecoCliente from "@/concepts/minha-conta/VisualizarInformacoes/hooks/useCadastrarEnderecoCliente";
 import { useQueryClient } from "@tanstack/react-query";
-import { useCallback, useMemo } from "react";
+import { Dispatch, SetStateAction, useCallback, useMemo } from "react";
 import { toast } from "react-toastify";
 
 type Props = {
   isCadastrando: boolean;
   isEditando: boolean;
+  setIsEditando: Dispatch<SetStateAction<boolean>>;
+  setIsCadastrando: Dispatch<SetStateAction<boolean>>;
   objectToSave: EnderecoPayload;
 };
 
 const SalvarEnderecoResidencialButton: React.FC<Props> = ({
   isCadastrando,
   isEditando,
+  setIsEditando,
+  setIsCadastrando,
   objectToSave,
 }) => {
   const { mutate } = useCadastrarEnderecoCliente();
@@ -32,16 +36,22 @@ const SalvarEnderecoResidencialButton: React.FC<Props> = ({
           toast.success(
             objectToSave.id
               ? "Endereço atualizado com sucesso!"
-              : "Endereço atualizado com sucesso!"
+              : "Endereço cadastrado com sucesso!"
           );
+          setIsEditando(false);
+          setIsCadastrando(false);
           queryClient.invalidateQueries({ queryKey: ["getCliente"] });
         },
         onError: () => {
-          toast.error("Erro ao salvar cliente");
+          toast.error(
+            objectToSave.id
+              ? "Erro ao atualizar o endereço."
+              : "Erro ao cadastrar o endereço."
+          );
         },
       });
     },
-    [mutate, objectToSave, queryClient]
+    [mutate, objectToSave, queryClient, setIsCadastrando, setIsEditando]
   );
 
   return (

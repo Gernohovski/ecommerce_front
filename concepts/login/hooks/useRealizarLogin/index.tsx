@@ -19,7 +19,7 @@ export const useRealizarLogin = () => {
     mutationFn: login,
     onSuccess: (data) => {
       localStorage.setItem("cliente", data?.id);
-      router.push("/home");
+      router.push("/");
     },
     onError: (data) => {
       toast.error(data.message);

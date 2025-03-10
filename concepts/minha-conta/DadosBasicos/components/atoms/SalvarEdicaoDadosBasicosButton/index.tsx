@@ -15,6 +15,7 @@ const SalvarEdicaoDadosBasicosButton: React.FC = () => {
     telephone,
     telephoneType,
     ddd,
+    email,
     id,
   } = useDadosBasicosContext();
   const { mutate } = useEditarDadosBasicos();
@@ -28,8 +29,9 @@ const SalvarEdicaoDadosBasicosButton: React.FC = () => {
       telefone: telephone,
       tipoTelefoneId: Number(telephoneType),
       ddd: ddd,
+      email: email,
     };
-  }, [gender, name, birthDate, cpf, telephone, telephoneType, ddd]);
+  }, [gender, name, birthDate, cpf, telephone, telephoneType, ddd, email]);
 
   const handleButtonClick = useCallback(
     (e: React.FormEvent) => {

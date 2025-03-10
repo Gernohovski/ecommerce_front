@@ -3,6 +3,7 @@ import { useCartaoCreditoContext } from "@/concepts/cadastro/CartaoCredito/conte
 import { useDadosBasicosContext } from "@/concepts/cadastro/DadosBasicos/contexts/DadosBasicosContext";
 import { useEnderecoCobrancaContext } from "@/concepts/cadastro/EnderecoCobranca/contexts/EnderecoCobrancaContext";
 import { useEnderecoResidencialContext } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext";
+import { validatePassword } from "@/utils/validate-senha";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { toast } from "react-toastify";
@@ -19,6 +20,7 @@ const FormPersisteClienteButton: React.FC = () => {
     telephone,
     ddd,
     telephoneType,
+    confirmPassword,
   } = useDadosBasicosContext();
   const { cardFlag, cardNumber, cardSecurityCode, cardPrintedName } =
     useCartaoCreditoContext();
@@ -222,13 +224,22 @@ const FormPersisteClienteButton: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validatePassword(password)) {
+      const mensagem = `A senha deve conter: <br />- Mínimo 8 caracteres. <br />- Primeira letra maiúscula. <br />- Pelo menos 1 caractere especial.`;
+      toast.error(<div dangerouslySetInnerHTML={{ __html: mensagem }} />);
+      return;
+    }
+    if (password != confirmPassword) {
+      toast.error("A senha e a confirmação de senha devem coincidir.");
+      return;
+    }
     mutate(objectToSave, {
       onSuccess: () => {
-        toast.success("Cliente criado com sucesso!");
+        toast.success("Cadastro efetuado com sucesso!");
         router.push("/login");
       },
       onError: () => {
-        toast.error("Erro ao salvar cliente");
+        toast.error("Ocorreu um erro ao efetuar o cadastro.");
       },
     });
   };

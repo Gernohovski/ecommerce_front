@@ -44,7 +44,7 @@ const ConfirmDeleteModal: React.FC<Props> = ({
           setOpen(false);
         },
         onError: () => {
-          toast.error("Erro ao salvar cliente");
+          toast.error("Erro ao excluir o endereço.");
         },
       }
     );

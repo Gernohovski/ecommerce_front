@@ -4,6 +4,13 @@ import { useCartaoCreditoContext } from "../../../contexts/CartaoCreditoContextP
 
 const CardSecurityCode: React.FC = () => {
   const { cardSecurityCode, setCardSecurityCode } = useCartaoCreditoContext();
+
+  const handleCardSecurityCOdeChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setCardSecurityCode(e.target.value.replace(/\D/g, "").slice(0, 4));
+  };
+
   return (
     <div>
       <Label className="text-sm">Código de segurança *</Label>
@@ -11,7 +18,7 @@ const CardSecurityCode: React.FC = () => {
         className="min-w-[179px] max-w-[179px]"
         placeholder="Código de segurança"
         value={cardSecurityCode}
-        onChange={(e) => setCardSecurityCode(e.target.value)}
+        onChange={handleCardSecurityCOdeChange}
       ></Input>
     </div>
   );

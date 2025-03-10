@@ -36,13 +36,14 @@ export function DataTable<TData, TValue>({
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => {
+            <TableRow key={headerGroup.id} className="border-b">
+              {headerGroup.headers.map((header, index) => {
                 return (
                   <TableHead
                     key={header.id}
-                    className={`text-[#561F9C] font-semibold text-center
-                    `}
+                    className={`text-[#561F9C] font-semibold text-center border-b ${
+                      index < headerGroup.headers.length - 1 ? "border-r" : ""
+                    }`}
                     style={{ width: header.getSize() }}
                   >
                     {header.isPlaceholder
@@ -63,10 +64,14 @@ export function DataTable<TData, TValue>({
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
+                className="border-b"
               >
-                {row.getVisibleCells().map((cell) => (
+                {row.getVisibleCells().map((cell, index) => (
                   <TableCell
                     key={cell.id}
+                    className={`border-b ${
+                      index < row.getVisibleCells().length - 1 ? "border-r" : ""
+                    }`}
                     style={{ width: cell.column.getSize(), height: 10 }}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
