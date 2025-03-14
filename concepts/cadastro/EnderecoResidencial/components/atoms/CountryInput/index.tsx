@@ -12,9 +12,10 @@ type Props = {
   useEnderecoCobranca?: boolean;
   setCountryEntrega?: Dispatch<SetStateAction<string>>;
   useEnderecoEntrega?: boolean;
+  hasError?: boolean;
 };
 
-const CountryInput: React.FC<Props> = ({ country, setCountry }) => {
+const CountryInput: React.FC<Props> = ({ country, setCountry, hasError }) => {
   const { useEnderecoCobranca, useEnderecoEntrega } =
     useEnderecoResidencialContext();
   const { setCounty: setCountryCobranca } = useEnderecoCobrancaContext();
@@ -37,6 +38,7 @@ const CountryInput: React.FC<Props> = ({ country, setCountry }) => {
         placeholder="Insira o país"
         value={country}
         onChange={handleChange}
+        error={hasError}
       ></Input>
     </div>
   );

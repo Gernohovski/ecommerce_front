@@ -8,9 +8,14 @@ import { useEnderecoResidencialContext } from "../../../contexts/EnderecoResiden
 type Props = {
   logradouro: string;
   setLogradouro: Dispatch<SetStateAction<string>>;
+  hasError?: boolean;
 };
 
-const LogradouroInput: React.FC<Props> = ({ logradouro, setLogradouro }) => {
+const LogradouroInput: React.FC<Props> = ({
+  logradouro,
+  setLogradouro,
+  hasError,
+}) => {
   const { useEnderecoCobranca, useEnderecoEntrega } =
     useEnderecoResidencialContext();
   const { setLogradouro: setLogradouroCobranca } = useEnderecoCobrancaContext();
@@ -33,6 +38,7 @@ const LogradouroInput: React.FC<Props> = ({ logradouro, setLogradouro }) => {
         placeholder="Insira o logradouro"
         value={logradouro}
         onChange={handleChange}
+        error={hasError}
       ></Input>
     </div>
   );

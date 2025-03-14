@@ -8,11 +8,13 @@ import { useEnderecoResidencialContext } from "../../../contexts/EnderecoResiden
 type Props = {
   neighborhood: string;
   setNeighborhood: Dispatch<SetStateAction<string>>;
+  hasError?: boolean;
 };
 
 const NeighborhoodInput: React.FC<Props> = ({
   neighborhood,
   setNeighborhood,
+  hasError,
 }) => {
   const { useEnderecoCobranca, useEnderecoEntrega } =
     useEnderecoResidencialContext();
@@ -38,6 +40,7 @@ const NeighborhoodInput: React.FC<Props> = ({
         placeholder="Insira o bairro"
         value={neighborhood}
         onChange={handleChange}
+        error={hasError}
       ></Input>
     </div>
   );

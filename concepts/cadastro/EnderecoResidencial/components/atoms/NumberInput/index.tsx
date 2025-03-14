@@ -8,9 +8,10 @@ import { useEnderecoResidencialContext } from "../../../contexts/EnderecoResiden
 type Props = {
   number: string;
   setNumber: Dispatch<SetStateAction<string>>;
+  hasError?: boolean;
 };
 
-const NumberInput: React.FC<Props> = ({ number, setNumber }) => {
+const NumberInput: React.FC<Props> = ({ number, setNumber, hasError }) => {
   const { useEnderecoCobranca, useEnderecoEntrega } =
     useEnderecoResidencialContext();
   const { setNumber: setNumberCobranca } = useEnderecoCobrancaContext();
@@ -33,6 +34,7 @@ const NumberInput: React.FC<Props> = ({ number, setNumber }) => {
         placeholder="Nº"
         value={number}
         onChange={handleChange}
+        error={hasError}
       ></Input>
     </div>
   );

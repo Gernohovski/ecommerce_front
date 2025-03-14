@@ -16,11 +16,13 @@ import { useFetchListarTiposResidencia } from "../../../hooks/useFetchListarTipo
 type Props = {
   residenceType: string;
   setResidenceType: Dispatch<SetStateAction<string>>;
+  hasError?: boolean;
 };
 
 const ResidenceTypeSelect: React.FC<Props> = ({
   setResidenceType,
   residenceType,
+  hasError,
 }) => {
   const { data } = useFetchListarTiposResidencia();
   const isDisabled = useDisabled();
@@ -47,7 +49,11 @@ const ResidenceTypeSelect: React.FC<Props> = ({
         value={residenceType}
         disabled={isDisabled}
       >
-        <SelectTrigger className="min-w-[200px] max-w-[200px] data-[placeholder]:text-[#71717A] ">
+        <SelectTrigger
+          className="min-w-[200px] max-w-[200px] data-[placeholder]:text-[#71717A] "
+          error={hasError}
+          value={residenceType}
+        >
           <SelectValue placeholder="Selecione..." />
         </SelectTrigger>
         <SelectContent>

@@ -6,10 +6,11 @@ export interface Propriedade {
 export interface Cliente {
   generoId: number;
   nome: string;
-  dataNascimento: Date;
+  dataNascimento?: Date;
   cpf: string;
   email: string;
   senha: string;
+  confirmacaoSenha: string;
   telefone: string;
   tipoTelefoneId: number;
   ddd: string;

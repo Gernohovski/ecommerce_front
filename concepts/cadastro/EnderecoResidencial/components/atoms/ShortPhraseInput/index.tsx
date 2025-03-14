@@ -8,9 +8,14 @@ import { Dispatch, SetStateAction } from "react";
 type Props = {
   shortPhrase: string;
   setShortPhrase: Dispatch<SetStateAction<string>>;
+  hasError?: boolean;
 };
 
-const ShortPhraseInput: React.FC<Props> = ({ shortPhrase, setShortPhrase }) => {
+const ShortPhraseInput: React.FC<Props> = ({
+  shortPhrase,
+  setShortPhrase,
+  hasError,
+}) => {
   const { useEnderecoCobranca, useEnderecoEntrega } =
     useEnderecoResidencialContext();
   const { setShortPhrase: setShortPhraseCobranca } =
@@ -34,6 +39,7 @@ const ShortPhraseInput: React.FC<Props> = ({ shortPhrase, setShortPhrase }) => {
         placeholder="Insira uma frase curta"
         value={shortPhrase}
         onChange={handleChange}
+        error={hasError}
       ></Input>
     </div>
   );

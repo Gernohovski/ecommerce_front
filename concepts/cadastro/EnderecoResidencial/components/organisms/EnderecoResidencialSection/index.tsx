@@ -1,4 +1,5 @@
 import Section from "@/components/ui/section";
+import { useCadastrarClienteContext } from "@/concepts/cadastro/CadastrarCliente/contexts/CadastrarClienteContext";
 import { useBuscarCep } from "@/lib/useBuscarCep";
 import Image from "next/image";
 import { useEffect } from "react";
@@ -35,7 +36,7 @@ const EnderecoResidencialSection: React.FC = () => {
     shortPhrase,
     setShortPhrase,
   } = useEnderecoResidencialContext();
-
+  const { errors } = useCadastrarClienteContext();
   const { data } = useBuscarCep(cep);
 
   useEffect(() => {
@@ -63,6 +64,8 @@ const EnderecoResidencialSection: React.FC = () => {
         setLogradouroType={setTipoLogradouro}
         number={number}
         setNumber={setNumber}
+        errors={errors}
+        tipoEndereco="enderecoResidencial"
       />
       <SecondLine
         country={country}
@@ -73,12 +76,16 @@ const EnderecoResidencialSection: React.FC = () => {
         setCity={setCity}
         neighborhood={neighborhood}
         setNeighborhood={setNeighborhood}
+        errors={errors}
+        tipoEndereco="enderecoResidencial"
       />
       <ThirdLine
         residenceType={residenceType}
         setResidenceType={setResidenceType}
         shortPhrase={shortPhrase}
         setShortPhrase={setShortPhrase}
+        errors={errors}
+        tipoEndereco="enderecoResidencial"
       />
       <FourthLine
         observations={observations}

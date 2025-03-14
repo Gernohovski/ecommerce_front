@@ -1,4 +1,5 @@
 "use client";
+import { ValidationResult } from "@/utils/validate-schema";
 import { createContext, ReactNode, useContext, useMemo, useState } from "react";
 import { FormLoginContextType } from "./types";
 
@@ -11,6 +12,7 @@ const FormLoginContextProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [errors, setErrors] = useState<ValidationResult[]>([]);
 
   const values = useMemo(
     () => ({
@@ -18,8 +20,10 @@ const FormLoginContextProvider: React.FC<{ children: ReactNode }> = ({
       setEmail,
       password,
       setPassword,
+      errors,
+      setErrors,
     }),
-    [email, password]
+    [email, password, errors, setErrors]
   );
   return (
     <FormLoginContext.Provider value={values}>

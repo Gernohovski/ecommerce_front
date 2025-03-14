@@ -6,20 +6,33 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useCadastrarClienteContext } from "@/concepts/cadastro/CadastrarCliente/contexts/CadastrarClienteContext";
+import { useMemo } from "react";
 import { useCartaoCreditoContext } from "../../../contexts/CartaoCreditoContextProvider";
 import { useFetchListarBandeirasCartao } from "../../../hooks/useFetchListarBandeirasCartao";
 
 const CardFlagSelect: React.FC = () => {
+  const { errors } = useCadastrarClienteContext();
   const { data } = useFetchListarBandeirasCartao();
   const { setCardFlag, cardFlag } = useCartaoCreditoContext();
   const handleChange = (value: string) => {
     setCardFlag(value);
   };
+  const hasError = useMemo(() => {
+    return errors?.some(
+      (error) =>
+        error.nomeDoCampo === "cartaoCredito[0].bandeira.id" && !error.isValid
+    );
+  }, [errors]);
   return (
     <div>
       <Label className="text-sm">Bandeira do cartão *</Label>
       <Select onValueChange={handleChange} value={cardFlag}>
-        <SelectTrigger className="min-w-[228.5px] max-w-[228.5px] data-[placeholder]:text-[#71717A] ">
+        <SelectTrigger
+          className="min-w-[228.5px] max-w-[228.5px] data-[placeholder]:text-[#71717A] "
+          value={cardFlag}
+          error={hasError}
+        >
           <SelectValue placeholder="Selecione..." />
         </SelectTrigger>
         <SelectContent>

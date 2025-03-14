@@ -16,11 +16,13 @@ import { useFetchListarTiposLogradouro } from "../../../hooks/useFetchListarTipo
 type Props = {
   logradouroType: string;
   setLogradouroType: Dispatch<SetStateAction<string>>;
+  hasError?: boolean;
 };
 
 const LogradouroTypeSelect: React.FC<Props> = ({
   setLogradouroType,
   logradouroType,
+  hasError,
 }) => {
   const { data } = useFetchListarTiposLogradouro();
   const isDisabled = useDisabled();
@@ -47,7 +49,11 @@ const LogradouroTypeSelect: React.FC<Props> = ({
         value={logradouroType}
         disabled={isDisabled}
       >
-        <SelectTrigger className="min-w-[200px] max-w-[200px] data-[placeholder]:text-[#71717A] ">
+        <SelectTrigger
+          className="min-w-[200px] max-w-[200px] data-[placeholder]:text-[#71717A] "
+          error={hasError}
+          value={logradouroType}
+        >
           <SelectValue placeholder="Selecione..." />
         </SelectTrigger>
         <SelectContent>

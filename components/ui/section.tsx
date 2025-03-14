@@ -24,7 +24,7 @@ const Section: React.FC<Props> = ({
     <DisabledContext.Provider value={!!disabled}>
       <fieldset
         disabled={disabled}
-        className="flex flex-col bg-white p-6 rounded-xl shadow-sm min-w-[1146px]"
+        className="flex flex-col bg-white pr-6 pl-6 pt-6 pb-8 rounded-xl shadow-sm min-w-[1146px]"
       >
         <SectionHeader title={title} icon={icon} subtitle={subtitle} />
         <div className="flex flex-col gap-6">{children}</div>

@@ -18,6 +18,7 @@ const SalvarEdicaoCartaoCreditoButton: React.FC = () => {
     cardSecurityCode,
     setIsCadastrando,
     setIsEditando,
+    clearForm,
   } = useCartaoCreditoContext();
 
   const { mutate } = useCadastrarCartaoCliente();
@@ -46,6 +47,7 @@ const SalvarEdicaoCartaoCreditoButton: React.FC = () => {
           );
           setIsCadastrando(false);
           setIsEditando(false);
+          clearForm();
           queryClient.invalidateQueries({ queryKey: ["getCliente"] });
         },
         onError: () => {
@@ -55,7 +57,15 @@ const SalvarEdicaoCartaoCreditoButton: React.FC = () => {
         },
       });
     },
-    [mutate, objectToSave, queryClient, id, setIsCadastrando, setIsEditando]
+    [
+      mutate,
+      objectToSave,
+      queryClient,
+      id,
+      setIsCadastrando,
+      setIsEditando,
+      clearForm,
+    ]
   );
 
   const buttonTitle = useMemo(() => {

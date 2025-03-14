@@ -1,4 +1,5 @@
 import Section from "@/components/ui/section";
+import { useCadastrarClienteContext } from "@/concepts/cadastro/CadastrarCliente/contexts/CadastrarClienteContext";
 import FirstLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/FirstLine";
 import FourthLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/FourthLine";
 import SecondLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/SecondLine";
@@ -10,6 +11,7 @@ import { useEffect } from "react";
 import { useEnderecoCobrancaContext } from "../../../contexts/EnderecoCobrancaContext";
 
 const EnderecoCobrancaSection: React.FC = () => {
+  const { errors } = useCadastrarClienteContext();
   const { useEnderecoCobranca } = useEnderecoResidencialContext();
   const {
     cep,
@@ -66,6 +68,8 @@ const EnderecoCobrancaSection: React.FC = () => {
         setLogradouroType={setTipoLogradouro}
         number={number}
         setNumber={setNumber}
+        errors={errors}
+        tipoEndereco="enderecoCobranca"
       />
       <SecondLine
         country={country}
@@ -76,12 +80,16 @@ const EnderecoCobrancaSection: React.FC = () => {
         setCity={setCity}
         neighborhood={neighborhood}
         setNeighborhood={setNeighborhood}
+        errors={errors}
+        tipoEndereco="enderecoCobranca"
       />
       <ThirdLine
         residenceType={residenceType}
         setResidenceType={setResidenceType}
         shortPhrase={shortPhrase}
         setShortPhrase={setShortPhrase}
+        errors={errors}
+        tipoEndereco="enderecoCobranca"
       />
       <FourthLine
         observations={observations}

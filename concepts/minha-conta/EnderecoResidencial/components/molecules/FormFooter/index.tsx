@@ -33,6 +33,7 @@ const FormFooter: React.FC<Props> = ({
         isEditando={isEditando}
         setIsEditando={setIsEditando}
         objectToSave={endereco}
+        clearForm={clearForm}
       />
     </div>
   );

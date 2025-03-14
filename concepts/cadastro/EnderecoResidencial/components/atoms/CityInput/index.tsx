@@ -8,9 +8,10 @@ import { useEnderecoResidencialContext } from "../../../contexts/EnderecoResiden
 type Props = {
   city: string;
   setCity: Dispatch<SetStateAction<string>>;
+  hasError?: boolean;
 };
 
-const CityInput: React.FC<Props> = ({ city, setCity }) => {
+const CityInput: React.FC<Props> = ({ city, setCity, hasError }) => {
   const { useEnderecoCobranca, useEnderecoEntrega } =
     useEnderecoResidencialContext();
   const { setCity: setCityCobranca } = useEnderecoCobrancaContext();
@@ -34,6 +35,7 @@ const CityInput: React.FC<Props> = ({ city, setCity }) => {
         placeholder="Insira a cidade"
         value={city}
         onChange={handleChange}
+        error={hasError}
       ></Input>
     </div>
   );

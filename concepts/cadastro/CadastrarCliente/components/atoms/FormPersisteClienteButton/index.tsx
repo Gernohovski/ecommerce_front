@@ -3,13 +3,17 @@ import { useCartaoCreditoContext } from "@/concepts/cadastro/CartaoCredito/conte
 import { useDadosBasicosContext } from "@/concepts/cadastro/DadosBasicos/contexts/DadosBasicosContext";
 import { useEnderecoCobrancaContext } from "@/concepts/cadastro/EnderecoCobranca/contexts/EnderecoCobrancaContext";
 import { useEnderecoResidencialContext } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext";
+import validateSchema from "@/utils/validate-schema";
 import { validatePassword } from "@/utils/validate-senha";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { toast } from "react-toastify";
+import { useCadastrarClienteContext } from "../../../contexts/CadastrarClienteContext";
 import useCadastrarCliente from "../../../hooks/useCadastrarCliente";
+import { cadastroSchema } from "../../../validations/cadastroValidation";
 
 const FormPersisteClienteButton: React.FC = () => {
+  const { errors, setErrors } = useCadastrarClienteContext();
   const {
     birthDate,
     cpf,
@@ -70,10 +74,11 @@ const FormPersisteClienteButton: React.FC = () => {
     return {
       generoId: Number(gender),
       nome: name,
-      dataNascimento: birthDate ? new Date(birthDate) : new Date(),
+      dataNascimento: birthDate ? new Date(birthDate) : undefined,
       cpf,
       email,
       senha: password,
+      confirmacaoSenha: confirmPassword,
       telefone: telephone,
       tipoTelefoneId: Number(telephoneType),
       ddd: ddd,
@@ -176,6 +181,7 @@ const FormPersisteClienteButton: React.FC = () => {
     gender,
     name,
     password,
+    confirmPassword,
     telephone,
     cardFlag,
     cardNumber,
@@ -224,6 +230,9 @@ const FormPersisteClienteButton: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    //@ts-expect-error desabilitado devido a erro de validação
+    validateSchema(cadastroSchema, objectToSave, setErrors);
+    if (errors) return toast.error("Há campos obrigatórios não preenchidos.");
     if (!validatePassword(password)) {
       const mensagem = `A senha deve conter: <br />- Mínimo 8 caracteres. <br />- Primeira letra maiúscula. <br />- Pelo menos 1 caractere especial.`;
       toast.error(<div dangerouslySetInnerHTML={{ __html: mensagem }} />);

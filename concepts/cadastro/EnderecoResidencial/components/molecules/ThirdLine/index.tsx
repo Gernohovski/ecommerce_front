@@ -1,6 +1,7 @@
 "use client";
 
-import { Dispatch, SetStateAction } from "react";
+import { ValidationResult } from "@/utils/validate-schema";
+import { Dispatch, SetStateAction, useMemo } from "react";
 import ResidenceTypeSelect from "../../atoms/ResidenceTypeSelect";
 import ShortPhraseInput from "../../atoms/ShortPhraseInput";
 
@@ -9,6 +10,8 @@ type ThirdLineProps = {
   setResidenceType: Dispatch<SetStateAction<string>>;
   shortPhrase: string;
   setShortPhrase: Dispatch<SetStateAction<string>>;
+  errors?: ValidationResult[];
+  tipoEndereco?: string;
 };
 
 const ThirdLine: React.FC<ThirdLineProps> = ({
@@ -16,16 +19,35 @@ const ThirdLine: React.FC<ThirdLineProps> = ({
   setResidenceType,
   shortPhrase,
   setShortPhrase,
+  errors,
+  tipoEndereco,
 }) => {
+  const hasErrors = useMemo(() => {
+    return {
+      residenceTypeError: errors?.some(
+        (error) =>
+          error.nomeDoCampo === `${tipoEndereco}[0].tipoResidencia.id` &&
+          !error.isValid
+      ),
+      shortPhraseError: errors?.some(
+        (error) =>
+          error.nomeDoCampo === `${tipoEndereco}[0].fraseIdentificacao` &&
+          !error.isValid
+      ),
+    };
+  }, [errors, tipoEndereco]);
+
   return (
     <div className="flex gap-6">
       <ResidenceTypeSelect
         residenceType={residenceType}
         setResidenceType={setResidenceType}
+        hasError={hasErrors.residenceTypeError}
       />
       <ShortPhraseInput
         shortPhrase={shortPhrase}
         setShortPhrase={setShortPhrase}
+        hasError={hasErrors.shortPhraseError}
       />
     </div>
   );

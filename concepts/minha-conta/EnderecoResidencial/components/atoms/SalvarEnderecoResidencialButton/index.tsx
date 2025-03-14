@@ -11,6 +11,7 @@ type Props = {
   setIsEditando: Dispatch<SetStateAction<boolean>>;
   setIsCadastrando: Dispatch<SetStateAction<boolean>>;
   objectToSave: EnderecoPayload;
+  clearForm: () => void;
 };
 
 const SalvarEnderecoResidencialButton: React.FC<Props> = ({
@@ -19,6 +20,7 @@ const SalvarEnderecoResidencialButton: React.FC<Props> = ({
   setIsEditando,
   setIsCadastrando,
   objectToSave,
+  clearForm,
 }) => {
   const { mutate } = useCadastrarEnderecoCliente();
   const queryClient = useQueryClient();
@@ -41,6 +43,7 @@ const SalvarEnderecoResidencialButton: React.FC<Props> = ({
           setIsEditando(false);
           setIsCadastrando(false);
           queryClient.invalidateQueries({ queryKey: ["getCliente"] });
+          clearForm();
         },
         onError: () => {
           toast.error(
@@ -51,7 +54,14 @@ const SalvarEnderecoResidencialButton: React.FC<Props> = ({
         },
       });
     },
-    [mutate, objectToSave, queryClient, setIsCadastrando, setIsEditando]
+    [
+      mutate,
+      objectToSave,
+      queryClient,
+      setIsCadastrando,
+      setIsEditando,
+      clearForm,
+    ]
   );
 
   return (

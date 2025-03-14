@@ -1,8 +1,11 @@
 import { Input } from "@/components/ui/input";
+import { useCadastrarClienteContext } from "@/concepts/cadastro/CadastrarCliente/contexts/CadastrarClienteContext";
 import { Label } from "@radix-ui/react-label";
+import { useMemo } from "react";
 import { useCartaoCreditoContext } from "../../../contexts/CartaoCreditoContextProvider";
 
 const CardSecurityCode: React.FC = () => {
+  const { errors } = useCadastrarClienteContext();
   const { cardSecurityCode, setCardSecurityCode } = useCartaoCreditoContext();
 
   const handleCardSecurityCOdeChange = (
@@ -10,6 +13,14 @@ const CardSecurityCode: React.FC = () => {
   ) => {
     setCardSecurityCode(e.target.value.replace(/\D/g, "").slice(0, 4));
   };
+
+  const hasError = useMemo(() => {
+    return errors?.some(
+      (error) =>
+        error.nomeDoCampo === "cartaoCredito[0].codigoSeguranca" &&
+        !error.isValid
+    );
+  }, [errors]);
 
   return (
     <div>
@@ -19,6 +30,7 @@ const CardSecurityCode: React.FC = () => {
         placeholder="Código de segurança"
         value={cardSecurityCode}
         onChange={handleCardSecurityCOdeChange}
+        error={hasError}
       ></Input>
     </div>
   );

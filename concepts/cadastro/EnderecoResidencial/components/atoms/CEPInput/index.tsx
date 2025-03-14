@@ -9,9 +9,10 @@ import { useEnderecoResidencialContext } from "../../../contexts/EnderecoResiden
 type Props = {
   cep: string;
   setCep: Dispatch<SetStateAction<string>>;
+  hasError?: boolean;
 };
 
-const CEPInput: React.FC<Props> = ({ cep, setCep }) => {
+const CEPInput: React.FC<Props> = ({ cep, setCep, hasError }) => {
   const { useEnderecoCobranca, useEnderecoEntrega } =
     useEnderecoResidencialContext();
   const { setCep: setCepCobranca } = useEnderecoCobrancaContext();
@@ -36,6 +37,7 @@ const CEPInput: React.FC<Props> = ({ cep, setCep }) => {
         placeholder="Insira o CEP"
         value={cep}
         onChange={handleChange}
+        error={hasError}
       ></Input>
     </div>
   );
