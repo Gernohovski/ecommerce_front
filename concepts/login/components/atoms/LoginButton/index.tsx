@@ -10,7 +10,7 @@ const LoginButton: React.FC = () => {
 
   const handleSubmit = () => {
     validateSchema(loginSchema, { email, senha }, setErrors);
-    if (errors) return;
+    if (errors.length > 0) return;
     mutation.mutate({ email, senha });
   };
 

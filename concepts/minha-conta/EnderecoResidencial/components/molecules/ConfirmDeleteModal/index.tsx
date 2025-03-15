@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { EnderecoType } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext/types";
 import useDeleteEnderecoCliente from "@/concepts/minha-conta/VisualizarInformacoes/hooks/useDeleteEnderecoCliente";
+import errorMessage, { APIError } from "@/utils/error-message";
 import { useQueryClient } from "@tanstack/react-query";
 import { Trash } from "lucide-react";
 import { useCallback, useState } from "react";
@@ -43,8 +44,8 @@ const ConfirmDeleteModal: React.FC<Props> = ({
           queryClient.invalidateQueries({ queryKey: ["getCliente"] });
           setOpen(false);
         },
-        onError: () => {
-          toast.error("Erro ao excluir o endereço.");
+        onError: (error) => {
+          errorMessage(error as APIError);
         },
       }
     );

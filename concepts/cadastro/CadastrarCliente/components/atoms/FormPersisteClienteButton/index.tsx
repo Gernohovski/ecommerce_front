@@ -3,6 +3,7 @@ import { useCartaoCreditoContext } from "@/concepts/cadastro/CartaoCredito/conte
 import { useDadosBasicosContext } from "@/concepts/cadastro/DadosBasicos/contexts/DadosBasicosContext";
 import { useEnderecoCobrancaContext } from "@/concepts/cadastro/EnderecoCobranca/contexts/EnderecoCobrancaContext";
 import { useEnderecoResidencialContext } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext";
+import errorMessage from "@/utils/error-message";
 import validateSchema from "@/utils/validate-schema";
 import { validatePassword } from "@/utils/validate-senha";
 import { useRouter } from "next/navigation";
@@ -225,14 +226,14 @@ const FormPersisteClienteButton: React.FC = () => {
   ]);
 
   const handleCancel = () => {
-    router.push("/home");
+    router.push("/");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     //@ts-expect-error desabilitado devido a erro de validação
     validateSchema(cadastroSchema, objectToSave, setErrors);
-    if (errors) return toast.error("Há campos obrigatórios não preenchidos.");
+    if (errors.length > 0) return;
     if (!validatePassword(password)) {
       const mensagem = `A senha deve conter: <br />- Mínimo 8 caracteres. <br />- Primeira letra maiúscula. <br />- Pelo menos 1 caractere especial.`;
       toast.error(<div dangerouslySetInnerHTML={{ __html: mensagem }} />);
@@ -247,8 +248,8 @@ const FormPersisteClienteButton: React.FC = () => {
         toast.success("Cadastro efetuado com sucesso!");
         router.push("/login");
       },
-      onError: () => {
-        toast.error("Ocorreu um erro ao efetuar o cadastro.");
+      onError: (error) => {
+        errorMessage(error);
       },
     });
   };

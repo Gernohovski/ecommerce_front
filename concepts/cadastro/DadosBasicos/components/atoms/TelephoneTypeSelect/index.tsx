@@ -23,8 +23,6 @@ const TelephoneTypeSelect: React.FC<{ errors?: ValidationResult[] }> = ({
     );
   }, [errors]);
 
-  console.log(hasError);
-
   const handleChange = (value: string) => {
     setTelephoneType(value);
   };

@@ -1,7 +1,7 @@
 import api from "@/lib/api";
+import errorMessage, { APIError } from "@/utils/error-message";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
 
 interface LoginParams {
   email: string;
@@ -21,8 +21,8 @@ export const useRealizarLogin = () => {
       localStorage.setItem("cliente", data?.id);
       router.push("/");
     },
-    onError: (data) => {
-      toast.error(data.message);
+    onError: (data: APIError) => {
+      errorMessage(data);
     },
   });
 };

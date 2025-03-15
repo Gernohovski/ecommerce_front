@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { EnderecoPayload } from "@/concepts/minha-conta/types";
 import useCadastrarEnderecoCliente from "@/concepts/minha-conta/VisualizarInformacoes/hooks/useCadastrarEnderecoCliente";
+import errorMessage, { APIError } from "@/utils/error-message";
 import { useQueryClient } from "@tanstack/react-query";
 import { Dispatch, SetStateAction, useCallback, useMemo } from "react";
 import { toast } from "react-toastify";
@@ -45,12 +46,8 @@ const SalvarEnderecoResidencialButton: React.FC<Props> = ({
           queryClient.invalidateQueries({ queryKey: ["getCliente"] });
           clearForm();
         },
-        onError: () => {
-          toast.error(
-            objectToSave.id
-              ? "Erro ao atualizar o endereço."
-              : "Erro ao cadastrar o endereço."
-          );
+        onError: (error: APIError) => {
+          errorMessage(error);
         },
       });
     },

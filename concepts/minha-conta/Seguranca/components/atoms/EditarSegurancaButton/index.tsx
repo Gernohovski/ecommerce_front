@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useDadosBasicosContext } from "@/concepts/cadastro/DadosBasicos/contexts/DadosBasicosContext";
 import useEditarSenhaCliente from "@/concepts/minha-conta/VisualizarInformacoes/hooks/useEditarSenhaCliente";
+import errorMessage, { APIError } from "@/utils/error-message";
 import { validatePassword } from "@/utils/validate-senha";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
@@ -38,8 +39,8 @@ const EditarSegurancaButton: React.FC = () => {
             localStorage.removeItem("cliente");
             router.push("/");
           },
-          onError: () => {
-            toast.error("Erro ao alterar a senha do cliente.");
+          onError: (error) => {
+            errorMessage(error as APIError);
           },
         }
       );

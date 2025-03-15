@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { CartaoCreditoType } from "@/concepts/cadastro/CartaoCredito/contexts/CartaoCreditoContextProvider/types";
 import useDeleteCartaoCliente from "@/concepts/minha-conta/VisualizarInformacoes/hooks/useDeleteCartaoCliente";
+import errorMessage, { APIError } from "@/utils/error-message";
 import { useQueryClient } from "@tanstack/react-query";
 import { Trash } from "lucide-react";
 import { useCallback, useState } from "react";
@@ -41,8 +42,8 @@ const ConfirmDeleteModal: React.FC<Props> = ({
           queryClient.invalidateQueries({ queryKey: ["getCliente"] });
           setOpen(false);
         },
-        onError: () => {
-          toast.error("Erro ao excluir o cartão.");
+        onError: (error) => {
+          errorMessage(error as APIError);
         },
       }
     );

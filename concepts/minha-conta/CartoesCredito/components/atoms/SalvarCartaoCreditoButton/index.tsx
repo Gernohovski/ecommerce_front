@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useCartaoCreditoContext } from "@/concepts/cadastro/CartaoCredito/contexts/CartaoCreditoContextProvider";
 import { useDadosBasicosContext } from "@/concepts/cadastro/DadosBasicos/contexts/DadosBasicosContext";
 import useCadastrarCartaoCliente from "@/concepts/minha-conta/VisualizarInformacoes/hooks/useCadastrarCartaoCliente";
+import errorMessage, { APIError } from "@/utils/error-message";
 import { useQueryClient } from "@tanstack/react-query";
 import { useCallback, useMemo } from "react";
 import { toast } from "react-toastify";
@@ -50,10 +51,8 @@ const SalvarEdicaoCartaoCreditoButton: React.FC = () => {
           clearForm();
           queryClient.invalidateQueries({ queryKey: ["getCliente"] });
         },
-        onError: () => {
-          toast.error(
-            id ? "Erro ao atualizar o cartão." : "Erro ao atualizar o cartão."
-          );
+        onError: (error: APIError) => {
+          errorMessage(error);
         },
       });
     },
