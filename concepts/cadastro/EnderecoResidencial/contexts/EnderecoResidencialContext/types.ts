@@ -57,4 +57,5 @@ export type EnderecoType = {
   residenceTypeId: string;
   state: string;
   shortPhrase: string;
+  principal: boolean;
 };

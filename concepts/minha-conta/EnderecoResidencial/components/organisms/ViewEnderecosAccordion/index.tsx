@@ -5,10 +5,15 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import InfoList, { InfoItem } from "@/components/ui/info-list";
+import { Switch } from "@/components/ui/switch";
 import ViewSection from "@/components/ui/view-section";
 import { EnderecoType } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext/types";
+import useTornarEnderecoPrincipal from "@/concepts/minha-conta/VisualizarInformacoes/hooks/useTornarEnderecoPrincpal";
+import errorMessage, { APIError } from "@/utils/error-message";
+import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useCallback } from "react";
+import { toast } from "react-toastify";
 import CadastrarEnderecoResidencialButton from "../../atoms/CadastrarEnderecoResidencialButton";
 import ActionButtons from "../../molecules/ActionButtons";
 
@@ -31,6 +36,31 @@ const ViewEnderecosAccordion: React.FC<Props> = ({
   fillForm,
   tipoEndereco,
 }) => {
+  const { mutate } = useTornarEnderecoPrincipal();
+  const queryClient = useQueryClient();
+
+  const handleButtonClick = useCallback(
+    (endereco: EnderecoType) => {
+      mutate(
+        {
+          id: Number(endereco.id),
+          clienteId: Number(localStorage.getItem("cliente")),
+          tipoEndereco: tipoEndereco,
+        },
+        {
+          onSuccess: () => {
+            toast.success("Endereço definido como principal!");
+            queryClient.invalidateQueries({ queryKey: ["getCliente"] });
+          },
+          onError: (error) => {
+            errorMessage(error as APIError);
+          },
+        }
+      );
+    },
+    [mutate, queryClient, tipoEndereco]
+  );
+
   return (
     <ViewSection
       icon={<Image src={icon} alt="Bookly" width={30} height={30} />}
@@ -77,7 +107,20 @@ const ViewEnderecosAccordion: React.FC<Props> = ({
           return (
             <Accordion key={index} type="single" collapsible>
               <AccordionItem value={`item-${index}`}>
-                <AccordionTrigger>{`${endereco.shortPhrase}: ${endereco.logradouro}, ${endereco.number}`}</AccordionTrigger>
+                <div className="flex items-center justify-between">
+                  <AccordionTrigger>{`${endereco.shortPhrase}: ${endereco.logradouro}, ${endereco.number}`}</AccordionTrigger>
+                  <div className="flex items-center gap-2">
+                    <span>Principal:</span>
+                    <Switch
+                      checked={endereco.principal}
+                      onCheckedChange={() => {
+                        handleButtonClick(endereco);
+                      }}
+                      disabled={endereco.principal}
+                    />
+                  </div>
+                </div>
+
                 <AccordionContent>
                   <div className="flex flex-col gap-6">
                     <InfoList data={enderecoData} columns={3} />
@@ -86,6 +129,7 @@ const ViewEnderecosAccordion: React.FC<Props> = ({
                         endereco={endereco}
                         fillForm={fillForm}
                         tipoEndereco={tipoEndereco}
+                        isPrincipal={endereco.principal}
                       />
                     </div>
                   </div>

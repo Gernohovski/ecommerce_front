@@ -31,4 +31,5 @@ export type CartaoCreditoType = {
   printedName: string;
   cardNumber: string;
   securityCode: string;
+  principal: boolean;
 };

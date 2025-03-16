@@ -17,12 +17,14 @@ import { Trash } from "lucide-react";
 import { useCallback, useState } from "react";
 import { toast } from "react-toastify";
 import DeleteEnderecoButton from "../../atoms/DeleteEnderecoButton";
+import DisabledDeleteEnderecoButton from "../../atoms/DisabledDeleteEnderecoButton";
 
 type Props = {
   title: string;
   description: string;
   endereco: EnderecoType;
   tipoEndereco: string;
+  isPrincipal?: boolean;
 };
 
 const ConfirmDeleteModal: React.FC<Props> = ({
@@ -30,6 +32,7 @@ const ConfirmDeleteModal: React.FC<Props> = ({
   description,
   endereco,
   tipoEndereco,
+  isPrincipal,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
   const { mutate } = useDeleteEnderecoCliente();
@@ -53,8 +56,12 @@ const ConfirmDeleteModal: React.FC<Props> = ({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger>
-        <DeleteEnderecoButton />
+      <DialogTrigger disabled={isPrincipal}>
+        {isPrincipal ? (
+          <DisabledDeleteEnderecoButton />
+        ) : (
+          <DeleteEnderecoButton />
+        )}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

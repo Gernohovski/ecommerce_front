@@ -50,6 +50,7 @@ export interface Endereco {
   tipoResidencia: Propriedade;
   logradouro: string;
   numero: string;
+  principal: boolean;
   bairro: {
     nome: string;
     cidade: {
@@ -73,4 +74,5 @@ export interface CartaoCredito {
   nomeImpresso: string;
   bandeira: Propriedade;
   codigoSeguranca: string;
+  principal: boolean;
 }

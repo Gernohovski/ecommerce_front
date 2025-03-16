@@ -11,10 +11,13 @@ const buttonVariants = cva(
       variant: {
         input: "bg-white border border-input",
         default:
-          "bg-[#7738C8] text-primary-foreground shadow hover:bg-[#7738C8]/70",
+          "bg-[#7738C8] text-primary-foreground shadow hover:bg-[#7738C8]/70 cursor-pointer",
         delete:
-          "bg-[#C8383A] text-primary-foreground shadow hover:bg-[#C8383A]/70",
-        sidebar: "bg-white hover:bg-[#382057] hover:text-[#382057]",
+          "bg-[#C8383A] text-primary-foreground shadow hover:bg-[#C8383A]/70 cursor-pointer",
+        delete_disabled:
+          "bg-[#A9A9A9] text-primary-foreground shadow cursor-not-allowed",
+        sidebar:
+          "bg-white hover:bg-[#382057] hover:text-[#382057] cursor-pointer",
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:

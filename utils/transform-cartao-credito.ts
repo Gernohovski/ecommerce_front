@@ -11,5 +11,6 @@ export const transformCartaoCredito = (
     printedName: cartao.nomeImpresso,
     cardNumber: cartao.numero,
     securityCode: cartao.codigoSeguranca,
+    principal: cartao.principal,
   }));
 };

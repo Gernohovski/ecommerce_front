@@ -17,5 +17,6 @@ export const transformEndereco = (enderecos: Endereco[]): EnderecoType[] => {
     residenceTypeId: String(endereco.tipoResidencia.id),
     state: endereco.bairro.cidade.estado.nome,
     shortPhrase: endereco.fraseIdentificacao,
+    principal: endereco.principal,
   }));
 };

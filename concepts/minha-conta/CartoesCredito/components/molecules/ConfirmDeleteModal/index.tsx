@@ -17,17 +17,20 @@ import { Trash } from "lucide-react";
 import { useCallback, useState } from "react";
 import { toast } from "react-toastify";
 import DeleteCartaoButton from "../../atoms/DeleteCartaoButton";
+import DisabledDeleteCartaoButton from "../../atoms/DisabledDeleteCartaoButton";
 
 type Props = {
   title: string;
   description: string;
   cartao: CartaoCreditoType;
+  isPrincipal?: boolean;
 };
 
 const ConfirmDeleteModal: React.FC<Props> = ({
   title,
   description,
   cartao,
+  isPrincipal,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
   const { mutate } = useDeleteCartaoCliente();
@@ -51,8 +54,8 @@ const ConfirmDeleteModal: React.FC<Props> = ({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger>
-        <DeleteCartaoButton />
+      <DialogTrigger disabled={isPrincipal}>
+        {isPrincipal ? <DisabledDeleteCartaoButton /> : <DeleteCartaoButton />}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
