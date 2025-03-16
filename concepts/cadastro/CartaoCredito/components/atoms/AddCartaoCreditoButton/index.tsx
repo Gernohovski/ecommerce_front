@@ -17,6 +17,7 @@ const AddCartaoCreditoButton: React.FC = () => {
     setCartoesCredito((prev) => [
       ...prev,
       {
+        id: "",
         idTemporario: nextId(),
         printedName: cardPrintedName,
         flag: cardFlag,

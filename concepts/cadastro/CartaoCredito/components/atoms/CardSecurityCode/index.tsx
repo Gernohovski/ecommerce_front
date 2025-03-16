@@ -1,11 +1,12 @@
 import { Input } from "@/components/ui/input";
-import { useCadastrarClienteContext } from "@/concepts/cadastro/CadastrarCliente/contexts/CadastrarClienteContext";
+import { ValidationResult } from "@/utils/validate-schema";
 import { Label } from "@radix-ui/react-label";
 import { useMemo } from "react";
 import { useCartaoCreditoContext } from "../../../contexts/CartaoCreditoContextProvider";
 
-const CardSecurityCode: React.FC = () => {
-  const { errors } = useCadastrarClienteContext();
+const CardSecurityCode: React.FC<{ errors: ValidationResult[] }> = ({
+  errors,
+}) => {
   const { cardSecurityCode, setCardSecurityCode } = useCartaoCreditoContext();
 
   const handleCardSecurityCOdeChange = (
@@ -17,7 +18,8 @@ const CardSecurityCode: React.FC = () => {
   const hasError = useMemo(() => {
     return errors?.some(
       (error) =>
-        error.nomeDoCampo === "cartaoCredito[0].codigoSeguranca" &&
+        (error.nomeDoCampo === "cartaoCredito[0].codigoSeguranca" ||
+          error.nomeDoCampo === "codigoSeguranca") &&
         !error.isValid
     );
   }, [errors]);

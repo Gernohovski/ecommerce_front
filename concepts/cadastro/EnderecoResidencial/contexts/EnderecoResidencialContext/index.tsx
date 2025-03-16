@@ -1,4 +1,5 @@
 "use client";
+import { ValidationResult } from "@/utils/validate-schema";
 import {
   createContext,
   ReactNode,
@@ -37,6 +38,7 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
   const [useEnderecoEntrega, setUseEnderecoEntrega] = useState<boolean>(false);
   const [isCadastrando, setIsCadastrando] = useState<boolean>(false);
   const [isEditando, setIsEditando] = useState<boolean>(false);
+  const [errors, setErrors] = useState<ValidationResult[]>([]);
 
   const fillForm = useCallback(
     (data: EnderecoType) => {
@@ -72,6 +74,7 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
   );
 
   const clearForm = useCallback(() => {
+    setErrors([]);
     setId("");
     setCep("");
     setCity("");
@@ -136,6 +139,8 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
       clearForm,
       id,
       setId,
+      errors,
+      setErrors,
     }),
     [
       cep,
@@ -157,6 +162,7 @@ const EnderecoResidencialContextProvider: React.FC<{ children: ReactNode }> = ({
       fillForm,
       clearForm,
       id,
+      errors,
     ]
   );
   return (

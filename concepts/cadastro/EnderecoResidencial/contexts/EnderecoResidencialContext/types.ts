@@ -1,3 +1,4 @@
+import { ValidationResult } from "@/utils/validate-schema";
 import { Dispatch, SetStateAction } from "react";
 
 export type EnderecoResidencialContextType = {
@@ -37,6 +38,8 @@ export type EnderecoResidencialContextType = {
   clearForm: () => void;
   id: string;
   setId: Dispatch<SetStateAction<string>>;
+  errors: ValidationResult[];
+  setErrors: Dispatch<SetStateAction<ValidationResult[]>>;
 };
 
 export type EnderecoType = {

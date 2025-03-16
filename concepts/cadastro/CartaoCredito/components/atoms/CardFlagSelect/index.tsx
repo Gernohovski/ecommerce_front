@@ -6,13 +6,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useCadastrarClienteContext } from "@/concepts/cadastro/CadastrarCliente/contexts/CadastrarClienteContext";
+import { ValidationResult } from "@/utils/validate-schema";
 import { useMemo } from "react";
 import { useCartaoCreditoContext } from "../../../contexts/CartaoCreditoContextProvider";
 import { useFetchListarBandeirasCartao } from "../../../hooks/useFetchListarBandeirasCartao";
 
-const CardFlagSelect: React.FC = () => {
-  const { errors } = useCadastrarClienteContext();
+const CardFlagSelect: React.FC<{ errors: ValidationResult[] }> = ({
+  errors,
+}) => {
   const { data } = useFetchListarBandeirasCartao();
   const { setCardFlag, cardFlag } = useCartaoCreditoContext();
   const handleChange = (value: string) => {
@@ -21,7 +22,9 @@ const CardFlagSelect: React.FC = () => {
   const hasError = useMemo(() => {
     return errors?.some(
       (error) =>
-        error.nomeDoCampo === "cartaoCredito[0].bandeira.id" && !error.isValid
+        (error.nomeDoCampo === "cartaoCredito[0].bandeira.id" ||
+          error.nomeDoCampo === "bandeiraId") &&
+        !error.isValid
     );
   }, [errors]);
   return (

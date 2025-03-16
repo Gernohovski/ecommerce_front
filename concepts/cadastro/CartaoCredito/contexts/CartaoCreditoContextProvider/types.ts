@@ -1,3 +1,4 @@
+import { ValidationResult } from "@/utils/validate-schema";
 import { Dispatch, SetStateAction } from "react";
 
 export type CartaoCreditoContextType = {
@@ -19,6 +20,8 @@ export type CartaoCreditoContextType = {
   setIsEditando: Dispatch<SetStateAction<boolean>>;
   id: string;
   setId: Dispatch<SetStateAction<string>>;
+  errors: ValidationResult[];
+  setErrors: Dispatch<SetStateAction<ValidationResult[]>>;
 };
 
 export type CartaoCreditoType = {

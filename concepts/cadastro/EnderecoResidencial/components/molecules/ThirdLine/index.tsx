@@ -26,12 +26,14 @@ const ThirdLine: React.FC<ThirdLineProps> = ({
     return {
       residenceTypeError: errors?.some(
         (error) =>
-          error.nomeDoCampo === `${tipoEndereco}[0].tipoResidencia.id` &&
+          (error.nomeDoCampo === `${tipoEndereco}[0].tipoResidencia.id` ||
+            error.nomeDoCampo === "tipoResidenciaId") &&
           !error.isValid
       ),
       shortPhraseError: errors?.some(
         (error) =>
-          error.nomeDoCampo === `${tipoEndereco}[0].fraseIdentificacao` &&
+          (error.nomeDoCampo === `${tipoEndereco}[0].fraseIdentificacao` ||
+            error.nomeDoCampo === "fraseIdentificacao") &&
           !error.isValid
       ),
     };

@@ -1,3 +1,4 @@
+import { ValidationResult } from "@/utils/validate-schema";
 import { Dispatch, SetStateAction } from "react";
 
 export type DadosBasicosContextType = {
@@ -27,4 +28,6 @@ export type DadosBasicosContextType = {
   setIsEditando: Dispatch<SetStateAction<boolean>>;
   id: number | undefined;
   setId: Dispatch<SetStateAction<number | undefined>>;
+  errors: ValidationResult[];
+  setErrors: Dispatch<SetStateAction<ValidationResult[]>>;
 };

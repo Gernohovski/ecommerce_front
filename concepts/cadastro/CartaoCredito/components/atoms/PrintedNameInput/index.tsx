@@ -1,16 +1,19 @@
 import { Input } from "@/components/ui/input";
-import { useCadastrarClienteContext } from "@/concepts/cadastro/CadastrarCliente/contexts/CadastrarClienteContext";
+import { ValidationResult } from "@/utils/validate-schema";
 import { Label } from "@radix-ui/react-label";
 import { useMemo } from "react";
 import { useCartaoCreditoContext } from "../../../contexts/CartaoCreditoContextProvider";
 
-const PrintedNameInput: React.FC = () => {
-  const { errors } = useCadastrarClienteContext();
+const PrintedNameInput: React.FC<{ errors: ValidationResult[] }> = ({
+  errors,
+}) => {
   const { cardPrintedName, setCardPrintedName } = useCartaoCreditoContext();
   const hasError = useMemo(() => {
     return errors?.some(
       (error) =>
-        error.nomeDoCampo === "cartaoCredito[0].nomeImpresso" && !error.isValid
+        (error.nomeDoCampo === "cartaoCredito[0].nomeImpresso" ||
+          error.nomeDoCampo === "nomeImpresso") &&
+        !error.isValid
     );
   }, [errors]);
   return (

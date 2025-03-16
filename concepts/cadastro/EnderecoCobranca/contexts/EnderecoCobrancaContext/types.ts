@@ -1,4 +1,5 @@
 import { EnderecoType } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext/types";
+import { ValidationResult } from "@/utils/validate-schema";
 import { Dispatch, SetStateAction } from "react";
 
 export type EnderecoCobrancaContextType = {
@@ -32,4 +33,6 @@ export type EnderecoCobrancaContextType = {
   setIsEditando: Dispatch<SetStateAction<boolean>>;
   fillForm: (data: EnderecoType) => void;
   clearForm: () => void;
+  errors: ValidationResult[];
+  setErrors: Dispatch<SetStateAction<ValidationResult[]>>;
 };

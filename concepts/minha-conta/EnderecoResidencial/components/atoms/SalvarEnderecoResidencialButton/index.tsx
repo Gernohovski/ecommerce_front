@@ -2,9 +2,11 @@ import { Button } from "@/components/ui/button";
 import { EnderecoPayload } from "@/concepts/minha-conta/types";
 import useCadastrarEnderecoCliente from "@/concepts/minha-conta/VisualizarInformacoes/hooks/useCadastrarEnderecoCliente";
 import errorMessage, { APIError } from "@/utils/error-message";
+import validateSchema, { ValidationResult } from "@/utils/validate-schema";
 import { useQueryClient } from "@tanstack/react-query";
 import { Dispatch, SetStateAction, useCallback, useMemo } from "react";
 import { toast } from "react-toastify";
+import { cadastrarEnderecoSchema } from "../../../validations/cadastrarEnderecoValidation";
 
 type Props = {
   isCadastrando: boolean;
@@ -13,6 +15,8 @@ type Props = {
   setIsCadastrando: Dispatch<SetStateAction<boolean>>;
   objectToSave: EnderecoPayload;
   clearForm: () => void;
+  errors: ValidationResult[];
+  setErrors: Dispatch<SetStateAction<ValidationResult[]>>;
 };
 
 const SalvarEnderecoResidencialButton: React.FC<Props> = ({
@@ -22,6 +26,8 @@ const SalvarEnderecoResidencialButton: React.FC<Props> = ({
   setIsCadastrando,
   objectToSave,
   clearForm,
+  errors,
+  setErrors,
 }) => {
   const { mutate } = useCadastrarEnderecoCliente();
   const queryClient = useQueryClient();
@@ -34,6 +40,9 @@ const SalvarEnderecoResidencialButton: React.FC<Props> = ({
   const handleButtonClick = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
+      const obj = objectToSave as unknown as Record<string, unknown>;
+      validateSchema(cadastrarEnderecoSchema, obj, setErrors);
+      if (errors.length > 0) return;
       mutate(objectToSave, {
         onSuccess: () => {
           toast.success(
@@ -58,6 +67,8 @@ const SalvarEnderecoResidencialButton: React.FC<Props> = ({
       setIsCadastrando,
       setIsEditando,
       clearForm,
+      errors,
+      setErrors,
     ]
   );
 

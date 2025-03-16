@@ -1,4 +1,5 @@
 import { EnderecoPayload } from "@/concepts/minha-conta/types";
+import { ValidationResult } from "@/utils/validate-schema";
 import { Dispatch, SetStateAction } from "react";
 import CancelarEdicaoEnderecoResidencialButton from "../../atoms/CancelarEdicaoEnderecoResidencialButton";
 import SalvarEnderecoResidencialButton from "../../atoms/SalvarEnderecoResidencialButton";
@@ -10,6 +11,8 @@ type Props = {
   setIsEditando: Dispatch<SetStateAction<boolean>>;
   clearForm: () => void;
   endereco: EnderecoPayload;
+  errors: ValidationResult[];
+  setErrors: Dispatch<SetStateAction<ValidationResult[]>>;
 };
 
 const FormFooter: React.FC<Props> = ({
@@ -19,6 +22,8 @@ const FormFooter: React.FC<Props> = ({
   setIsEditando,
   clearForm,
   endereco,
+  errors,
+  setErrors,
 }) => {
   return (
     <div className="flex gap-6">
@@ -34,6 +39,8 @@ const FormFooter: React.FC<Props> = ({
         setIsEditando={setIsEditando}
         objectToSave={endereco}
         clearForm={clearForm}
+        errors={errors}
+        setErrors={setErrors}
       />
     </div>
   );

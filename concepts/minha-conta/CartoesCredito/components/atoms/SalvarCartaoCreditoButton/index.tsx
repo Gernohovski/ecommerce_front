@@ -3,9 +3,11 @@ import { useCartaoCreditoContext } from "@/concepts/cadastro/CartaoCredito/conte
 import { useDadosBasicosContext } from "@/concepts/cadastro/DadosBasicos/contexts/DadosBasicosContext";
 import useCadastrarCartaoCliente from "@/concepts/minha-conta/VisualizarInformacoes/hooks/useCadastrarCartaoCliente";
 import errorMessage, { APIError } from "@/utils/error-message";
+import validateSchema from "@/utils/validate-schema";
 import { useQueryClient } from "@tanstack/react-query";
 import { useCallback, useMemo } from "react";
 import { toast } from "react-toastify";
+import { cadastrarCartaoSchema } from "../../../validations/cadastrarCartaoValidation";
 
 const SalvarEdicaoCartaoCreditoButton: React.FC = () => {
   const { id: clienteId } = useDadosBasicosContext();
@@ -20,6 +22,8 @@ const SalvarEdicaoCartaoCreditoButton: React.FC = () => {
     setIsCadastrando,
     setIsEditando,
     clearForm,
+    setErrors,
+    errors,
   } = useCartaoCreditoContext();
 
   const { mutate } = useCadastrarCartaoCliente();
@@ -38,6 +42,8 @@ const SalvarEdicaoCartaoCreditoButton: React.FC = () => {
 
   const handleButtonClick = useCallback(
     (e: React.FormEvent) => {
+      validateSchema(cadastrarCartaoSchema, objectToSave, setErrors);
+      if (errors.length > 0) return;
       e.preventDefault();
       mutate(objectToSave, {
         onSuccess: () => {
@@ -64,6 +70,8 @@ const SalvarEdicaoCartaoCreditoButton: React.FC = () => {
       setIsCadastrando,
       setIsEditando,
       clearForm,
+      errors,
+      setErrors,
     ]
   );
 

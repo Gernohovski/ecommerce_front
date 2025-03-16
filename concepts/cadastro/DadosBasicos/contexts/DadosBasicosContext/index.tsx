@@ -1,4 +1,5 @@
 "use client";
+import { ValidationResult } from "@/utils/validate-schema";
 import { createContext, ReactNode, useContext, useMemo, useState } from "react";
 import { DadosBasicosContextType } from "./types";
 
@@ -22,6 +23,7 @@ const DadosBasicosContextProvider: React.FC<{ children: ReactNode }> = ({
   const [telephone, setTelephone] = useState<string>("");
   const [telephoneType, setTelephoneType] = useState<string>("");
   const [isEditando, setIsEditando] = useState<boolean>(false);
+  const [errors, setErrors] = useState<ValidationResult[]>([]);
 
   const values = useMemo(
     () => ({
@@ -51,6 +53,8 @@ const DadosBasicosContextProvider: React.FC<{ children: ReactNode }> = ({
       setCurrentPassword,
       id,
       setId,
+      errors,
+      setErrors,
     }),
     [
       birthDate,
@@ -66,6 +70,7 @@ const DadosBasicosContextProvider: React.FC<{ children: ReactNode }> = ({
       isEditando,
       currentPassword,
       id,
+      errors,
     ]
   );
   return (

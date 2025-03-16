@@ -1,6 +1,7 @@
 "use client";
 import { useEnderecoResidencialContext } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext";
 import { EnderecoType } from "@/concepts/cadastro/EnderecoResidencial/contexts/EnderecoResidencialContext/types";
+import { ValidationResult } from "@/utils/validate-schema";
 import {
   createContext,
   ReactNode,
@@ -36,6 +37,7 @@ const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
   const [enderecos, setEnderecos] = useState<EnderecoType[]>([]);
   const [isCadastrando, setIsCadastrando] = useState<boolean>(false);
   const [isEditando, setIsEditando] = useState<boolean>(false);
+  const [errors, setErrors] = useState<ValidationResult[]>([]);
   const {
     useEnderecoCobranca,
     cep: cepResidencial,
@@ -83,6 +85,7 @@ const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
   );
 
   const clearForm = useCallback(() => {
+    setErrors([]);
     setCep("");
     setCity("");
     setCounty("");
@@ -169,6 +172,8 @@ const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
       setIsEditando,
       fillForm,
       clearForm,
+      errors,
+      setErrors,
     }),
     [
       cep,
@@ -187,6 +192,7 @@ const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
       isEditando,
       fillForm,
       clearForm,
+      errors,
     ]
   );
   return (

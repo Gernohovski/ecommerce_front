@@ -1,9 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { useDadosBasicosContext } from "@/concepts/cadastro/DadosBasicos/contexts/DadosBasicosContext";
+import errorMessage, { APIError } from "@/utils/error-message";
+import validateSchema from "@/utils/validate-schema";
 import { useQueryClient } from "@tanstack/react-query";
 import { useCallback, useMemo } from "react";
 import { toast } from "react-toastify";
 import useEditarDadosBasicos from "../../../hooks/useEditarDadosBasicos";
+import { editarClienteSchema } from "../../../validations/editarClienteValidation";
 
 const SalvarEdicaoDadosBasicosButton: React.FC = () => {
   const {
@@ -17,6 +20,8 @@ const SalvarEdicaoDadosBasicosButton: React.FC = () => {
     ddd,
     email,
     id,
+    setErrors,
+    errors,
   } = useDadosBasicosContext();
   const { mutate } = useEditarDadosBasicos();
   const queryClient = useQueryClient();
@@ -36,6 +41,8 @@ const SalvarEdicaoDadosBasicosButton: React.FC = () => {
   const handleButtonClick = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
+      validateSchema(editarClienteSchema, objectToSave, setErrors);
+      if (errors.length > 0) return;
       mutate(
         { id: String(id) ?? "", cliente: objectToSave },
         {
@@ -44,13 +51,13 @@ const SalvarEdicaoDadosBasicosButton: React.FC = () => {
             queryClient.invalidateQueries({ queryKey: ["getCliente"] });
             setIsEditando(false);
           },
-          onError: () => {
-            toast.error("Erro ao atualizar o cliente");
+          onError: (error) => {
+            errorMessage(error as APIError);
           },
         }
       );
     },
-    [mutate, objectToSave, queryClient, id, setIsEditando]
+    [mutate, objectToSave, queryClient, id, setIsEditando, errors, setErrors]
   );
 
   return (

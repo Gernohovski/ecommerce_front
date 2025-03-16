@@ -36,23 +36,28 @@ const SecondLine: React.FC<SecondLineProps> = ({
     return {
       countryError: errors?.some(
         (error) =>
-          error.nomeDoCampo ===
-            `${tipoEndereco}[0].bairro.cidade.estado.pais.nome` &&
+          (error.nomeDoCampo ===
+            `${tipoEndereco}[0].bairro.cidade.estado.pais.nome` ||
+            error.nomeDoCampo === "bairro") &&
           !error.isValid
       ),
       stateError: errors?.some(
         (error) =>
-          error.nomeDoCampo ===
-            `${tipoEndereco}[0].bairro.cidade.estado.nome` && !error.isValid
+          (error.nomeDoCampo ===
+            `${tipoEndereco}[0].bairro.cidade.estado.nome` ||
+            error.nomeDoCampo === "cidade") &&
+          !error.isValid
       ),
       cityError: errors?.some(
         (error) =>
-          error.nomeDoCampo === `${tipoEndereco}[0].bairro.cidade.nome` &&
+          (error.nomeDoCampo === `${tipoEndereco}[0].bairro.cidade.nome` ||
+            error.nomeDoCampo === "cidade") &&
           !error.isValid
       ),
       neighborhoodError: errors?.some(
         (error) =>
-          error.nomeDoCampo === `${tipoEndereco}[0].bairro.nome` &&
+          (error.nomeDoCampo === `${tipoEndereco}[0].bairro.nome` ||
+            error.nomeDoCampo === "bairro") &&
           !error.isValid
       ),
     };

@@ -36,21 +36,27 @@ const FirstLine: React.FC<FirstLineProps> = ({
     return {
       cepError: errors?.some(
         (error) =>
-          error.nomeDoCampo === `${tipoEndereco}[0].cep` && !error.isValid
+          (error.nomeDoCampo === `${tipoEndereco}[0].cep` ||
+            error.nomeDoCampo === "cep") &&
+          !error.isValid
       ),
       logradouroTypeError: errors?.some(
         (error) =>
-          error.nomeDoCampo === `${tipoEndereco}[0].tipoLogradouro.id` &&
+          (error.nomeDoCampo === `${tipoEndereco}[0].tipoLogradouro.id` ||
+            error.nomeDoCampo === "tipoLogradouroId") &&
           !error.isValid
       ),
       logradouroError: errors?.some(
         (error) =>
-          error.nomeDoCampo === `${tipoEndereco}[0].logradouro` &&
+          (error.nomeDoCampo === `${tipoEndereco}[0].logradouro` ||
+            error.nomeDoCampo === "logradouro") &&
           !error.isValid
       ),
       numberError: errors?.some(
         (error) =>
-          error.nomeDoCampo === `${tipoEndereco}[0].numero` && !error.isValid
+          (error.nomeDoCampo === `${tipoEndereco}[0].numero` ||
+            error.nomeDoCampo === "numero") &&
+          !error.isValid
       ),
     };
   }, [errors, tipoEndereco]);

@@ -14,7 +14,6 @@ const CadastrarClienteContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [errors, setErrors] = useState<ValidationResult[]>([]);
-  console.log(errors);
 
   const values = useMemo(
     () => ({

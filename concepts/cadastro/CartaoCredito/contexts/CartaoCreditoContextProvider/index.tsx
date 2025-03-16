@@ -1,4 +1,5 @@
 "use client";
+import { ValidationResult } from "@/utils/validate-schema";
 import {
   createContext,
   ReactNode,
@@ -24,8 +25,10 @@ const CartaoCreditoContextProvider: React.FC<{ children: ReactNode }> = ({
   const [cartoesCredito, setCartoesCredito] = useState<CartaoCreditoType[]>([]);
   const [isCadastrando, setIsCadastrando] = useState<boolean>(false);
   const [isEditando, setIsEditando] = useState<boolean>(false);
+  const [errors, setErrors] = useState<ValidationResult[]>([]);
 
   const clearForm = useCallback(() => {
+    setErrors([]);
     setId("");
     setCardFlag("");
     setCardNumber("");
@@ -72,6 +75,8 @@ const CartaoCreditoContextProvider: React.FC<{ children: ReactNode }> = ({
       fillForm,
       id,
       setId,
+      errors,
+      setErrors,
     }),
     [
       cardFlag,
@@ -84,6 +89,7 @@ const CartaoCreditoContextProvider: React.FC<{ children: ReactNode }> = ({
       isCadastrando,
       isEditando,
       id,
+      errors,
     ]
   );
   return (

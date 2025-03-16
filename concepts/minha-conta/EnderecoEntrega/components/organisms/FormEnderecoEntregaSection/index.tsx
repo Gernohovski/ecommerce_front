@@ -40,6 +40,8 @@ const FormEnderecoEntregaSection: React.FC = () => {
     isCadastrando,
     setIsCadastrando,
     clearForm,
+    errors,
+    setErrors,
   } = useEnderecoEntregaContext();
 
   const { data } = useBuscarCep(cep);
@@ -101,6 +103,8 @@ const FormEnderecoEntregaSection: React.FC = () => {
             setIsCadastrando={setIsCadastrando}
             clearForm={clearForm}
             endereco={endereco}
+            errors={errors}
+            setErrors={setErrors}
           />
         }
       >
@@ -113,6 +117,7 @@ const FormEnderecoEntregaSection: React.FC = () => {
           setLogradouroType={setTipoLogradouro}
           number={number}
           setNumber={setNumber}
+          errors={errors}
         />
         <SecondLine
           country={country}
@@ -123,12 +128,14 @@ const FormEnderecoEntregaSection: React.FC = () => {
           setCity={setCity}
           neighborhood={neighborhood}
           setNeighborhood={setNeighborhood}
+          errors={errors}
         />
         <ThirdLine
           residenceType={residenceType}
           setResidenceType={setResidenceType}
           shortPhrase={shortPhrase}
           setShortPhrase={setShortPhrase}
+          errors={errors}
         />
         <FourthLine
           observations={observations}
