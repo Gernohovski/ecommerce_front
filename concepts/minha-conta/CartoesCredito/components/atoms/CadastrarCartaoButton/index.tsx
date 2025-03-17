@@ -10,7 +10,11 @@ const CadastrarCartaoButton: React.FC = () => {
   }, [setIsCadastrando]);
 
   return (
-    <Button className="min-w-[220px] max-w-[220px]" onClick={handleButtonClick}>
+    <Button
+      id="create-cartao-credito-button"
+      className="min-w-[220px] max-w-[220px]"
+      onClick={handleButtonClick}
+    >
       Cadastrar novo cartão
     </Button>
   );

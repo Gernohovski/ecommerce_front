@@ -15,7 +15,7 @@ const SelectTrigger = React.forwardRef<
     error?: boolean;
     value?: string | null | undefined;
   }
->(({ className, children, error, value, ...props }, ref) => {
+>(({ className, children, error, value, id, ...props }, ref) => {
   const hasError = React.useMemo(() => {
     return error && (!value || value.trim() === "");
   }, [value, error]);
@@ -23,6 +23,7 @@ const SelectTrigger = React.forwardRef<
   return (
     <div className="flex flex-col">
       <SelectPrimitive.Trigger
+        id={id}
         ref={ref}
         className={cn(
           "flex h-10 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
@@ -39,7 +40,7 @@ const SelectTrigger = React.forwardRef<
       {hasError && (
         <span className="text-xs text-red-500 flex items-center absolute mt-10 gap-1">
           <AlertOctagon size={12} />
-          {"Campo obrigatório"}
+          <span id={`${id}-error`}>Campo obrigatório</span>
         </span>
       )}
     </div>

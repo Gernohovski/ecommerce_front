@@ -16,7 +16,11 @@ const LoginButton: React.FC = () => {
 
   return (
     <div>
-      <Button className="w-[280px]" onClick={handleSubmit}>
+      <Button
+        className="w-[280px]"
+        onClick={handleSubmit}
+        id="login-client-button"
+      >
         Fazer login
       </Button>
     </div>

@@ -32,6 +32,7 @@ const TelephoneTypeSelect: React.FC<{ errors?: ValidationResult[] }> = ({
       <Label className="text-sm">Tipo telefone *</Label>
       <Select onValueChange={handleChange} value={telephoneType}>
         <SelectTrigger
+          id="create-client-telephoneType-select"
           className="min-w-[200px] max-w-[200px] data-[placeholder]:text-[#71717A] "
           error={hasError}
           value={telephoneType}

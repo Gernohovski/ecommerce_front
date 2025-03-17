@@ -9,12 +9,14 @@ type Props = {
   neighborhood: string;
   setNeighborhood: Dispatch<SetStateAction<string>>;
   hasError?: boolean;
+  tipoEndereco?: string;
 };
 
 const NeighborhoodInput: React.FC<Props> = ({
   neighborhood,
   setNeighborhood,
   hasError,
+  tipoEndereco,
 }) => {
   const { useEnderecoCobranca, useEnderecoEntrega } =
     useEnderecoResidencialContext();
@@ -36,6 +38,7 @@ const NeighborhoodInput: React.FC<Props> = ({
     <div>
       <Label className="text-sm">Bairro *</Label>
       <Input
+        id={`create-client-neighborhood-input-${tipoEndereco}`}
         className="min-w-[316.5px] max-w-[316.5px]"
         placeholder="Insira o bairro"
         value={neighborhood}

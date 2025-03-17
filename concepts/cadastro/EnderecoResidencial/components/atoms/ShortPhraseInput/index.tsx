@@ -9,12 +9,14 @@ type Props = {
   shortPhrase: string;
   setShortPhrase: Dispatch<SetStateAction<string>>;
   hasError?: boolean;
+  tipoEndereco?: string;
 };
 
 const ShortPhraseInput: React.FC<Props> = ({
   shortPhrase,
   setShortPhrase,
   hasError,
+  tipoEndereco,
 }) => {
   const { useEnderecoCobranca, useEnderecoEntrega } =
     useEnderecoResidencialContext();
@@ -35,6 +37,7 @@ const ShortPhraseInput: React.FC<Props> = ({
     <div>
       <Label className="text-sm">Frase de identificação *</Label>
       <Input
+        id={`create-client-shortPhrase-input-${tipoEndereco}`}
         className="min-w-[881px] max-w-[881px]"
         placeholder="Insira uma frase curta"
         value={shortPhrase}

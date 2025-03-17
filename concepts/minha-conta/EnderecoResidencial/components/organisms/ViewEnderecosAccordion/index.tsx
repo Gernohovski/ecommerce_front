@@ -108,10 +108,13 @@ const ViewEnderecosAccordion: React.FC<Props> = ({
             <Accordion key={index} type="single" collapsible>
               <AccordionItem value={`item-${index}`}>
                 <div className="flex items-center justify-between">
-                  <AccordionTrigger>{`${endereco.shortPhrase}: ${endereco.logradouro}, ${endereco.number}`}</AccordionTrigger>
+                  <AccordionTrigger
+                    id={`endereco-accordion-${index}`}
+                  >{`${endereco.shortPhrase}: ${endereco.logradouro}, ${endereco.number}`}</AccordionTrigger>
                   <div className="flex items-center gap-2">
                     <span>Principal:</span>
                     <Switch
+                      id={`switch-endereco-principal-${index}`}
                       checked={endereco.principal}
                       onCheckedChange={() => {
                         handleButtonClick(endereco);

@@ -27,6 +27,7 @@ const ConfirmPasswordInput: React.FC<Props> = ({
     <div>
       <Label className="text-sm">{label}</Label>
       <Input
+        id="create-client-confirmPassword-input"
         style={{ minWidth: `${width}px`, maxWidth: `${width}px` }}
         placeholder={placeholder}
         value={confirmPassword}

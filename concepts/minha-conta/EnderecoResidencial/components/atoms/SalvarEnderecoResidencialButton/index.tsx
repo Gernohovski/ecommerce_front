@@ -75,6 +75,7 @@ const SalvarEnderecoResidencialButton: React.FC<Props> = ({
   return (
     <div>
       <Button
+        id="save-or-edit-endereco-residencial-button"
         className="min-w-[98px] max-w-[98px]"
         asChild
         onClick={handleButtonClick}

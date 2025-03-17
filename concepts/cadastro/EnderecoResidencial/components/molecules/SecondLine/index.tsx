@@ -69,17 +69,25 @@ const SecondLine: React.FC<SecondLineProps> = ({
         country={country}
         setCountry={setCountry}
         hasError={hasErrors.countryError}
+        tipoEndereco={tipoEndereco}
       />
       <StateInput
         state={state}
         setState={setState}
         hasError={hasErrors.stateError}
+        tipoEndereco={tipoEndereco}
       />
-      <CityInput city={city} setCity={setCity} hasError={hasErrors.cityError} />
+      <CityInput
+        city={city}
+        setCity={setCity}
+        hasError={hasErrors.cityError}
+        tipoEndereco={tipoEndereco}
+      />
       <NeighborhoodInput
         neighborhood={neighborhood}
         setNeighborhood={setNeighborhood}
         hasError={hasErrors.neighborhoodError}
+        tipoEndereco={tipoEndereco}
       />
     </div>
   );

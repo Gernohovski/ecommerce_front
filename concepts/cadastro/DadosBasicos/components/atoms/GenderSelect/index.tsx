@@ -30,6 +30,7 @@ const GenderSelect: React.FC<{ errors?: ValidationResult[] }> = ({
       <Label className="text-sm">Gênero *</Label>
       <Select onValueChange={handleChange} value={gender}>
         <SelectTrigger
+          id="create-cliente-gender-select"
           className="min-w-[200px] max-w-[200px] data-[placeholder]:text-[#71717A]"
           error={hasError}
           value={gender}

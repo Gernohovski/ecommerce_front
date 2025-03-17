@@ -17,12 +17,14 @@ type Props = {
   residenceType: string;
   setResidenceType: Dispatch<SetStateAction<string>>;
   hasError?: boolean;
+  tipoEndereco?: string;
 };
 
 const ResidenceTypeSelect: React.FC<Props> = ({
   setResidenceType,
   residenceType,
   hasError,
+  tipoEndereco,
 }) => {
   const { data } = useFetchListarTiposResidencia();
   const isDisabled = useDisabled();
@@ -50,6 +52,7 @@ const ResidenceTypeSelect: React.FC<Props> = ({
         disabled={isDisabled}
       >
         <SelectTrigger
+          id={`create-client-residenceType-input-${tipoEndereco}`}
           className="min-w-[200px] max-w-[200px] data-[placeholder]:text-[#71717A] "
           error={hasError}
           value={residenceType}

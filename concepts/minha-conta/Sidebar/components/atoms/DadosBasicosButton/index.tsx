@@ -35,6 +35,7 @@ const DadosBasicosButton: React.FC = () => {
       >
         <User className="text-[#7738C8]" size={30} />
         <Button
+          id="sidebar-basic-data-button"
           asChild
           variant={"ghost"}
           className="w-[201px] justify-start"

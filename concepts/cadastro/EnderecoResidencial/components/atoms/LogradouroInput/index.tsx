@@ -9,12 +9,14 @@ type Props = {
   logradouro: string;
   setLogradouro: Dispatch<SetStateAction<string>>;
   hasError?: boolean;
+  tipoEndereco?: string;
 };
 
 const LogradouroInput: React.FC<Props> = ({
   logradouro,
   setLogradouro,
   hasError,
+  tipoEndereco,
 }) => {
   const { useEnderecoCobranca, useEnderecoEntrega } =
     useEnderecoResidencialContext();
@@ -34,6 +36,7 @@ const LogradouroInput: React.FC<Props> = ({
     <div>
       <Label className="text-sm">Logradouro *</Label>
       <Input
+        id={`create-client-logradouro-input-${tipoEndereco}`}
         className="min-w-[514px] max-w-[514px]"
         placeholder="Insira o logradouro"
         value={logradouro}

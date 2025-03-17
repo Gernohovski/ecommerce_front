@@ -22,6 +22,7 @@ const CPFInput: React.FC<{ errors?: ValidationResult[] }> = ({ errors }) => {
     <div>
       <Label className="text-sm">CPF *</Label>
       <Input
+        id="create-client-cpf-input"
         className="min-w-[313px] max-w-[313px]"
         placeholder="Insira o CPF"
         value={cpf}

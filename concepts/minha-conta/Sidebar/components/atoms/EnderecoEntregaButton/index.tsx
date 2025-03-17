@@ -35,6 +35,7 @@ const EnderecoEntregaButton: React.FC = () => {
       >
         <Box color={"#7738C8"} size={30} />
         <Button
+          id="sidebar-endereco-entrega-button"
           asChild
           variant={"ghost"}
           className="w-[201px] justify-start"

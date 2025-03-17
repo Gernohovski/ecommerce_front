@@ -13,6 +13,7 @@ const RegisterButton: React.FC = () => {
     <div className="text-sm flex flex-col">
       <span> Ainda não possui uma conta?</span>
       <Button
+        id="register-button"
         variant="link"
         className="text-sm text-[#7738C8]"
         onClick={handleButtonClick}

@@ -35,6 +35,7 @@ const CartoesCreditoButton: React.FC = () => {
       >
         <CreditCard color={"#7738C8"} size={30} />
         <Button
+          id="sidebar-credit-card-button"
           asChild
           variant={"ghost"}
           className="w-[201px] justify-start"

@@ -32,6 +32,7 @@ const CardFlagSelect: React.FC<{ errors: ValidationResult[] }> = ({
       <Label className="text-sm">Bandeira do cartão *</Label>
       <Select onValueChange={handleChange} value={cardFlag}>
         <SelectTrigger
+          id="create-client-flag-select"
           className="min-w-[228.5px] max-w-[228.5px] data-[placeholder]:text-[#71717A] "
           value={cardFlag}
           error={hasError}

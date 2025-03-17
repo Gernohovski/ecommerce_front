@@ -28,7 +28,7 @@ const DeletarClienteButton: React.FC = () => {
     (e: React.FormEvent) => {
       e.preventDefault();
       mutate(
-        { id: String(id) ?? "" },
+        { id: String(id) ?? localStorage.getItem("cliente") },
         {
           onSuccess: () => {
             toast.success("Seu cadastro foi deletado.");
@@ -54,6 +54,7 @@ const DeletarClienteButton: React.FC = () => {
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger>
             <Button
+              id="sidebar-delete-client-button"
               asChild
               variant={"ghost"}
               className="w-[201px] justify-start"
@@ -85,6 +86,7 @@ const DeletarClienteButton: React.FC = () => {
                   </Button>
                 </DialogClose>
                 <Button
+                  id="confirm-delete-client"
                   className="min-w-[98px] max-w-[98px]"
                   variant={"delete"}
                   onClick={handleButtonClick}

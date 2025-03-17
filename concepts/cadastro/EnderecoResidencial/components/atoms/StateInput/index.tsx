@@ -9,9 +9,15 @@ type Props = {
   state: string;
   setState: Dispatch<SetStateAction<string>>;
   hasError?: boolean;
+  tipoEndereco?: string;
 };
 
-const StateInput: React.FC<Props> = ({ state, setState, hasError }) => {
+const StateInput: React.FC<Props> = ({
+  state,
+  setState,
+  hasError,
+  tipoEndereco,
+}) => {
   const { useEnderecoCobranca, useEnderecoEntrega } =
     useEnderecoResidencialContext();
   const { setState: setStateCobranca } = useEnderecoCobrancaContext();
@@ -30,6 +36,7 @@ const StateInput: React.FC<Props> = ({ state, setState, hasError }) => {
     <div>
       <Label className="text-sm">Estado *</Label>
       <Input
+        id={`create-client-state-input-${tipoEndereco}`}
         className="min-w-[200px] max-w-[200px]"
         placeholder="Insira o estado"
         value={state}

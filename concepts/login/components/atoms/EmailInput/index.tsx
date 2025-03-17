@@ -14,6 +14,7 @@ const EmailInput: React.FC = () => {
     <div>
       <Label>E-mail: *</Label>
       <Input
+        id="login-client-email-input"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Insira seu e-mail"

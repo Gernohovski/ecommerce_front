@@ -23,6 +23,7 @@ export const useEnderecoCobrancaContext = () =>
 const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
+  const [id, setId] = useState<string>("");
   const [cep, setCep] = useState<string>("");
   const [city, setCity] = useState<string>("");
   const [country, setCounty] = useState<string>("");
@@ -55,6 +56,7 @@ const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
 
   const fillForm = useCallback(
     (data: EnderecoType) => {
+      setId(data.id);
       setCep(data.cep);
       setCity(data.city);
       setCounty(data.country);
@@ -69,6 +71,7 @@ const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
       setIsEditando(true);
     },
     [
+      setId,
       setCep,
       setCity,
       setCounty,
@@ -86,6 +89,7 @@ const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
 
   const clearForm = useCallback(() => {
     setErrors([]);
+    setId("");
     setCep("");
     setCity("");
     setCounty("");
@@ -98,6 +102,7 @@ const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
     setState("");
     setShortPhrase("");
   }, [
+    setId,
     setCep,
     setCity,
     setCounty,
@@ -142,6 +147,8 @@ const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
 
   const values = useMemo(
     () => ({
+      id,
+      setId,
       cep,
       setCep,
       city,
@@ -176,6 +183,7 @@ const EnderecoCobrancaContextProvider: React.FC<{ children: ReactNode }> = ({
       setErrors,
     }),
     [
+      id,
       cep,
       city,
       country,

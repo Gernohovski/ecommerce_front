@@ -35,6 +35,7 @@ const EnderecosResidenciasButton: React.FC = () => {
       >
         <House color={"#7738C8"} size={30} />
         <Button
+          id="sidebar-endereco-residencial-button"
           asChild
           variant={"ghost"}
           className="w-[201px] justify-start"

@@ -35,6 +35,7 @@ const EnderecoCobrancaButton: React.FC = () => {
       >
         <DollarSign color={"#7738C8"} size={30} />
         <Button
+          id="sidebar-endereco-cobranca-button"
           asChild
           variant={"ghost"}
           className="w-[201px] justify-start"

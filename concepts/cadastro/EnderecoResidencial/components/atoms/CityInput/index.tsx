@@ -9,9 +9,15 @@ type Props = {
   city: string;
   setCity: Dispatch<SetStateAction<string>>;
   hasError?: boolean;
+  tipoEndereco?: string;
 };
 
-const CityInput: React.FC<Props> = ({ city, setCity, hasError }) => {
+const CityInput: React.FC<Props> = ({
+  city,
+  setCity,
+  hasError,
+  tipoEndereco,
+}) => {
   const { useEnderecoCobranca, useEnderecoEntrega } =
     useEnderecoResidencialContext();
   const { setCity: setCityCobranca } = useEnderecoCobrancaContext();
@@ -31,6 +37,7 @@ const CityInput: React.FC<Props> = ({ city, setCity, hasError }) => {
     <div>
       <Label className="text-sm">Cidade *</Label>
       <Input
+        id={`create-client-city-input-${tipoEndereco}`}
         className="min-w-[316.5px] max-w-[316.5px]"
         placeholder="Insira a cidade"
         value={city}

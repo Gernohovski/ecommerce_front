@@ -24,6 +24,7 @@ const CardNumberInput: React.FC<{ errors: ValidationResult[] }> = ({
     <div>
       <Label className="text-sm">Número do cartão *</Label>
       <Input
+        id="create-client-cardName-input"
         className="min-w-[315.75px] max-w-[315.75px]"
         placeholder="Insira o número do cartão"
         value={cardNumber}

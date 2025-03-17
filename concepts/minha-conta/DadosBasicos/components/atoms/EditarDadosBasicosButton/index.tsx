@@ -5,6 +5,7 @@ const EditarDadosBasicosButton: React.FC = () => {
   const { setIsEditando } = useDadosBasicosContext();
   return (
     <Button
+      id="my-account-edit-basic-data-button"
       className="min-w-[100px] max-w-[100px]"
       onClick={() => setIsEditando(true)}
     >

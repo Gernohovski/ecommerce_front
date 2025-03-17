@@ -1,5 +1,5 @@
 import QueryProvider from "@/utils/contexts/QueryContext";
-import { ToastContainer } from "react-toastify";
+import { ToastProvider } from "@/utils/contexts/ToastProvider";
 import "./globals.css";
 
 export default function RootLayout({
@@ -10,8 +10,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ToastContainer />
-        <QueryProvider>{children}</QueryProvider>
+        <ToastProvider>
+          <QueryProvider>{children}</QueryProvider>
+        </ToastProvider>
       </body>
     </html>
   );

@@ -3,6 +3,7 @@ import { useCadastrarClienteContext } from "@/concepts/cadastro/CadastrarCliente
 import { useBuscarCep } from "@/lib/useBuscarCep";
 import Image from "next/image";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 import { useEnderecoResidencialContext } from "../../../contexts/EnderecoResidencialContext";
 import CheckboxCobranca from "../../atoms/CheckboxCobranca";
 import CheckboxEntrega from "../../atoms/CheckboxEntrega";
@@ -40,6 +41,7 @@ const EnderecoResidencialSection: React.FC = () => {
   const { data } = useBuscarCep(cep);
 
   useEffect(() => {
+    if (data?.erro) toast.error("Erro ao buscar pelo CEP informado.");
     if (data && !data.erro) {
       setCity(data.localidade || "");
       setState(data.estado || "");
@@ -90,6 +92,7 @@ const EnderecoResidencialSection: React.FC = () => {
       <FourthLine
         observations={observations}
         setObservations={setObservations}
+        tipoEndereco="enderecoResidencial"
       />
       <hr></hr>
       <CheckboxCobranca />

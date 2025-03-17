@@ -16,6 +16,7 @@ const EmailInput: React.FC<{ errors?: ValidationResult[] }> = ({ errors }) => {
     <div>
       <Label className="text-sm">E-mail *</Label>
       <Input
+        id="create-client-email-input"
         className="min-w-[537px] max-w-[537px]"
         placeholder="Insira o e-mail"
         value={email}

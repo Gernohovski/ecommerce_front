@@ -35,6 +35,7 @@ const SegurancaButton: React.FC = () => {
       >
         <Lock color={"#7738C8"} size={30} />
         <Button
+          id="sidebar-edit-password-button"
           asChild
           variant={"ghost"}
           className="w-[201px] justify-start"

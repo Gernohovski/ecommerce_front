@@ -8,6 +8,7 @@ import { Calendar } from "./calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 
 export type DatePickerProps = {
+  id?: string;
   date: Date | undefined;
   setDate: Dispatch<SetStateAction<Date | undefined>>;
   className?: string;
@@ -16,6 +17,7 @@ export type DatePickerProps = {
 };
 
 const DatePicker: React.FC<DatePickerProps> = ({
+  id,
   date,
   setDate,
   className,
@@ -27,6 +29,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
       <Popover>
         <PopoverTrigger asChild>
           <Button
+            id={id}
             variant={"input"}
             className={cn(
               `${className} justify-between text-left flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm`,
@@ -57,7 +60,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
         {error && !date && (
           <div className="flex items-center gap-1">
             <AlertOctagon size={12} />
-            {"Campo obrigatório"}
+            <span id={`${id}-error`}>Campo obrigatório</span>
           </div>
         )}
       </span>

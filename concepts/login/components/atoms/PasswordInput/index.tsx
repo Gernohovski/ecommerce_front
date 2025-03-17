@@ -14,6 +14,7 @@ const PasswordInput: React.FC = () => {
     <div>
       <Label>Senha: *</Label>
       <Input
+        id="login-client-password-input"
         value={password}
         type="password"
         onChange={(e) => setPassword(e.target.value)}

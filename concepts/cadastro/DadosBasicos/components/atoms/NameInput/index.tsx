@@ -15,6 +15,7 @@ const NameInput: React.FC<{ errors?: ValidationResult[] }> = ({ errors }) => {
     <div>
       <Label className="text-sm">Nome *</Label>
       <Input
+        id="create-client-name-input"
         className="min-w-[313px] max-w-[313px]"
         placeholder="Insira o nome"
         value={name}

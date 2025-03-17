@@ -32,6 +32,7 @@ const MinhaContaDropDown: React.FC = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
+          id="navbar-myaccount-button"
           asChild
           className="flex flex-col h-auto gap-0 items-center hover:text-[#7738C8]"
           variant="ghost"
@@ -49,19 +50,19 @@ const MinhaContaDropDown: React.FC = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-[180px]">
         <DropdownMenuItem asChild onClick={handleViewCienteData}>
-          <div>
+          <div className="cursor-pointer" id="my-account-data">
             <UserRoundPen />
             <span>Meus dados</span>
           </div>
         </DropdownMenuItem>
         <DropdownMenuItem asChild onClick={handleViewPedidos}>
-          <div>
+          <div className="cursor-pointer" id="my-account-purchases">
             <Package />
             <span>Meus pedidos</span>
           </div>
         </DropdownMenuItem>
         <DropdownMenuItem asChild onClick={doLogoff}>
-          <div>
+          <div className="cursor-pointer" id="my-logout">
             <CircleX color="red" />
             <span className="text-red-500">Sair</span>
           </div>

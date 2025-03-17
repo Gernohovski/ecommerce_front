@@ -263,7 +263,11 @@ const FormPersisteClienteButton: React.FC = () => {
       >
         Cancelar
       </Button>
-      <Button className="shadow-md w-[150px]" onClick={handleSubmit}>
+      <Button
+        id="create-client-button"
+        className="shadow-md w-[150px]"
+        onClick={handleSubmit}
+      >
         Cadastrar
       </Button>
     </div>

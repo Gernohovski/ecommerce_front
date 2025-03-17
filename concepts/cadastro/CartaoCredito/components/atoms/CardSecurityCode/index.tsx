@@ -28,6 +28,7 @@ const CardSecurityCode: React.FC<{ errors: ValidationResult[] }> = ({
     <div>
       <Label className="text-sm">Código de segurança *</Label>
       <Input
+        id="create-client-securityCode-input"
         className="min-w-[179px] max-w-[179px]"
         placeholder="Código de segurança"
         value={cardSecurityCode}

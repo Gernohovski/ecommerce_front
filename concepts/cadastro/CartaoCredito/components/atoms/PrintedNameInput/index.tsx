@@ -20,6 +20,7 @@ const PrintedNameInput: React.FC<{ errors: ValidationResult[] }> = ({
     <div>
       <Label className="text-sm">Nome impresso no cartão *</Label>
       <Input
+        id="create-client-printedName-input"
         className="min-w-[315.75px] max-w-[315.75px]"
         placeholder="Insira o nome impresso"
         value={cardPrintedName}

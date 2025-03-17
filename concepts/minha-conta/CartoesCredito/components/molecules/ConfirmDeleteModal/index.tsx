@@ -76,6 +76,7 @@ const ConfirmDeleteModal: React.FC<Props> = ({
               </Button>
             </DialogClose>
             <Button
+              id="confirm-delete-cartao-button"
               className="min-w-[98px] max-w-[98px]"
               variant={"delete"}
               onClick={handleButtonClick}

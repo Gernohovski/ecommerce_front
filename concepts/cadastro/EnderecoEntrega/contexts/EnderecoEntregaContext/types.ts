@@ -31,6 +31,8 @@ export type EnderecoEntregaContextType = {
   setIsCadastrando: Dispatch<SetStateAction<boolean>>;
   isEditando: boolean;
   setIsEditando: Dispatch<SetStateAction<boolean>>;
+  id: string;
+  setId: Dispatch<SetStateAction<string>>;
   fillForm: (data: EnderecoType) => void;
   clearForm: () => void;
   errors: ValidationResult[];

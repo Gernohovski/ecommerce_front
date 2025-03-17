@@ -9,9 +9,15 @@ type Props = {
   number: string;
   setNumber: Dispatch<SetStateAction<string>>;
   hasError?: boolean;
+  tipoEndereco?: string;
 };
 
-const NumberInput: React.FC<Props> = ({ number, setNumber, hasError }) => {
+const NumberInput: React.FC<Props> = ({
+  number,
+  setNumber,
+  hasError,
+  tipoEndereco,
+}) => {
   const { useEnderecoCobranca, useEnderecoEntrega } =
     useEnderecoResidencialContext();
   const { setNumber: setNumberCobranca } = useEnderecoCobrancaContext();
@@ -30,6 +36,7 @@ const NumberInput: React.FC<Props> = ({ number, setNumber, hasError }) => {
     <div>
       <Label className="text-sm">Nº *</Label>
       <Input
+        id={`create-client-number-input-${tipoEndereco}`}
         className="min-w-[119px] max-w-[119px]"
         placeholder="Nº"
         value={number}

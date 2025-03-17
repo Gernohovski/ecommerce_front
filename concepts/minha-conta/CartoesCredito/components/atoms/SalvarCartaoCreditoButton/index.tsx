@@ -83,6 +83,7 @@ const SalvarEdicaoCartaoCreditoButton: React.FC = () => {
   return (
     <div>
       <Button
+        id="save-or-edit-cartao-credito-button"
         className="min-w-[98px] max-w-[98px]"
         asChild
         onClick={handleButtonClick}

@@ -8,11 +8,13 @@ import { useEnderecoResidencialContext } from "../../../contexts/EnderecoResiden
 type Props = {
   observations: string;
   setObservations: Dispatch<SetStateAction<string>>;
+  tipoEndereco?: string;
 };
 
 const ObservationsInput: React.FC<Props> = ({
   observations,
   setObservations,
+  tipoEndereco,
 }) => {
   const { useEnderecoCobranca, useEnderecoEntrega } =
     useEnderecoResidencialContext();
@@ -34,6 +36,7 @@ const ObservationsInput: React.FC<Props> = ({
     <div>
       <Label className="text-sm">Observações</Label>
       <Textarea
+        id={`create-client-observations-input-${tipoEndereco}`}
         className="min-w-[1104px] max-w-[1104px]"
         placeholder="Insira as observações"
         value={observations}

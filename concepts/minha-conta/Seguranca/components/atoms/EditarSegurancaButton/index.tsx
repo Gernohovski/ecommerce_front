@@ -71,7 +71,11 @@ const EditarSegurancaButton: React.FC = () => {
   );
 
   return (
-    <Button className="min-w-[100px] max-w-[100px]" onClick={handleButtonClick}>
+    <Button
+      className="min-w-[100px] max-w-[100px]"
+      onClick={handleButtonClick}
+      id="save-edit-client-password-button"
+    >
       Editar
     </Button>
   );

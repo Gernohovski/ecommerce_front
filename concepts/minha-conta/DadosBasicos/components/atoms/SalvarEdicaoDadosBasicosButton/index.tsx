@@ -61,8 +61,12 @@ const SalvarEdicaoDadosBasicosButton: React.FC = () => {
   );
 
   return (
-    <Button className="min-w-[100px] max-w-[100px]" onClick={handleButtonClick}>
-      Editar
+    <Button
+      className="min-w-[100px] max-w-[100px]"
+      onClick={handleButtonClick}
+      id="my-account-save-edit-basic-data-button"
+    >
+      Salvar
     </Button>
   );
 };

@@ -9,6 +9,7 @@ type Props = {
 };
 
 const EditEnderecoButton: React.FC<Props> = ({ endereco, fillForm }) => {
+  console.log(endereco);
   const handleButtonClick = useCallback(() => {
     fillForm(endereco);
   }, [endereco, fillForm]);
@@ -16,6 +17,7 @@ const EditEnderecoButton: React.FC<Props> = ({ endereco, fillForm }) => {
   return (
     <div>
       <Button
+        id="edit-endereco-button"
         className="min-w-[98px] max-w-[98px]"
         asChild
         onClick={handleButtonClick}

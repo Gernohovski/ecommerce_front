@@ -45,11 +45,13 @@ const ThirdLine: React.FC<ThirdLineProps> = ({
         residenceType={residenceType}
         setResidenceType={setResidenceType}
         hasError={hasErrors.residenceTypeError}
+        tipoEndereco={tipoEndereco}
       />
       <ShortPhraseInput
         shortPhrase={shortPhrase}
         setShortPhrase={setShortPhrase}
         hasError={hasErrors.shortPhraseError}
+        tipoEndereco={tipoEndereco}
       />
     </div>
   );

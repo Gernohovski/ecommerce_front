@@ -73,10 +73,13 @@ const ViewCartoesAccordion: React.FC = () => {
             <Accordion key={index} type="single" collapsible>
               <AccordionItem value={`item-${index}`}>
                 <div className="flex items-center justify-between">
-                  <AccordionTrigger>{`${cartao.printedName}, ${cartao.flag}, ${cartao.cardNumber}`}</AccordionTrigger>
+                  <AccordionTrigger
+                    id={`card-accordion-${index}`}
+                  >{`${cartao.printedName}, ${cartao.flag}, ${cartao.cardNumber}`}</AccordionTrigger>
                   <div className="flex items-center gap-2">
                     <span>Principal:</span>
                     <Switch
+                      id={`switch-card-principal-${index}`}
                       checked={cartao.principal}
                       onCheckedChange={() => {
                         handleButtonClick(cartao);

@@ -10,9 +10,10 @@ type Props = {
   cep: string;
   setCep: Dispatch<SetStateAction<string>>;
   hasError?: boolean;
+  tipoEndereco?: string;
 };
 
-const CEPInput: React.FC<Props> = ({ cep, setCep, hasError }) => {
+const CEPInput: React.FC<Props> = ({ cep, setCep, hasError, tipoEndereco }) => {
   const { useEnderecoCobranca, useEnderecoEntrega } =
     useEnderecoResidencialContext();
   const { setCep: setCepCobranca } = useEnderecoCobrancaContext();
@@ -33,6 +34,7 @@ const CEPInput: React.FC<Props> = ({ cep, setCep, hasError }) => {
     <div>
       <Label className="text-sm">CEP *</Label>
       <Input
+        id={`create-client-cep-input-${tipoEndereco}`}
         className="min-w-[200px] max-w-[200px]"
         placeholder="Insira o CEP"
         value={cep}

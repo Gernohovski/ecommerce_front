@@ -8,14 +8,16 @@ import { useEnderecoResidencialContext } from "../../../contexts/EnderecoResiden
 type Props = {
   country: string;
   setCountry: Dispatch<SetStateAction<string>>;
-  setCountryCobranca?: Dispatch<SetStateAction<string>>;
-  useEnderecoCobranca?: boolean;
-  setCountryEntrega?: Dispatch<SetStateAction<string>>;
-  useEnderecoEntrega?: boolean;
   hasError?: boolean;
+  tipoEndereco?: string;
 };
 
-const CountryInput: React.FC<Props> = ({ country, setCountry, hasError }) => {
+const CountryInput: React.FC<Props> = ({
+  country,
+  setCountry,
+  hasError,
+  tipoEndereco,
+}) => {
   const { useEnderecoCobranca, useEnderecoEntrega } =
     useEnderecoResidencialContext();
   const { setCounty: setCountryCobranca } = useEnderecoCobrancaContext();
@@ -34,6 +36,7 @@ const CountryInput: React.FC<Props> = ({ country, setCountry, hasError }) => {
     <div>
       <Label className="text-sm">País *</Label>
       <Input
+        id={`create-client-country-input-${tipoEndereco}`}
         className="min-w-[200px] max-w-[200px]"
         placeholder="Insira o país"
         value={country}

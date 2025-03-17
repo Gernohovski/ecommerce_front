@@ -17,6 +17,7 @@ const CurrentPasswordInput: React.FC<{ width: string }> = ({ width }) => {
     <div>
       <Label className="text-sm">Senha atual*</Label>
       <Input
+        id="edit-client-curretPassword-input"
         style={{ minWidth: `${width}px`, maxWidth: `${width}px` }}
         placeholder="Insira a senha atual"
         type="password"

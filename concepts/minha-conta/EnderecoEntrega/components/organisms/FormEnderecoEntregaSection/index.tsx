@@ -13,6 +13,7 @@ import { useEffect, useMemo } from "react";
 const FormEnderecoEntregaSection: React.FC = () => {
   const { id } = useDadosBasicosContext();
   const {
+    id: enderecoId,
     cep,
     setCep,
     city,
@@ -58,6 +59,7 @@ const FormEnderecoEntregaSection: React.FC = () => {
 
   const endereco = useMemo(() => {
     return {
+      id: enderecoId,
       tipoResidenciaId: Number(residenceType),
       tipoLogradouroId: Number(tipoLogradouro),
       logradouro: logradouro,
@@ -73,6 +75,7 @@ const FormEnderecoEntregaSection: React.FC = () => {
       tipoEndereco: "ENTREGA",
     };
   }, [
+    enderecoId,
     cep,
     city,
     country,

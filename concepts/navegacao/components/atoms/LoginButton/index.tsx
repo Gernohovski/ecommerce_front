@@ -6,6 +6,7 @@ const LoginButton: React.FC = () => {
   return (
     <Button
       asChild
+      id="navbar-login-button"
       className="flex flex-col h-auto gap-0 items-center hover:text-[#7738C8]"
       variant="ghost"
     >

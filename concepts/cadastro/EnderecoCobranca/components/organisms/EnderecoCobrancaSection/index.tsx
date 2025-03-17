@@ -8,6 +8,7 @@ import { useEnderecoResidencialContext } from "@/concepts/cadastro/EnderecoResid
 import { useBuscarCep } from "@/lib/useBuscarCep";
 import Image from "next/image";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 import { useEnderecoCobrancaContext } from "../../../contexts/EnderecoCobrancaContext";
 
 const EnderecoCobrancaSection: React.FC = () => {
@@ -41,6 +42,7 @@ const EnderecoCobrancaSection: React.FC = () => {
   const { data } = useBuscarCep(cep);
 
   useEffect(() => {
+    if (data?.erro) toast.error("Erro ao buscar pelo CEP informado.");
     if (data && !data.erro) {
       setCity(data.localidade || "");
       setState(data.estado || "");
@@ -94,6 +96,7 @@ const EnderecoCobrancaSection: React.FC = () => {
       <FourthLine
         observations={observations}
         setObservations={setObservations}
+        tipoEndereco="enderecoCobranca"
       />
     </Section>
   );

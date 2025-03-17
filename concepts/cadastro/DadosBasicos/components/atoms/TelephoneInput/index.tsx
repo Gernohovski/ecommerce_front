@@ -24,6 +24,7 @@ const TelephoneInput: React.FC<{ errors?: ValidationResult[] }> = ({
     <div>
       <Label className="text-sm">Telefone *</Label>
       <Input
+        id="create-client-telephone-input"
         className="min-w-[174px] max-w-[174px]"
         placeholder="Insira o telefone"
         value={telephone}

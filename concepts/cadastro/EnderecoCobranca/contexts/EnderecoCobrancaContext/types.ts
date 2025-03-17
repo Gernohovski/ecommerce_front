@@ -35,4 +35,6 @@ export type EnderecoCobrancaContextType = {
   clearForm: () => void;
   errors: ValidationResult[];
   setErrors: Dispatch<SetStateAction<ValidationResult[]>>;
+  id: string;
+  setId: Dispatch<SetStateAction<string>>;
 };

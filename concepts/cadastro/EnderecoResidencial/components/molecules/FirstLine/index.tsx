@@ -63,21 +63,29 @@ const FirstLine: React.FC<FirstLineProps> = ({
 
   return (
     <div className="flex gap-6">
-      <CEPInput cep={cep} setCep={setCep} hasError={hasErrors.cepError} />
+      <CEPInput
+        cep={cep}
+        setCep={setCep}
+        hasError={hasErrors.cepError}
+        tipoEndereco={tipoEndereco}
+      />
       <LogradouroTypeSelect
         logradouroType={logradouroType}
         setLogradouroType={setLogradouroType}
         hasError={hasErrors.logradouroTypeError}
+        tipoEndereco={tipoEndereco}
       />
       <LogradouroInput
         logradouro={logradouro}
         setLogradouro={setLogradouro}
         hasError={hasErrors.logradouroError}
+        tipoEndereco={tipoEndereco}
       />
       <NumberInput
         number={number}
         setNumber={setNumber}
         hasError={hasErrors.numberError}
+        tipoEndereco={tipoEndereco}
       />
     </div>
   );

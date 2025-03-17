@@ -21,6 +21,7 @@ const DDDInput: React.FC<{ errors?: ValidationResult[] }> = ({ errors }) => {
     <div>
       <Label className="text-sm">DDD *</Label>
       <Input
+        id="create-client-ddd-input"
         className="min-w-[115px] max-w-[115px]"
         placeholder="DDD"
         value={ddd}

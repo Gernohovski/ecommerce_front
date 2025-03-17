@@ -13,7 +13,11 @@ const CadastrarEnderecoResidencialButton: React.FC<Props> = ({
   }, [setIsCadastrando]);
 
   return (
-    <Button className="min-w-[220px] max-w-[220px]" onClick={handleButtonClick}>
+    <Button
+      className="min-w-[220px] max-w-[220px]"
+      onClick={handleButtonClick}
+      id="create-endereco-residencial-button"
+    >
       Cadastrar novo endereço
     </Button>
   );

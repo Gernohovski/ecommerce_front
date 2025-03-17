@@ -17,6 +17,7 @@ const EditCartaoButton: React.FC<Props> = ({ cartao }) => {
   return (
     <div>
       <Button
+        id="edit-cartao-button"
         className="min-w-[98px] max-w-[98px]"
         asChild
         onClick={handleButtonClick}

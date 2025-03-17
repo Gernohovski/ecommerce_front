@@ -29,6 +29,7 @@ const PasswordInput: React.FC<Props> = ({
     <div>
       <Label className="text-sm">{label}</Label>
       <Input
+        id="create-client-password-input"
         style={{ minWidth: `${width}px`, maxWidth: `${width}px` }}
         placeholder={placeholder}
         value={password}
