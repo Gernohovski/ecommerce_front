@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const NavbarIcon: React.FC = () => {
   return (
-    <div className="flex justify-between items-center gap-4">
+    <Link className="flex justify-between items-center gap-4" href={"/"}>
       <Image
         src="\icons\bookly.svg"
         alt="Bookly"
@@ -10,7 +11,7 @@ const NavbarIcon: React.FC = () => {
         height={54}
       ></Image>
       <span className="text-xl">Bookly</span>
-    </div>
+    </Link>
   );
 };
 

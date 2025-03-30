@@ -1,6 +1,5 @@
 import Section from "@/components/ui/section";
 import Image from "next/image";
-import FirstLine from "../../molecules/FirstLine";
 import ClienteDataTable from "../ClienteDataTable";
 const FiltrarClientesSection: React.FC = () => {
   return (
@@ -16,7 +15,6 @@ const FiltrarClientesSection: React.FC = () => {
       title="Clientes cadastrados"
       subtitle="Visualize os clientes cadastrados"
     >
-      <FirstLine />
       <ClienteDataTable />
     </Section>
   );

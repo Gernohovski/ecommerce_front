@@ -10,26 +10,23 @@ export const useListarClienteContext = () => useContext(ListarClienteContext);
 const ListarClienteContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [cpf, setCpf] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [gender, setGender] = useState<string>("");
-  const [name, setName] = useState<string>("");
-  const [clientes, setClientes] = useState<ClienteResponse[]>();
+  const [termo, setTermo] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [size, setSize] = useState<number>(10);
+  const [clientes, setClientes] = useState<ClienteResponse[] | undefined>([]);
 
   const values = useMemo(
     () => ({
-      cpf,
-      setCpf,
-      email,
-      setEmail,
-      gender,
-      setGender,
-      name,
-      setName,
+      termo,
+      setTermo,
+      page,
+      setPage,
+      size,
+      setSize,
       clientes,
       setClientes,
     }),
-    [cpf, email, gender, name, clientes]
+    [termo, page, size, clientes]
   );
   return (
     <ListarClienteContext.Provider value={values}>
