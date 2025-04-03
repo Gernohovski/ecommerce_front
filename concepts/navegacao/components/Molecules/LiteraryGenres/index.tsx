@@ -1,7 +1,19 @@
 import { Button } from "@/components/ui/button";
+import { useFiltrosContext } from "@/concepts/livros/contexts/FiltrosContext";
+import { useFetchCategorias } from "@/concepts/livros/hooks/useFetchCategorias";
 import Image from "next/image";
 
 const LiteraryGenres: React.FC = () => {
+  const { data } = useFetchCategorias();
+  const { filtros, setFiltros } = useFiltrosContext();
+
+  const handleButtonClick = (categoriaId: string) => {
+    setFiltros((prevState) => ({
+      ...prevState,
+      categoriaId: categoriaId,
+    }));
+  };
+
   return (
     <>
       <Button variant="ghost" className="gap-1 group">
@@ -25,26 +37,20 @@ const LiteraryGenres: React.FC = () => {
           Todos
         </span>
       </Button>
-      <Button variant="ghost">
-        <span className="text-white hover:text-[#391667]">Ação</span>
-      </Button>
-      <Button variant="ghost">
-        <span className="text-white hover:text-[#391667]">Aventura</span>
-      </Button>
-      <Button variant="ghost">
-        <span className="text-white hover:text-[#391667]">Romance</span>
-      </Button>
-      <Button variant="ghost">
-        <span className="text-white hover:text-[#391667]">Fantasia</span>
-      </Button>
-      <Button variant="ghost">
-        <span className="text-white hover:text-[#391667]">Terror</span>
-      </Button>
-      <Button variant="ghost">
-        <span className="text-white hover:text-[#391667]">
-          Ficção Científica
-        </span>
-      </Button>
+      {data?.map((categoria) => (
+        <Button variant="ghost" key={categoria.id}>
+          <span
+            className={
+              (filtros?.categoriaId ?? "") == String(categoria.id)
+                ? "text-[#391667]"
+                : "text-white hover:text-[#391667] cursor-pointer"
+            }
+            onClick={() => handleButtonClick(String(categoria.id))}
+          >
+            {categoria.nome}
+          </span>
+        </Button>
+      ))}
     </>
   );
 };

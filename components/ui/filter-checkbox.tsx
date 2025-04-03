@@ -5,12 +5,25 @@ import { Checkbox } from "./checkbox";
 type Props = {
   options?: CheckboxOptions[];
   filterTitle: string;
+  selectedValues?: string[];
+  onChange?: (value: string, checked: boolean) => void;
 };
 
-const FilterCheckbox: React.FC<Props> = ({ options, filterTitle }) => {
+const FilterCheckbox: React.FC<Props> = ({
+  options,
+  filterTitle,
+  selectedValues = [],
+  onChange,
+}) => {
   const [expanded, setExpanded] = useState(false);
   const safeOptions = options ?? [];
   const visibleOptions = expanded ? safeOptions : safeOptions.slice(0, 7);
+
+  const handleCheckboxChange = (value: string, checked: boolean) => {
+    if (onChange) {
+      onChange(value, checked);
+    }
+  };
 
   return (
     <div className="flex flex-col">
@@ -21,7 +34,15 @@ const FilterCheckbox: React.FC<Props> = ({ options, filterTitle }) => {
           htmlFor={option.value}
           className="flex items-center gap-2 ml-4 mb-2 cursor-pointer"
         >
-          <Checkbox id={option.value} />
+          <Checkbox
+            id={option.value}
+            checked={selectedValues.includes(option.value ?? "")}
+            onCheckedChange={(checked) => {
+              if (option.value) {
+                handleCheckboxChange(option.value, !!checked);
+              }
+            }}
+          />
           <span className="text-sm font-medium">{option.label}</span>
         </label>
       ))}
