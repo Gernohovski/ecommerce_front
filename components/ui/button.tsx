@@ -12,6 +12,8 @@ const buttonVariants = cva(
         input: "bg-white border border-input",
         default:
           "bg-[#7738C8] text-primary-foreground shadow hover:bg-[#7738C8]/70 cursor-pointer",
+        cancel:
+          "bg-[#71717A] text-primary-foreground shadow hover:bg-[#71717A]/70 cursor-pointer",
         delete:
           "bg-[#C8383A] text-primary-foreground shadow hover:bg-[#C8383A]/70 cursor-pointer",
         delete_disabled:

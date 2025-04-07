@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
         </div>
       </div>
       <div>
-        <div className="flex justify-start items-center bg-[#7738C8] h-[32px]">
+        <div className="flex justify-start items-center bg-[#7738C8] h-[32px] shadow-md">
           <LiteraryGenres />
         </div>
       </div>

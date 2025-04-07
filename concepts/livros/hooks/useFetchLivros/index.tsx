@@ -14,7 +14,7 @@ export const useFetchLivros = () => {
       params.autoresId = filtros.autoresId.join(",");
     if (filtros.titulo) params.titulo = filtros.titulo;
     if (filtros.condicao) params.condicao = filtros.condicao;
-    if (filtros.idioma) params.idioma = filtros.idioma;
+    if (filtros.idioma.length > 0) params.idioma = filtros.idioma.join(",");
     if (filtros.sortBy) params.sortBy = filtros.sortBy;
     if (filtros.sortDirection) params.sortDirection = filtros.sortDirection;
     console.log(params);
