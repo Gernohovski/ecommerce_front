@@ -5,7 +5,7 @@ import { Label } from "@radix-ui/react-label";
 import { useMemo } from "react";
 import { useCartaoCreditoContext } from "../../../contexts/CartaoCreditoContextProvider";
 
-const CardNumberInput: React.FC<{ errors: ValidationResult[] }> = ({
+const CardNumberInput: React.FC<{ errors?: ValidationResult[] }> = ({
   errors,
 }) => {
   const { cardNumber, setCardNumber } = useCartaoCreditoContext();

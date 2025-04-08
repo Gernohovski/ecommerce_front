@@ -6,6 +6,7 @@ import errorMessage from "@/utils/error-message";
 import { formatCurrency } from "@/utils/format-currency";
 import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
 
@@ -22,7 +23,7 @@ const CarrinhoModal: React.FC<CarrinhoProps> = ({
   valorCompra,
 }) => {
   const useQuery = useQueryClient();
-
+  const router = useRouter();
   const { mutate } = useRemoveItemCarrinho(
     localStorage.getItem("cliente") ?? ""
   );
@@ -131,7 +132,13 @@ const CarrinhoModal: React.FC<CarrinhoProps> = ({
         <div className="h-[1px] bg-gray-300 "></div>
         <div className="flex flex-col w-[318px] h-[91px] bg-white rounded-bl-[20px] pt-[12px] px-[14px]">
           <span>{formatCurrency(valorCompra ?? 0)}</span>
-          <Button className="w-[290px]">Finalizar Compra</Button>
+          <Button
+            className="w-[290px]"
+            onClick={() => router.push("/finalizar-pedido")}
+            disabled={itensCarrinho?.length == 0}
+          >
+            Finalizar Compra
+          </Button>
         </div>
       </div>
     </div>,

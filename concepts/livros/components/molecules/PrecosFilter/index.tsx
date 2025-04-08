@@ -13,7 +13,14 @@ const PrecosFilter: React.FC = () => {
   ];
 
   const handleFilterClick = useCallback(
-    (selectedFilter: ReactNode) => {
+    (selectedFilter: ReactNode | null) => {
+      if (!selectedFilter) {
+        setFiltros((prevState) => ({
+          ...prevState,
+          precoMin: "",
+          precoMax: "",
+        }));
+      }
       if (selectedFilter === "Até R$20") {
         setFiltros((prevState) => ({
           ...prevState,

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import useCadastrarCupom from "@/concepts/Cupom/hooks/useCadastrarCupom";
+import useCadastrarCupom from "@/concepts/cupom/hooks/useCadastrarCupom";
 import errorMessage from "@/utils/error-message";
 import { formatValue } from "@/utils/format-value";
 import Image from "next/image";

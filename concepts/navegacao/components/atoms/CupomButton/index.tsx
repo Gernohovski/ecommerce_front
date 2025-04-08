@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import CupomModal from "@/concepts/Cupom/components/organisms/CupomModal";
+import CupomModal from "@/concepts/cupom/components/organisms/CupomModal";
 import Image from "next/image";
 import { useState } from "react";
 

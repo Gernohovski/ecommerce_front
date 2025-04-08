@@ -11,7 +11,7 @@ import { useMemo } from "react";
 import { useCartaoCreditoContext } from "../../../contexts/CartaoCreditoContextProvider";
 import { useFetchListarBandeirasCartao } from "../../../hooks/useFetchListarBandeirasCartao";
 
-const CardFlagSelect: React.FC<{ errors: ValidationResult[] }> = ({
+const CardFlagSelect: React.FC<{ errors?: ValidationResult[] }> = ({
   errors,
 }) => {
   const { data } = useFetchListarBandeirasCartao();

@@ -7,6 +7,7 @@ type Props = {
   title: string;
   subtitle: string;
   disabled?: boolean;
+  closeButton?: ReactNode;
 };
 
 const DisabledContext = createContext(false);
@@ -19,6 +20,7 @@ const Section: React.FC<Props> = ({
   icon,
   subtitle,
   disabled,
+  closeButton,
 }) => {
   return (
     <DisabledContext.Provider value={!!disabled}>
@@ -26,7 +28,12 @@ const Section: React.FC<Props> = ({
         disabled={disabled}
         className="flex flex-col bg-white pr-6 pl-6 pt-6 pb-8 rounded-xl shadow-sm min-w-[1146px]"
       >
-        <SectionHeader title={title} icon={icon} subtitle={subtitle} />
+        <SectionHeader
+          title={title}
+          icon={icon}
+          subtitle={subtitle}
+          closeButton={closeButton}
+        />
         <div className="flex flex-col gap-6">{children}</div>
       </fieldset>
     </DisabledContext.Provider>
