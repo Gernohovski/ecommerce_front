@@ -81,6 +81,7 @@ const ConferenciaSection: React.FC = () => {
                 <ItensCount
                   quantidade={item.quantidade}
                   itemId={Number(item.id)}
+                  quantidadeMax={item.livro.quantidade}
                 />
                 <span className="text-base font-medium w-[75px]">
                   {formatCurrency(item.livro.valorVenda * item.quantidade)}

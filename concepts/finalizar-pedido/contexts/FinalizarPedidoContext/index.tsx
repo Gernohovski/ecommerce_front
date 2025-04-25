@@ -1,6 +1,6 @@
 "use client";
 import { useCarrinhoContext } from "@/concepts/carrinho/contexts/CarrinhoContext";
-import { CupomResponse } from "@/concepts/Cupom/hooks/useCadastrarCupom/types";
+import { CupomResponse } from "@/concepts/cupom/hooks/useCadastrarCupom/types";
 import {
   createContext,
   ReactNode,
@@ -11,6 +11,7 @@ import {
   useState,
 } from "react";
 import { toast } from "react-toastify";
+import { useFetchFrete } from "../../hooks/useFetchFrete";
 import { FinalizarPedidoContextType } from "./types";
 
 const FinalizarPedidoContext = createContext({} as FinalizarPedidoContextType);
@@ -35,7 +36,24 @@ const FinalizarPedidoContextProvider: React.FC<{ children: ReactNode }> = ({
   const [desconto, setDesconto] = useState<number>(0);
   const [enderecoId, setEnderecoId] = useState<string>("");
   const [cartoesId, setCartoesId] = useState<string[]>([]);
+  const [valorFrete, setValorFrete] = useState<number>(0);
+  const [prazoDias, setPrazoDias] = useState<number>(0);
   const { itensCarrinho } = useCarrinhoContext();
+
+  const pesoPedido = useMemo(() => {
+    return itensCarrinho.reduce((total, item) => {
+      return total + item.livro.peso * item.quantidade;
+    }, 0);
+  }, [itensCarrinho]);
+
+  const { data } = useFetchFrete(enderecoId, pesoPedido);
+
+  useEffect(() => {
+    if (data) {
+      setValorFrete(data.valorFrete);
+      setPrazoDias(data.prazoDias);
+    }
+  }, [data]);
 
   const handleRemoverCupom = (id: number) => {
     setCupons((prevCupons) => prevCupons.filter((cupom) => cupom.id !== id));
@@ -91,6 +109,8 @@ const FinalizarPedidoContextProvider: React.FC<{ children: ReactNode }> = ({
       cartoesId,
       setCartoesId,
       clearForm,
+      valorFrete,
+      prazoDias,
     }),
     [
       isSelected,
@@ -100,6 +120,8 @@ const FinalizarPedidoContextProvider: React.FC<{ children: ReactNode }> = ({
       enderecoId,
       cartoesId,
       clearForm,
+      valorFrete,
+      prazoDias,
     ]
   );
   return (

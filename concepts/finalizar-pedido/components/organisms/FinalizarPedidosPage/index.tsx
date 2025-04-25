@@ -23,6 +23,7 @@ const FinalizarPedidosPage: React.FC = () => {
     enderecoId,
     cartoesId,
     valorPedido,
+    valorFrete,
     desconto,
   } = useFinalizarPedidoContext();
   const { setEnderecos: setEnderecosEntrega } = useEnderecoEntregaContext();
@@ -33,10 +34,19 @@ const FinalizarPedidosPage: React.FC = () => {
       carrinhoId: idCarrinho,
       enderecoId: enderecoId,
       cartoesCreditoId: cartoesId,
-      valorPedido: valorPedido - desconto,
+      valorPedido: valorPedido - desconto + valorFrete,
+      valorFrete: valorFrete,
       clienteId: String(id) ?? "",
     };
-  }, [idCarrinho, enderecoId, cartoesId, valorPedido, id, desconto]);
+  }, [
+    idCarrinho,
+    enderecoId,
+    cartoesId,
+    valorPedido,
+    id,
+    desconto,
+    valorFrete,
+  ]);
 
   useEffect(() => {
     if (!data) return;

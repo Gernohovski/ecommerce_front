@@ -8,9 +8,10 @@ import { Input } from "./input";
 type Props = {
   quantidade: number;
   itemId: number;
+  quantidadeMax: number;
 };
 
-const ItensCount: React.FC<Props> = ({ quantidade, itemId }) => {
+const ItensCount: React.FC<Props> = ({ quantidade, itemId, quantidadeMax }) => {
   const [quantidadeItem, setQuantidadeItem] = useState<number>(quantidade);
   const { mutate } = useAlterarQuantidade();
   const useQuery = useQueryClient();
@@ -45,6 +46,7 @@ const ItensCount: React.FC<Props> = ({ quantidade, itemId }) => {
         value={quantidadeItem}
       ></Input>
       <button
+        disabled={quantidade == quantidadeMax}
         className="flex border border-[#7738C8] w-[18px] h-[18px] justify-center items-center rounded-[20px] shadow-sm cursor-pointer"
         onClick={() => handleChange(String(quantidadeItem + 1))}
       >

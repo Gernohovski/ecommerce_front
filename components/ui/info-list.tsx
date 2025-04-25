@@ -14,7 +14,7 @@ const InfoList: React.FC<InfoListProps> = ({ data = [], columns = 3 }) => {
   return (
     <div
       className="grid gap-6 min-w-[1106px] max-w-[1106px]"
-      style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }} // ✅ Define colunas dinamicamente
+      style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
     >
       {data.map((item, index) => (
         <InfoBlock key={index} label={item.label} value={item.value} />

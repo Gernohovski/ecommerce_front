@@ -34,6 +34,7 @@ export type LivroDetalhado = {
   valorVenda: number;
   ativo: boolean;
   capa: string;
+  quantidade: number;
 };
 
 export type CategoriaLivro = {

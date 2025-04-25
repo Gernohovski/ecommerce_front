@@ -24,27 +24,20 @@ const CartButton: React.FC = () => {
         variant="ghost"
         onClick={() => setIsOpen(!isOpen)}
       >
-        {itensCarrinho.length > 0 ? (
-          <div>
+        <div>
+          <div className="relative">
             <Image
-              src="\icons\cart-items.svg"
-              alt="Bookly"
+              src="/icons/cart.svg"
+              alt="Carrinho"
               width={30}
               height={30}
-            ></Image>
-            <span>Carrinho</span>
+            />
+            <span className="absolute -top-1 -right-2 bg-primary text-white font-medium text-xs w-4 h-4 flex items-center justify-center rounded-full">
+              {itensCarrinho.length}
+            </span>
           </div>
-        ) : (
-          <div>
-            <Image
-              src="\icons\cart.svg"
-              alt="Bookly"
-              width={30}
-              height={30}
-            ></Image>
-            <span>Carrinho</span>
-          </div>
-        )}
+          <span>Carrinho</span>
+        </div>
       </Button>
       <CarrinhoModal
         isOpen={isOpen}

@@ -1,4 +1,4 @@
-import { CupomResponse } from "@/concepts/Cupom/hooks/useCadastrarCupom/types";
+import { CupomResponse } from "@/concepts/cupom/hooks/useCadastrarCupom/types";
 import { Dispatch, SetStateAction } from "react";
 
 export type FinalizarPedidoContextType = {
@@ -26,4 +26,6 @@ export type FinalizarPedidoContextType = {
   cartoesId: string[];
   setCartoesId: Dispatch<SetStateAction<string[]>>;
   clearForm: () => void;
+  valorFrete: number;
+  prazoDias: number;
 };

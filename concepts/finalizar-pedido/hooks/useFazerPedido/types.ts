@@ -3,6 +3,7 @@ export type Pedido = {
   enderecoId: number | string;
   cartoesCreditoId: string[];
   valorPedido: number;
+  valorFrete: number;
   clienteId: string;
 };
 

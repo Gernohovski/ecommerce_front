@@ -89,7 +89,7 @@ const CarrinhoModal: React.FC<CarrinhoProps> = ({
                   <div className="w-[90px] h-[135px] flex overflow-hidden">
                     <Image
                       src={item.livro.capa}
-                      alt="Triângulo"
+                      alt={item.livro.titulo}
                       width={90}
                       height={135}
                     />
@@ -114,7 +114,8 @@ const CarrinhoModal: React.FC<CarrinhoProps> = ({
                     <ItensCount
                       quantidade={item.quantidade}
                       itemId={Number(item.id)}
-                    ></ItensCount>
+                      quantidadeMax={item.livro.quantidade}
+                    />
                     <span className="text-lg justify-end">
                       {formatCurrency(item.livro.valorVenda)}
                     </span>

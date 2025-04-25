@@ -32,7 +32,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="rounded-md border shadow-sm">
+    <div>
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -41,8 +41,14 @@ export function DataTable<TData, TValue>({
                 return (
                   <TableHead
                     key={header.id}
-                    className={`text-[#561F9C] font-semibold text-center border-b ${
-                      index < headerGroup.headers.length - 1 ? "border-r" : ""
+                    className={`text-white font-semibold text-center bg-[#7F5AAF] border-b border-[#382057] ${
+                      index < headerGroup.headers.length - 1
+                        ? "border-r border-[#382057]"
+                        : ""
+                    } ${index === 0 ? "rounded-tl" : ""} ${
+                      index === headerGroup.headers.length - 1
+                        ? "rounded-tr"
+                        : ""
                     }`}
                     style={{ width: header.getSize() }}
                   >
@@ -64,13 +70,19 @@ export function DataTable<TData, TValue>({
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
-                className="border-b"
+                className="border-b border-[#382057]"
               >
                 {row.getVisibleCells().map((cell, index) => (
                   <TableCell
                     key={cell.id}
-                    className={`border-b ${
-                      index < row.getVisibleCells().length - 1 ? "border-r" : ""
+                    className={`bg-[#EFE3FF] ${
+                      index < row.getVisibleCells().length - 1
+                        ? "border-r border-[#382057]"
+                        : ""
+                    } ${index === 0 ? "rounded-l" : ""} ${
+                      index === row.getVisibleCells().length - 1
+                        ? "rounded-r"
+                        : ""
                     }`}
                     style={{ width: cell.column.getSize(), height: 10 }}
                   >

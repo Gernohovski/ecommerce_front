@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useEnderecoEntregaContext } from "@/concepts/cadastro/EnderecoEntrega/contexts/EnderecoEntregaContext";
 import { useFinalizarPedidoContext } from "@/concepts/finalizar-pedido/contexts/FinalizarPedidoContext";
+import { formatCurrency } from "@/utils/format-currency";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useState } from "react";
@@ -10,7 +11,7 @@ import AlterarEtapasButton from "../AlterarEtapasButton";
 
 const MetodosEnvioSection: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { setIsSelected, setEnderecoId, enderecoId } =
+  const { setIsSelected, setEnderecoId, enderecoId, valorFrete, prazoDias } =
     useFinalizarPedidoContext();
   const { enderecos } = useEnderecoEntregaContext();
 
@@ -82,6 +83,17 @@ const MetodosEnvioSection: React.FC = () => {
           >
             Enviar para outro endereço
           </button>
+        </div>
+        <div className="h-[3px] bg-gray-300 w-full mb-3"></div>
+        <div className="flex flex-col mb-6">
+          <div className="flex justify-between items-center">
+            <span className="text-base">Valor do envio:</span>
+            <span>{`${formatCurrency(valorFrete)}`}</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-base">Prazo de entrega:</span>
+            <span>{`${prazoDias} dias`}</span>
+          </div>
         </div>
         <div>
           <div className="flex justify-between">

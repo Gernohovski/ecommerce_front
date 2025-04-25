@@ -40,6 +40,7 @@ const FormasPagamentoSection: React.FC<Props> = ({ pedidoToSave }) => {
     setCartoesId,
     cartoesId,
     clearForm,
+    valorFrete,
   } = useFinalizarPedidoContext();
   const { cartoesCredito } = useCartaoCreditoContext();
 
@@ -205,18 +206,30 @@ const FormasPagamentoSection: React.FC<Props> = ({ pedidoToSave }) => {
         </div>
         <div className="h-[3px] bg-gray-300 w-full mb-3"></div>
         <div className="flex justify-end items-center">
-          <div className="flex flex-col items-end">
-            <span className="text-xl">{formatCurrency(valorPedido)}</span>
-            <span className="text-red-600 text-base">{`- ${formatCurrency(
-              desconto
-            )}`}</span>
+          <div className="flex flex-col w-full">
+            <div className="flex justify-between items-center">
+              <div className="text-base">Valor dos itens:</div>
+              <span className="text-base">{formatCurrency(valorPedido)}</span>
+            </div>
+            {cupons.length > 0 && (
+              <div className="flex justify-between items-center">
+                <div className="text-base">Desconto:</div>
+                <span className="text-red-600 text-base">{`- ${formatCurrency(
+                  desconto
+                )}`}</span>{" "}
+              </div>
+            )}
+            <div className="flex justify-between items-center">
+              <div className="text-base">Valor do envio:</div>
+              <span className="text-base">{formatCurrency(valorFrete)}</span>
+            </div>
           </div>
         </div>
         <div className="h-[1px] bg-slate-800 w-full mb-3"></div>
         <div className="flex justify-between items-center mb-6">
-          <div className="text-xl">Total:</div>
-          <span className="text-xl">
-            {formatCurrency(valorPedido - desconto)}
+          <div className="text-base">Total:</div>
+          <span className="text-base">
+            {formatCurrency(valorPedido - desconto + valorFrete)}
           </span>
         </div>
         <div>

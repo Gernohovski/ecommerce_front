@@ -5,6 +5,7 @@ import errorMessage from "@/utils/error-message";
 import { formatCurrency } from "@/utils/format-currency";
 import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { toast } from "react-toastify";
 import CategoriaTagChip from "../../atoms/CategoriaTagChip";
@@ -14,6 +15,7 @@ type Props = {
 };
 
 const LivroSection: React.FC<Props> = ({ livro }) => {
+  const router = useRouter();
   const useQuery = useQueryClient();
 
   const { mutate } = useAdicionarItemCarrinho(
@@ -38,18 +40,29 @@ const LivroSection: React.FC<Props> = ({ livro }) => {
     [mutate, useQuery]
   );
 
+  const viewLivroRedirect = useCallback(
+    (livroId: number) => {
+      router.push(`/visualizar-livro/${livroId}`);
+    },
+    [router]
+  );
+
   return (
     <div className="flex flex-col w-[160px] min-h-[260px]">
       <div className="w-[160px] h-[250px] flex items-center justify-center overflow-hidden">
         <Image
+          onClick={() => viewLivroRedirect(Number(livro.id))}
           src={livro.capa}
           width={160}
           height={240}
           alt={livro.titulo}
-          className="object-cover"
+          className="object-cover cursor-pointer"
         />
       </div>
-      <span className="text-base font-medium w-full h-[50px]">
+      <span
+        onClick={() => viewLivroRedirect(Number(livro.id))}
+        className="text-base font-medium w-full h-[50px] cursor-pointer hover:text-primary hover:underline"
+      >
         {livro.titulo}
       </span>
       <span className="text-sm font-normal mb-2 w-full text-ellipsis overflow-hidden whitespace-nowrap">
@@ -68,11 +81,16 @@ const LivroSection: React.FC<Props> = ({ livro }) => {
       <Button
         asChild
         className="w-[160px] h-[40px]"
-        onClick={() => handleButtonClick(Number(livro.id))}
+        disabled={livro.quantidade == 0}
       >
-        <div className="flex items-center gap-2">
-          <span>Adicionar ao carrinho</span>
-        </div>
+        <button
+          onClick={() => handleButtonClick(Number(livro.id))}
+          disabled={livro.quantidade == 0}
+        >
+          <div className="flex items-center gap-2">
+            <span>Adicionar ao carrinho</span>
+          </div>
+        </button>
       </Button>
     </div>
   );
