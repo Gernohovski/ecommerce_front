@@ -84,7 +84,7 @@ export function DataTable<TData, TValue>({
                         ? "rounded-r"
                         : ""
                     }`}
-                    style={{ width: cell.column.getSize(), height: 10 }}
+                    style={{ width: cell.column.getSize() }}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
@@ -93,7 +93,10 @@ export function DataTable<TData, TValue>({
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
+              <TableCell
+                colSpan={columns.length}
+                className="h-24 text-center bg-[#EFE3FF] rounded-b-md"
+              >
                 {emptyText}
               </TableCell>
             </TableRow>
