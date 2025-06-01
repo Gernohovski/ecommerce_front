@@ -35,7 +35,7 @@ const FilterCheckbox: React.FC<Props> = ({
           className="flex items-center gap-2 ml-4 mb-2 cursor-pointer"
         >
           <Checkbox
-            id={option.value}
+            id={option.label}
             checked={selectedValues.includes(option.value ?? "")}
             onCheckedChange={(checked) => {
               if (option.value) {

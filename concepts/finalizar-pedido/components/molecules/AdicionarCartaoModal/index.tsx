@@ -3,11 +3,13 @@ import Section from "@/components/ui/section";
 import FirstLine from "@/concepts/cadastro/CartaoCredito/components/molecules/FirstLine";
 import { useCartaoCreditoContext } from "@/concepts/cadastro/CartaoCredito/contexts/CartaoCreditoContextProvider";
 import { useSessionContext } from "@/concepts/login/contexts/SessionContext";
+import { cadastrarCartaoSchema } from "@/concepts/minha-conta/CartoesCredito/validations/cadastrarCartaoValidation";
 import useCadastrarCartaoCliente from "@/concepts/minha-conta/VisualizarInformacoes/hooks/useCadastrarCartaoCliente";
 import errorMessage, { APIError } from "@/utils/error-message";
+import validateSchema, { ValidationResult } from "@/utils/validate-schema";
 import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import { toast } from "react-toastify";
 
@@ -20,6 +22,7 @@ const AdicionarCartaoModal: React.FC<AdicionarCartaoModalProps> = ({
   isOpen,
   onClose,
 }) => {
+  const [errors, setErrors] = useState<ValidationResult[]>([]);
   const { mutate } = useCadastrarCartaoCliente();
   const queryClient = useQueryClient();
   const { clienteId } = useSessionContext();
@@ -39,6 +42,8 @@ const AdicionarCartaoModal: React.FC<AdicionarCartaoModalProps> = ({
   const handleButtonClick = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
+      validateSchema(cadastrarCartaoSchema, objectToSave, setErrors);
+      if (errors.length > 0) return;
       mutate(objectToSave, {
         onSuccess: () => {
           toast.success("Cartão cadastrado com sucesso!");
@@ -51,7 +56,7 @@ const AdicionarCartaoModal: React.FC<AdicionarCartaoModalProps> = ({
         },
       });
     },
-    [mutate, objectToSave, queryClient, clearForm, onClose]
+    [mutate, objectToSave, queryClient, clearForm, onClose, errors.length]
   );
 
   useEffect(() => {
@@ -68,7 +73,7 @@ const AdicionarCartaoModal: React.FC<AdicionarCartaoModalProps> = ({
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 top-[75px]">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="relative w-auto h-auto bg-white rounded-[20px] shadow-lg">
         <Section
           icon={
@@ -98,10 +103,13 @@ const AdicionarCartaoModal: React.FC<AdicionarCartaoModalProps> = ({
             </div>
           }
         >
-          <FirstLine />
+          <FirstLine errors={errors} />
         </Section>
         <div className="pr-6 pb-6 flex justify-end">
-          <Button onClick={handleButtonClick}>
+          <Button
+            id="register-new-card-order-button"
+            onClick={handleButtonClick}
+          >
             Cadastrar cartão de crédito
           </Button>
         </div>

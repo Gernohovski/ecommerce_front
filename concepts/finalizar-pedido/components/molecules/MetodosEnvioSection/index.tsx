@@ -68,6 +68,7 @@ const MetodosEnvioSection: React.FC = () => {
               </div>
               <div className="flex mr-6">
                 <Checkbox
+                  id={`select-address-${endereco.cep}`}
                   checked={endereco.id === enderecoId}
                   disabled={endereco.id === enderecoId}
                   onClick={() => handleChange(endereco.id)}
@@ -78,6 +79,7 @@ const MetodosEnvioSection: React.FC = () => {
         </div>
         <div className="mt-6">
           <button
+            id="register-new-address-order-button"
             className="text-sm text-[#7F5AAF] underline mb-6"
             onClick={() => setIsOpen(true)}
           >
@@ -88,11 +90,13 @@ const MetodosEnvioSection: React.FC = () => {
         <div className="flex flex-col mb-6">
           <div className="flex justify-between items-center">
             <span className="text-base">Valor do envio:</span>
-            <span>{`${formatCurrency(valorFrete)}`}</span>
+            <span id="valor-frete-label">{`${formatCurrency(
+              valorFrete
+            )}`}</span>
           </div>
           <div className="flex justify-between items-center">
             <span className="text-base">Prazo de entrega:</span>
-            <span>{`${prazoDias} dias`}</span>
+            <span id="prazo-dias-label">{`${prazoDias} dias`}</span>
           </div>
         </div>
         <div>
@@ -108,6 +112,7 @@ const MetodosEnvioSection: React.FC = () => {
               </div>
             </Button>
             <Button
+              id="next-stage"
               asChild
               className="w-[145px] h-[40px]"
               onClick={handleProximaEtapa}

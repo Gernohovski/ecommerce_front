@@ -82,11 +82,15 @@ const ConferenciaSection: React.FC = () => {
                   quantidade={item.quantidade}
                   itemId={Number(item.id)}
                   quantidadeMax={item.livro.quantidade}
+                  itemName={item.livro.titulo}
                 />
                 <span className="text-base font-medium w-[75px]">
                   {formatCurrency(item.livro.valorVenda * item.quantidade)}
                 </span>
-                <button onClick={() => handleButtonClick(Number(item.id))}>
+                <button
+                  id={`remove-button-${item.livro.titulo}`}
+                  onClick={() => handleButtonClick(Number(item.id))}
+                >
                   <Image
                     src="/icons/trash.svg"
                     alt="Lixeira"
@@ -102,6 +106,7 @@ const ConferenciaSection: React.FC = () => {
       <div>
         <div className="flex justify-between mt-[71.2px]">
           <Button
+            id="previous-stage"
             asChild
             className="w-[145px] h-[40px]"
             variant={"delete_disabled"}
@@ -112,6 +117,7 @@ const ConferenciaSection: React.FC = () => {
             </div>
           </Button>
           <Button
+            id="next-stage"
             asChild
             className="w-[145px] h-[40px]"
             onClick={handleProximaEtapa}

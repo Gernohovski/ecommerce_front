@@ -13,6 +13,7 @@ export interface EnderecoPayload {
   fraseIdentificacao: string;
   clienteId: string;
   tipoEndereco: string;
+  temporario: boolean;
 }
 
 export interface CartaoCreditoPayload {

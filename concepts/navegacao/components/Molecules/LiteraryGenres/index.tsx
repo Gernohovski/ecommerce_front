@@ -3,6 +3,7 @@ import { useFiltrosContext } from "@/concepts/livros/contexts/FiltrosContext";
 import { useFetchCategorias } from "@/concepts/livros/hooks/useFetchCategorias";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const LiteraryGenres: React.FC = () => {
   const { data } = useFetchCategorias();
@@ -15,12 +16,24 @@ const LiteraryGenres: React.FC = () => {
       ...prevState,
       categoriaId: categoriaId,
     }));
+    if (pathname !== "/livros") {
+      router.push("/livros");
+    }
   };
+
+  useEffect(() => {
+    if (pathname !== "/livros") {
+      setFiltros((prevState) => ({
+        ...prevState,
+        categoriaId: "",
+      }));
+    }
+  }, [pathname, setFiltros]);
 
   return (
     <>
-      <Button variant="ghost" className="gap-1 group">
-        {!filtros?.categoriaId && pathname === "/livros" ? (
+      <Button variant="ghost" className="gap-1 group" id="todos-button">
+        {filtros?.categoriaId === "" && pathname === "/livros" ? (
           <Image
             src="/icons/list-violet.svg"
             alt="Bookly"
@@ -47,7 +60,7 @@ const LiteraryGenres: React.FC = () => {
         )}
         <span
           className={
-            !filtros?.categoriaId && pathname === "/livros"
+            filtros?.categoriaId === "" && pathname === "/livros"
               ? "text-[#391667]"
               : "text-white hover:text-[#391667] cursor-pointer"
           }
@@ -63,7 +76,7 @@ const LiteraryGenres: React.FC = () => {
         </span>
       </Button>
       {data?.map((categoria) => (
-        <Button variant="ghost" key={categoria.id}>
+        <Button variant="ghost" key={categoria.id} id={`${categoria.nome}`}>
           <span
             className={
               (filtros?.categoriaId ?? "") == String(categoria.id)

@@ -73,6 +73,7 @@ const FormEnderecoResidencialSection: React.FC = () => {
       fraseIdentificacao: shortPhrase,
       clienteId: String(clienteId) ?? "",
       tipoEndereco: "RESIDENCIAL",
+      temporario: false,
     };
   }, [
     id,

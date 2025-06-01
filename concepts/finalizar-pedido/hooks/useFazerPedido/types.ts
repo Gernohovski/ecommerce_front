@@ -4,15 +4,31 @@ import {
   Endereco,
 } from "@/concepts/cadastro/types";
 import { CarrinhoType } from "@/concepts/carrinho/contexts/CarrinhoContext/types";
+import { LivroDetalhado } from "@/concepts/livros/types/types";
+import { CupomTrocaResponse } from "../useFetchCupomCliente/types";
 
-export interface Pedido {
+export type Pedido = {
   carrinhoId: number | string;
   enderecoId: number | string;
   cartoesCreditoId: string[];
   valorPedido: number;
   valorFrete: number;
   clienteId: string;
-}
+  itensPedido: ItemPedido[];
+  cuponsTroca: CupomTrocaResponse[];
+};
+
+export type ItemPedido = {
+  id?: number;
+  livro: LivroDetalhado;
+  carrinho?: CarrinhoType;
+  quantidade: number;
+  trocaAberta: boolean;
+  devolucaoAberta: boolean;
+  quantidadeTroca: number;
+  quantidadeDevolucao: number;
+  valor: number;
+};
 
 export type PedidoResponse = {
   id: number;
@@ -27,6 +43,7 @@ export type PedidoResponse = {
   valorPedido: number;
   valorFrete: number;
   cliente: ClienteResponse;
+  itensPedido: ItemPedido[];
 };
 
 export type CustomPagePedidoResponse = {

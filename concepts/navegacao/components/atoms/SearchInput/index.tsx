@@ -23,6 +23,7 @@ const SearchInput: React.FC = () => {
   return (
     <div className="flex justify-center items-center gap-2">
       <Input
+        id="search-input"
         size={100}
         height={12}
         className="text-lg"
@@ -30,7 +31,7 @@ const SearchInput: React.FC = () => {
         value={unfetchedLivro}
         onChange={handleTitleChange}
       />
-      <Button variant="default">
+      <Button variant="default" id="search-button">
         <Image
           onClick={handleButtonClick}
           src="/icons/search.svg"

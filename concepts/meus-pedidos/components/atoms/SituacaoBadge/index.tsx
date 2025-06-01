@@ -11,17 +11,22 @@ const SituacaoBadge: React.FC<SituacaoBadgeProps> = ({ situacaoNome }) => {
     "pendente-de-envio": "#FFFCB1",
     "em-transito": "#FFFCB1",
     "solicitacao-de-troca": "#FFFCB1",
+    "devolucao-solicitada": "#FFFCB1",
 
     "pedido-recebido": "#C9FFB1",
     "pedido-finalizado": "#C9FFB1",
     "troca-finalizada": "#C9FFB1",
-
-    "troca-aprovada": "#B1C5FF",
+    "troca-recebida": "#C9FFB1",
+    "troca-aprovada": "#C9FFB1",
+    "devolucao-aprovada": "#C9FFB1",
+    "devolucao-recebida": "#C9FFB1",
+    "devolucao-finalizada": "#C9FFB1",
 
     "pagamento-recusado": "#FFB1B3",
     "pedido-cancelado": "#FFB1B3",
     "pedido-nao-entregue": "#FFB1B3",
     "troca-recusada": "#FFB1B3",
+    "devolucao-recusada": "#FFB1B3",
   };
 
   const cor = corSituacaoPedido[situacaoNome] || "#E0E0E0";

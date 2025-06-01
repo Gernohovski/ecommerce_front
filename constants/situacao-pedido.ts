@@ -9,6 +9,12 @@ export const SituacaoPedidoNomeMap: Record<string, string> = {
   "pedido-finalizado": "Pedido finalizado",
   "solicitacao-de-troca": "Solicitação de troca",
   "troca-aprovada": "Troca aprovada",
+  "troca-recebida": "Troca recebida",
   "troca-recusada": "Troca recusada",
   "troca-finalizada": "Troca finalizada",
+  "devolucao-solicitada": "Devolução solicitada",
+  "devolucao-aprovada": "Devolução aprovada",
+  "devolucao-recusada": "Devolução recusada",
+  "devolucao-recebida": "Devolução recebida",
+  "devolucao-finalizada": "Devolução finalizada",
 };

@@ -1,5 +1,7 @@
 import { CupomResponse } from "@/concepts/cupom/hooks/useCadastrarCupom/types";
 import { Dispatch, SetStateAction } from "react";
+import { ItemPedido } from "../../hooks/useFazerPedido/types";
+import { CupomTrocaResponse } from "../../hooks/useFetchCupomCliente/types";
 
 export type FinalizarPedidoContextType = {
   isSelected: {
@@ -28,4 +30,10 @@ export type FinalizarPedidoContextType = {
   clearForm: () => void;
   valorFrete: number;
   prazoDias: number;
+  itensPedido: ItemPedido[];
+  setItensPedido: Dispatch<SetStateAction<ItemPedido[]>>;
+  cuponsTroca: CupomTrocaResponse[];
+  setCuponsTroca: Dispatch<SetStateAction<CupomTrocaResponse[]>>;
+  cuponsTrocaSelecionados: CupomTrocaResponse[];
+  setCuponsTrocaSelecionados: Dispatch<SetStateAction<CupomTrocaResponse[]>>;
 };

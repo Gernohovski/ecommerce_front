@@ -19,13 +19,14 @@ const CartButton: React.FC = () => {
   return (
     <>
       <Button
+        id="cart-button"
         asChild
         className="flex flex-col h-auto gap-0 items-center hover:text-[#7738C8]"
         variant="ghost"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div>
-          <div className="relative">
+          <div id="cart-itens-count" className="relative">
             <Image
               src="/icons/cart.svg"
               alt="Carrinho"

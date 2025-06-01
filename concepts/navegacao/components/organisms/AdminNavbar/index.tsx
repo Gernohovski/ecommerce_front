@@ -2,6 +2,7 @@ import AdminNavbarIcon from "../../atoms/AdminNavbarIcon";
 import ClientesButton from "../../atoms/ClientesButton";
 import CupomButton from "../../atoms/CupomButton";
 import DashboardButton from "../../atoms/DashboardButton";
+import EstoqueButton from "../../atoms/EstoqueButton";
 import PedidosButton from "../../atoms/PedidosButton";
 
 const AdminNavbar: React.FC = () => {
@@ -15,6 +16,7 @@ const AdminNavbar: React.FC = () => {
         <ClientesButton />
         <PedidosButton />
         <DashboardButton />
+        <EstoqueButton />
       </div>
     </div>
   );

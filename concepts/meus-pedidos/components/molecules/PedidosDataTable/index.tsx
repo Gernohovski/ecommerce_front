@@ -18,13 +18,12 @@ type PedidosDataTableProps = {
 const PedidosDataTable: React.FC<PedidosDataTableProps> = ({ pedidos }) => {
   const { page, setPage, size: pageSize } = usePedidosFiltrosContext();
   const pedidosValido: PedidoResponse[] = pedidos?.content
-    ? pedidos.content.sort((a, b) => {
-        return b.id - a.id;
-      })
+    ? pedidos.content
     : [];
-  const totalPages = Math.ceil(
-    (pedidos?.count ?? pedidosValido.length) / pageSize
-  );
+  const totalPages =
+    Math.ceil((pedidos?.count ?? pedidosValido.length) / pageSize) == 0
+      ? 1
+      : Math.ceil((pedidos?.count ?? pedidosValido.length) / pageSize);
 
   const columns: ColumnDef<PedidoResponse>[] = [
     {

@@ -1,6 +1,8 @@
+import Section from "@/components/ui/section";
 import { useSessionContext } from "@/concepts/login/contexts/SessionContext";
 import { usePedidosFiltrosContext } from "@/concepts/meus-pedidos/contexts/PedidosFiltrosContext";
 import { useFetchPedidos } from "@/concepts/meus-pedidos/hooks/useFetchPedidos";
+import Image from "next/image";
 import { useEffect } from "react";
 import PedidosDataTable from "../../molecules/PedidosDataTable";
 
@@ -18,9 +20,21 @@ const ViewPedidoSection: React.FC = () => {
   const { data: pedidos } = useFetchPedidos();
 
   return (
-    <div className="m-6 p-6 rounded-[20px] flex flex-col gap-6 bg-white shadow-md">
-      <span className="text-primary text-2xl">Meus pedidos</span>
-      <PedidosDataTable pedidos={pedidos} />
+    <div className="p-6">
+      <Section
+        icon={
+          <Image
+            src="/icons/purchases.svg"
+            alt="Bookly"
+            width={30}
+            height={30}
+          />
+        }
+        title="Meus pedidos"
+        subtitle="Visualize os pedidos efetuados"
+      >
+        <PedidosDataTable pedidos={pedidos} />
+      </Section>
     </div>
   );
 };

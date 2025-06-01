@@ -6,12 +6,14 @@ import FourthLine from "@/concepts/cadastro/EnderecoResidencial/components/molec
 import SecondLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/SecondLine";
 import ThirdLine from "@/concepts/cadastro/EnderecoResidencial/components/molecules/ThirdLine";
 import { useSessionContext } from "@/concepts/login/contexts/SessionContext";
+import { cadastrarEnderecoSchema } from "@/concepts/minha-conta/EnderecoResidencial/validations/cadastrarEnderecoValidation";
 import useCadastrarEnderecoCliente from "@/concepts/minha-conta/VisualizarInformacoes/hooks/useCadastrarEnderecoCliente";
 import { useBuscarCep } from "@/lib/useBuscarCep";
 import errorMessage, { APIError } from "@/utils/error-message";
+import validateSchema, { ValidationResult } from "@/utils/validate-schema";
 import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import { toast } from "react-toastify";
 
@@ -53,6 +55,9 @@ const AdicionarEnderecoModal: React.FC<AdicionarEnderecoModalProps> = ({
   const { mutate } = useCadastrarEnderecoCliente();
   const queryClient = useQueryClient();
   const { data } = useBuscarCep(cep);
+  const [enderecoNaoTemporario, setEnderecoNaoTemporario] =
+    useState<boolean>(false);
+  const [errors, setErrors] = useState<ValidationResult[]>([]);
 
   const enderecoToSave = useMemo(() => {
     return {
@@ -69,6 +74,7 @@ const AdicionarEnderecoModal: React.FC<AdicionarEnderecoModalProps> = ({
       fraseIdentificacao: shortPhrase,
       clienteId: String(clienteId) ?? localStorage.getItem("cliente"),
       tipoEndereco: "ENTREGA",
+      temporario: !enderecoNaoTemporario,
     };
   }, [
     cep,
@@ -83,15 +89,20 @@ const AdicionarEnderecoModal: React.FC<AdicionarEnderecoModalProps> = ({
     state,
     shortPhrase,
     clienteId,
+    enderecoNaoTemporario,
   ]);
 
   const handleButtonClick = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
+      const obj = enderecoToSave as unknown as Record<string, unknown>;
+      validateSchema(cadastrarEnderecoSchema, obj, setErrors);
+      if (errors.length > 0) return;
       mutate(enderecoToSave, {
         onSuccess: () => {
-          toast.success("Endereço atualizado com sucesso!");
+          toast.success("Endereço cadastrado com sucesso!");
           queryClient.invalidateQueries({ queryKey: ["getCliente"] });
+          setEnderecoNaoTemporario(true);
           onClose();
           clearForm();
         },
@@ -100,7 +111,7 @@ const AdicionarEnderecoModal: React.FC<AdicionarEnderecoModalProps> = ({
         },
       });
     },
-    [mutate, enderecoToSave, queryClient, clearForm, onClose]
+    [mutate, enderecoToSave, queryClient, clearForm, onClose, errors.length]
   );
 
   useEffect(() => {
@@ -127,8 +138,10 @@ const AdicionarEnderecoModal: React.FC<AdicionarEnderecoModalProps> = ({
 
   if (!isOpen) return null;
 
+  debugger;
+
   return createPortal(
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 top-[75px]">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="relative w-auto h-auto bg-white rounded-[20px] shadow-lg">
         <Section
           icon={
@@ -163,6 +176,7 @@ const AdicionarEnderecoModal: React.FC<AdicionarEnderecoModalProps> = ({
             number={number}
             setNumber={setNumber}
             tipoEndereco="enderecoEntrega"
+            errors={errors}
           />
           <SecondLine
             country={country}
@@ -174,6 +188,7 @@ const AdicionarEnderecoModal: React.FC<AdicionarEnderecoModalProps> = ({
             neighborhood={neighborhood}
             setNeighborhood={setNeighborhood}
             tipoEndereco="enderecoEntrega"
+            errors={errors}
           />
           <ThirdLine
             residenceType={residenceType}
@@ -181,6 +196,7 @@ const AdicionarEnderecoModal: React.FC<AdicionarEnderecoModalProps> = ({
             shortPhrase={shortPhrase}
             setShortPhrase={setShortPhrase}
             tipoEndereco="enderecoEntrega"
+            errors={errors}
           />
           <FourthLine
             observations={observations}
@@ -188,8 +204,22 @@ const AdicionarEnderecoModal: React.FC<AdicionarEnderecoModalProps> = ({
             tipoEndereco="enderecoEntrega"
           />
         </Section>
-        <div className="pr-6 pb-6 flex justify-end">
-          <Button onClick={handleButtonClick}>
+        <div className="p-6 flex justify-end items-center">
+          {/* <div className="flex gap-2 items-center">
+            <Checkbox
+              checked={enderecoNaoTemporario}
+              onCheckedChange={() =>
+                setEnderecoNaoTemporario(!enderecoNaoTemporario)
+              }
+            />
+            <span className="text-sm">
+              Desejo usar esse endereço em compras futuras
+            </span>
+          </div> */}
+          <Button
+            id="register-new-address-order-button"
+            onClick={handleButtonClick}
+          >
             Cadastrar endereço de entrega
           </Button>
         </div>

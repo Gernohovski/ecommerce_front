@@ -12,7 +12,7 @@ export const ToastProvider = ({ children }: ToastProviderProps) => {
   return (
     <>
       {children}
-      <ToastContainer position="bottom-right" />
+      <ToastContainer position="top-center" autoClose={100} />
     </>
   );
 };

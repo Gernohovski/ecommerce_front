@@ -2,9 +2,9 @@ import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useListarClienteContext } from "@/concepts/admin/contexts/ListarClienteContext";
-import { useListarClientes } from "@/concepts/admin/hooks/useListarClientes";
 import { ClienteResponse } from "@/concepts/cadastro/types";
+import { useListarClienteContext } from "@/concepts/clientes/contexts/ListarClienteContext";
+import { useListarClientes } from "@/concepts/clientes/hooks/useListarClientes";
 import { formatDate } from "@/utils/format-date";
 import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
@@ -75,12 +75,12 @@ const ClienteDataTable: React.FC = () => {
       <div className="flex justify-center gap-6">
         <Input
           id="filter-client-input"
-          className="min-w-[1022px] max-w-[1022px]"
-          placeholder="Insira uns dos dados de identificação do cliente para busca"
+          className="min-w-[1356px] max-w-[1356px]"
+          placeholder="Insira um dos dados de identificação do cliente para busca"
           value={termo}
           onChange={(e) => setTermo(e.target.value)}
         ></Input>
-        <Button onClick={handleButtonClick}>
+        <Button onClick={handleButtonClick} className="h-[40px]">
           <Image
             src="/icons/search.svg"
             width={20}

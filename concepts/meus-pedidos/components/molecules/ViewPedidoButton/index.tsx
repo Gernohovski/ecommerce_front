@@ -12,7 +12,7 @@ const ViewPedidoButton: React.FC<ViewPedidoButtonProps> = ({ pedido }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div>
+    <div id={`${pedido.cliente.nome}-${pedido.id}`}>
       <Button
         className="w-auto"
         variant={"ghost"}

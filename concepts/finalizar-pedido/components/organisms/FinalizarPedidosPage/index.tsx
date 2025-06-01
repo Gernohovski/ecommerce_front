@@ -25,6 +25,8 @@ const FinalizarPedidosPage: React.FC = () => {
     valorPedido,
     valorFrete,
     desconto,
+    itensPedido,
+    cuponsTrocaSelecionados,
   } = useFinalizarPedidoContext();
   const { setEnderecos: setEnderecosEntrega } = useEnderecoEntregaContext();
   const { setCartoesCredito: setCartoesCredito } = useCartaoCreditoContext();
@@ -37,6 +39,8 @@ const FinalizarPedidosPage: React.FC = () => {
       valorPedido: valorPedido - desconto + valorFrete,
       valorFrete: valorFrete,
       clienteId: String(id) ?? "",
+      itensPedido,
+      cuponsTroca: cuponsTrocaSelecionados,
     };
   }, [
     idCarrinho,
@@ -46,6 +50,8 @@ const FinalizarPedidosPage: React.FC = () => {
     id,
     desconto,
     valorFrete,
+    itensPedido,
+    cuponsTrocaSelecionados,
   ]);
 
   useEffect(() => {

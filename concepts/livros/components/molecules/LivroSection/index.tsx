@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Tooltip from "@/components/ui/tooltip";
 import useAdicionarItemCarrinho from "@/concepts/carrinho/hooks/useAdicionarItemCarrinho";
 import { LivroDetalhado } from "@/concepts/livros/types/types";
 import errorMessage from "@/utils/error-message";
@@ -30,6 +31,7 @@ const LivroSection: React.FC<Props> = ({ livro }) => {
           onSuccess: () => {
             toast.success("Livro adicionado ao carrinho.");
             useQuery.invalidateQueries({ queryKey: ["getCarrinho"] });
+            useQuery.invalidateQueries({ queryKey: ["getLivros"] });
           },
           onError: (error) => {
             errorMessage(error);
@@ -78,20 +80,25 @@ const LivroSection: React.FC<Props> = ({ livro }) => {
             <CategoriaTagChip key={categoria.id} categoria={categoria.nome} />
           ))}
       </div>
-      <Button
-        asChild
-        className="w-[160px] h-[40px]"
-        disabled={livro.quantidade == 0}
+      <Tooltip
+        text={livro.quantidade == 0 ? "Sem disponibildade no estoque" : ""}
       >
-        <button
-          onClick={() => handleButtonClick(Number(livro.id))}
+        <Button
+          id={`${livro.titulo}-adicionar-button`}
+          asChild
+          className="w-[160px] h-[40px]"
           disabled={livro.quantidade == 0}
         >
-          <div className="flex items-center gap-2">
-            <span>Adicionar ao carrinho</span>
-          </div>
-        </button>
-      </Button>
+          <button
+            onClick={() => handleButtonClick(Number(livro.id))}
+            disabled={livro.quantidade == 0}
+          >
+            <div className="flex items-center gap-2">
+              <span>Adicionar ao carrinho</span>
+            </div>
+          </button>
+        </Button>
+      </Tooltip>
     </div>
   );
 };

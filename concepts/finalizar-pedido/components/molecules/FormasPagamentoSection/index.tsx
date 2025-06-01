@@ -19,6 +19,7 @@ import { toast } from "react-toastify";
 import CupomBadge from "../../atoms/CupomBadge";
 import AdicionarCartaoModal from "../AdicionarCartaoModal";
 import AlterarEtapasButton from "../AlterarEtapasButton";
+import SelectCuponsTrocaModal from "../SelectCuponsTrocaModal";
 
 type Props = {
   pedidoToSave: Pedido;
@@ -28,6 +29,8 @@ const FormasPagamentoSection: React.FC<Props> = ({ pedidoToSave }) => {
   const router = useRouter();
   const useQuery = useQueryClient();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpenSelectCuponsTrocaOpen, setIsOpenSelectCuponsTrocaOpen] =
+    useState<boolean>(false);
   const [codigoCupom, setCodigoCupom] = useState<string>("");
   const [cupomBuscado, setCupomBuscado] = useState<string>("");
   const {
@@ -41,10 +44,17 @@ const FormasPagamentoSection: React.FC<Props> = ({ pedidoToSave }) => {
     cartoesId,
     clearForm,
     valorFrete,
+    cuponsTroca,
+    cuponsTrocaSelecionados,
+    setCuponsTrocaSelecionados,
   } = useFinalizarPedidoContext();
   const { cartoesCredito } = useCartaoCreditoContext();
 
   const { mutate } = useFazerPedido();
+
+  useEffect(() => {
+    if (cuponsTroca.length > 0) setIsOpenSelectCuponsTrocaOpen(true);
+  }, [cuponsTroca]);
 
   const handleButtonClick = useCallback(
     (e: React.FormEvent) => {
@@ -53,7 +63,15 @@ const FormasPagamentoSection: React.FC<Props> = ({ pedidoToSave }) => {
         onSuccess: () => {
           toast.success("Pedido efetuado com sucesso!");
           router.push("/livros");
-          useQuery.invalidateQueries({ queryKey: ["getCarrinho"] });
+          useQuery.invalidateQueries({
+            queryKey: ["getPedidos"],
+          });
+          useQuery.invalidateQueries({
+            queryKey: ["getCarrinho"],
+          });
+          useQuery.invalidateQueries({
+            queryKey: ["getLivros"],
+          });
           clearForm();
         },
         onError: (error: APIError) => {
@@ -156,6 +174,7 @@ const FormasPagamentoSection: React.FC<Props> = ({ pedidoToSave }) => {
         </div>
         <div className="mt-6">
           <button
+            id="create-cartao-credito-button"
             className="text-sm text-[#7F5AAF] underline mb-6"
             onClick={() => setIsOpen(true)}
           >
@@ -179,6 +198,7 @@ const FormasPagamentoSection: React.FC<Props> = ({ pedidoToSave }) => {
                 ></Input>
               </div>
               <Button
+                id="add-cupom-button"
                 variant="default"
                 className="h-[40px]"
                 onClick={handleBuscarCupom}
@@ -211,14 +231,12 @@ const FormasPagamentoSection: React.FC<Props> = ({ pedidoToSave }) => {
               <div className="text-base">Valor dos itens:</div>
               <span className="text-base">{formatCurrency(valorPedido)}</span>
             </div>
-            {cupons.length > 0 && (
-              <div className="flex justify-between items-center">
-                <div className="text-base">Desconto:</div>
-                <span className="text-red-600 text-base">{`- ${formatCurrency(
-                  desconto
-                )}`}</span>{" "}
-              </div>
-            )}
+            <div className="flex justify-between items-center">
+              <div className="text-base">Desconto:</div>
+              <span className="text-red-600 text-base">{`- ${formatCurrency(
+                desconto
+              )}`}</span>{" "}
+            </div>
             <div className="flex justify-between items-center">
               <div className="text-base">Valor do envio:</div>
               <span className="text-base">{formatCurrency(valorFrete)}</span>
@@ -245,6 +263,7 @@ const FormasPagamentoSection: React.FC<Props> = ({ pedidoToSave }) => {
               </div>
             </Button>
             <Button
+              id="finalizar-pedido-button"
               asChild
               className="w-[145px] h-[40px]"
               onClick={handleButtonClick}
@@ -257,6 +276,13 @@ const FormasPagamentoSection: React.FC<Props> = ({ pedidoToSave }) => {
         </div>
       </div>
       <AdicionarCartaoModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <SelectCuponsTrocaModal
+        isOpen={false}
+        onClose={() => setIsOpenSelectCuponsTrocaOpen(false)}
+        cuponsTroca={cuponsTroca}
+        cuponsTrocaSelecionados={cuponsTrocaSelecionados}
+        setCuponsTrocaSelecionados={setCuponsTrocaSelecionados}
+      />
     </>
   );
 };

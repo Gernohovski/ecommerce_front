@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export const cadastrarEnderecoSchema = yup.object().shape({
-  id: yup.string().required(),
+  //id: yup.string().required(),
   tipoResidenciaId: yup.number().required().min(1),
   tipoLogradouroId: yup.number().required().min(1),
   logradouro: yup.string().required(),

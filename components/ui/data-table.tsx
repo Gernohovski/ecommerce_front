@@ -32,7 +32,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div>
+    <div className="shadow-md">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

@@ -26,6 +26,7 @@ const AdicionarCarrinhoButton: React.FC<AdicionarCarrinhoButtonProps> = ({
           onSuccess: () => {
             toast.success("Livro adicionado ao carrinho.");
             useQuery.invalidateQueries({ queryKey: ["getCarrinho"] });
+            useQuery.invalidateQueries({ queryKey: ["getLivros"] });
           },
           onError: (error) => {
             errorMessage(error);
