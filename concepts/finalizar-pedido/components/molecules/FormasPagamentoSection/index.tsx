@@ -277,7 +277,7 @@ const FormasPagamentoSection: React.FC<Props> = ({ pedidoToSave }) => {
       </div>
       <AdicionarCartaoModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
       <SelectCuponsTrocaModal
-        isOpen={false}
+        isOpen={isOpenSelectCuponsTrocaOpen}
         onClose={() => setIsOpenSelectCuponsTrocaOpen(false)}
         cuponsTroca={cuponsTroca}
         cuponsTrocaSelecionados={cuponsTrocaSelecionados}

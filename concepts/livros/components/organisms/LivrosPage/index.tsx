@@ -15,7 +15,7 @@ const LivrosPage: React.FC = () => {
   return (
     <div>
       <ListTemplate filters={filters}>
-        <LivrosList livros={livros} />
+        <LivrosList livroResponse={livros} />
       </ListTemplate>
     </div>
   );

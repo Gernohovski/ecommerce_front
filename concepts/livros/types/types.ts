@@ -3,6 +3,11 @@ export type CheckboxOptions = {
   value?: string;
 };
 
+export type CustomPageLivroResponse = {
+  content: LivroDetalhado[];
+  count: number;
+};
+
 export type LivroDetalhado = {
   id: string;
   autor: {

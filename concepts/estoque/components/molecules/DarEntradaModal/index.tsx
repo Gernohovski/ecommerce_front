@@ -38,7 +38,7 @@ const DarEntradaModal: React.FC<DarEntradaModalProps> = ({
     if (errors.length > 0) return;
     mutate(entradaEstoque, {
       onSuccess: () => {
-        toast.success("Cupom cadastrado com sucesso!");
+        toast.success("Entrada efetuada com sucesso!");
         setQuantidade(0);
         onClose();
       },

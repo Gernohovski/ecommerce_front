@@ -59,7 +59,7 @@ const CarrinhoModal: React.FC<CarrinhoProps> = ({
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 flex items-start justify-end bg-black bg-opacity-50">
+    <div className="mt-[75px] fixed inset-0 flex items-start justify-end bg-black bg-opacity-50">
       <div className="relative w-[366px] h-[632px] bg-[rgb(228,207,255)] p-6 rounded-l-[20px] shadow-lg">
         <div className="absolute -top-3 right-[60px]">
           <Image

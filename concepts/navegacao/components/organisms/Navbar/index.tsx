@@ -1,6 +1,7 @@
 import { useSessionContext } from "@/concepts/login/contexts/SessionContext";
 import MinhaContaDropDown from "@/concepts/minha-conta/Dropdown/components/organisms/MinhaContaDropdown";
 import CartButton from "../../atoms/CartButton";
+import IAButton from "../../atoms/IAButton";
 import LoginButton from "../../atoms/LoginButton";
 import NavbarIcon from "../../atoms/NavbarIcon";
 import SearchInput from "../../atoms/SearchInput";
@@ -16,6 +17,7 @@ const Navbar: React.FC = () => {
           <SearchInput />
         </div>
         <div className="flex h-14 items-center px-8 gap-8">
+          <IAButton />
           {clienteId ? <MinhaContaDropDown /> : <LoginButton />}
           <CartButton />
         </div>

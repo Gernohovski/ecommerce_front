@@ -9,6 +9,8 @@ export const useFiltrosContext = () => useContext(FiltrosContext);
 const FiltrosContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
+  const [page, setPage] = useState<number>(0);
+  const [size, setSize] = useState<number>(10);
   const [filtros, setFiltros] = useState<{
     precoMin: string;
     precoMax: string;
@@ -35,8 +37,12 @@ const FiltrosContextProvider: React.FC<{ children: ReactNode }> = ({
     () => ({
       filtros,
       setFiltros,
+      page,
+      setPage,
+      size,
+      setSize,
     }),
-    [filtros]
+    [filtros, page, size]
   );
   return (
     <FiltrosContext.Provider value={values}>{children}</FiltrosContext.Provider>

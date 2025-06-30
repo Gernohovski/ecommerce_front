@@ -1,12 +1,14 @@
 import api from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
 import { useFiltrosContext } from "../../contexts/FiltrosContext";
-import { LivroDetalhado } from "../../types/types";
+import { CustomPageLivroResponse } from "../../types/types";
 
 export const useFetchLivros = () => {
-  const { filtros } = useFiltrosContext();
+  const { filtros, page, size } = useFiltrosContext();
   const buildQueryParams = () => {
     const params: { [key: string]: string } = {};
+    if (page) params.page = String(page);
+    if (size) params.size = String(size);
     if (filtros.precoMin) params.precoMin = filtros.precoMin;
     if (filtros.precoMax) params.precoMax = filtros.precoMax;
     if (filtros.categoriaId) params.categoriaId = filtros.categoriaId;
@@ -17,11 +19,10 @@ export const useFetchLivros = () => {
     if (filtros.idioma.length > 0) params.idioma = filtros.idioma.join(",");
     if (filtros.sortBy) params.sortBy = filtros.sortBy;
     if (filtros.sortDirection) params.sortDirection = filtros.sortDirection;
-    console.log(params);
     return new URLSearchParams(params).toString();
   };
-  return useQuery<LivroDetalhado[], Error>({
-    queryKey: ["getLivros", filtros],
+  return useQuery<CustomPageLivroResponse, Error>({
+    queryKey: ["getLivros", filtros, page, size],
     queryFn: async () => {
       const queryParams = buildQueryParams();
       const response = await api.get(`/livros?${queryParams}`);

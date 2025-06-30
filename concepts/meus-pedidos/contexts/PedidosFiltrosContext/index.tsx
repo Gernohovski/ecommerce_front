@@ -10,7 +10,7 @@ const PedidosFiltrosContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [page, setPage] = useState<number>(0);
-  const [size, setSize] = useState<number>(20);
+  const [size, setSize] = useState<number>(5);
   const [filtros, setFiltros] = useState<{
     situacoesId: string[];
     clienteId: string;
@@ -19,7 +19,7 @@ const PedidosFiltrosContextProvider: React.FC<{ children: ReactNode }> = ({
   }>({
     situacoesId: [],
     clienteId: "",
-    sortBy: "valorPedido",
+    sortBy: "dataPedido",
     sortDirection: "DESC",
   });
 
